@@ -1,0 +1,83 @@
+
+
+-------------------------------------------------------------Practica 2-------------------------------------------------------------
+Módulos por hacer:
+-Login
+-Base de Datos
+-Foro
+
+Detalles:
+    -Login:
+        -Iniciar sesión
+        -Registrate como usuario
+        -Registrate como artista
+
+    -Base de Datos
+        -Diseñar la Estructura
+        -Implementarla
+
+    -Foro
+        -Publicar posts
+        -Responder posts(Recursividad)
+        -Votar positivamente posts
+        -Post con tags/filtros
+
+Scripts
+
+-------------------------------------------------------------Practica 2-------------------------------------------------------------
+
+
+Scripts
+
+Registrar: Registrarse de forma comun pero al activar un boton aparezcan mas campos para registrarse
+como artista -> Login
+
+Main: 
+-barra lateral izquierda
+-header superior coon algo de informacion 
+-barra de busqueda superior
+-contenido
+-footer con prototipo de reproductor
+-contenido: al registrarte marcas una serie de intereses para mostrar o mostramos contenido viral
+-6 scripts
+
+-Publicaciones
+-Barra de busqueda
+-Crear, modificar, listar y eliminar publicaciones
+-Ver perfil de otros usuarios
+-Posts(Con respuestas, valoraciones, etc...)
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Scripts adicionales:
+
+Musica
+-Listas de reproduccion(3)
+	-Mostrar contenido de cada playlist
+	-Reproductor de musica *ampliado y contraído
+	-Para mostrar musica en tendencia(Tener un contador que incremente al añadirla a tu biblioteca para que indique su popularidad)
+
+
+-*Barra de busqueda: varia la busqueda segun la pagina
+-Subscripcion
+-Perfil
+-Ajustes y preferencias
+-Tienda
+	-Tienda de cada artista
+	-Tienda de merch de cada usuario para comprar
+	-Tienda de eventos
+
+Total: 30 scripts
+
+
+
+
+BD
+-Usuarios(Vips, no Vips y artistas)
+-Detalles de usuario(Descripcion, etc...)
+-Canciones()
+-Playlists()
+-Eventos(artista asociado, fecha, etc...)
+-Productos()
+-Pedidos(usuario, ¡estado(procesado, etc...)!)
+-Mensajes(usuario, respuesta, )
