@@ -7,20 +7,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
-    <title>Document</title>
+    <title> Main Page </title>
 </head>
 
 <body>
 
     <!-- Cabecera -->
-    <div class="cabecera" style="background-color: lightgreen;">
+    <div class="cabecera">
         <?php
             require 'comun/header.php';
         ?>
     </div>
 
     <!-- Barra lateral -->
-    <div class="barra_lateral" style="background-color: grey; float: left;">
+    <div class="barra_lateral">
         <?php
             require 'comun/sidebar.php';
         ?>
@@ -32,5 +32,9 @@
             <?= $contentPanel ?>
         </article>
     </main>
+
+    <footer>
+        <div class="music_player"><p> Reproductor de música </p></div>
+    </footer>
 </body>
 </html>
