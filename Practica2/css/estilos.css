@@ -1,0 +1,17 @@
+header {
+    padding: 30px;
+	height: 10px;
+	text-align: right;
+    background-color: lightgreen;
+}
+nav a:hover {
+	color: red;
+}
+
+main {
+	padding: 10px;
+	float: left;
+	min-height: 600px;
+	width: 500px;
+	background-color: lightgrey;
+}
