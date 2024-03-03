@@ -3,9 +3,9 @@
 -------------------------------------------------------------Practica 2-------------------------------------------------------------
 
 1.Módulos por hacer:
--Login
--Base de Datos
--Foro
+    -Login
+    -Base de Datos
+    -Foro
 
 
 2.Detalles:
@@ -28,30 +28,30 @@
 3.Scripts
 
 Login:
--Registrarse como usuario/artista(Registrarse de forma comun pero al activar un boton apareverán más campos para registrarse como artista)
+    -Registrarse como usuario/artista(Registrarse de forma comun pero al activar un boton apareverán más campos para registrarse como artista)
 
 Main: 
--Barra lateral izquierda
--Header superior coon algo de informacion 
--Barra de busqueda superior
--Contenido
--Footer con prototipo de reproductor
--Contenido: al registrarte marcas una serie de intereses para mostrar o mostramos contenido viral
-Total: 6 scripts
+    -Barra lateral izquierda
+    -Header superior coon algo de informacion 
+    -Barra de busqueda superior
+    -Contenido
+    -Footer con prototipo de reproductor
+    -Contenido: al registrarte marcas una serie de intereses para mostrar o mostramos contenido viral
+    Total: 6 scripts
 
 Foro:
--Publicaciones
--Barra de busqueda
--Crear, modificar, listar y eliminar publicaciones
--Ver perfil de otros usuarios
--Posts(Con respuestas, valoraciones, etc...)
-Total: 5 scripts
+    -Publicaciones
+    -Barra de busqueda
+    -Crear, modificar, listar y eliminar publicaciones
+    -Ver perfil de otros usuarios
+    -Posts(Con respuestas, valoraciones, etc...)
+    Total: 5 scripts
 
 -------------------------------------------------------------Practica 2-------------------------------------------------------------
 
 ------------------------------------------------------------- Scripts adicionales -------------------------------------------------------------
 
-Musica
+Musica:
 -Listas de reproduccion(3)
 	-Mostrar contenido de cada playlist
 	-Reproductor de musica *ampliado y contraído
