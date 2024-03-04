@@ -1,0 +1,9 @@
+DUDAS IMPORTANTES:
+
+-Como guardar en la BD los seguidores y seguidos de cada usuario
+-Segmentar la entidad usuario como username y contraseña 
+de sus atributos como los pots publicados, post guardados, saldo, etc...(Cuenta/Atributos de nuestra app)
+-Dividir la clase Usuario para que no sea tan grande
+-Como separar las clases y funcionalidad de usuarios(invitado frente a usuarios registrados)
+-Saldo de usuarios para poder comprar
+-Privilegios y diferencias entre moderador/administrador y developer

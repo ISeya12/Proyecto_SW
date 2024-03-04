@@ -8,74 +8,39 @@
     -Foro
 
 
-2.Detalles:
-    -Login:
-        -Iniciar sesión
-        -Registrate como usuario
-        -Registrate como artista
+Scripts de vistas
 
-    -Base de Datos
-        -Diseñar la Estructura
-        -Implementarla
+Login -> Óscar 
+-Iniciar sesion con usuario ya registrado en BD
+-Registrar usuario en BD
 
-    -Foro
-        -Publicar posts
-        -Responder posts(Recursividad)
-        -Votar positivamente posts
-        -Post con tags/filtros
+Foro -> Ignacio, Óscar
+-Interfaz inicial que muestra posts
+-Publicar un post
+-Modificar un post publicado anteriormente
+-Borrar un post publicado anteriormente
+-Votar un post
+-Responder a un post
+-Ver respuestas de otros usuario a un post
+-Responder a una respuesta de un usuario se un post
 
+Layout(Barra lateral + contenido) -> Alonso 
+-Barra lateral navegable
+-Mostrar contenido en el centro de la pantalla
+-Barra de búsqueda de usuarios
+-Filtros de búsqueda(usuario/artista/ambos)
 
-3.Scripts
-
-Login:
-    -Registrarse como usuario/artista(Registrarse de forma comun pero al activar un boton apareverán más campos para registrarse como artista)
-
-Main: 
-    -Barra lateral izquierda
-    -Header superior coon algo de informacion 
-    -Barra de busqueda superior
-    -Contenido
-    -Footer con prototipo de reproductor
-    -Contenido: al registrarte marcas una serie de intereses para mostrar o mostramos contenido viral
-    Total: 6 scripts
-
-Foro:
-    -Publicaciones
-    -Barra de busqueda
-    -Crear, modificar, listar y eliminar publicaciones
-    -Ver perfil de otros usuarios
-    -Posts(Con respuestas, valoraciones, etc...)
-    Total: 5 scripts
+Base de datos -> Hugo
+-Diagrama entidad-relación
+-Implementación de BD
 
 -------------------------------------------------------------Practica 2-------------------------------------------------------------
 
-------------------------------------------------------------- Scripts adicionales -------------------------------------------------------------
+Perfil ->
+-Visualizar mi perfil
 
-Musica:
--Listas de reproduccion(3)
-	-Mostrar contenido de cada playlist
-	-Reproductor de musica *ampliado y contraído
-	-Para mostrar musica en tendencia(Tener un contador que incremente al añadirla a tu biblioteca para que indique su popularidad)
+Música ->
+-Ver "mis playlists"
 
-
--*Barra de busqueda: varia la busqueda segun la pagina
--Subscripcion
--Perfil
--Ajustes y preferencias
--Tienda:
-	-Tienda de cada artista
-	-Tienda de merch de cada usuario para comprar
-	-Tienda de eventos
-
-Total: 30 scripts
-
-------------------------------------------------------------- Base de Datos -------------------------------------------------------------
-
--Usuarios(Vips, no Vips y artistas)
--Detalles de usuario(Descripcion, etc...)
--Canciones()
--Playlists()
--Eventos(artista asociado, fecha, etc...)
--Productos()
--Pedidos(usuario, ¡estado(procesado, etc...)!)
--Mensajes(usuario, respuesta, )
+Tienda ->
+-Ver una "tienda" genérica

@@ -8,7 +8,10 @@
 
 <body>
 
-    <div style="background-color: lightgreen; text-align: center; "><header> 2Music ¡Música sin limites para perder el tiempo! </header></div>
+    <div style="background-color: lightgreen; text-align: center; ">
+        <header> 2Music ¡Música sin limites para perder el tiempo! </header>
+    </div>
+
     <div>
         <fieldset style="width: fit-content; ">
             <legend style="text-align: center;"> Login </legend>
