@@ -24,7 +24,7 @@
                         </div>
                         <div>
                             <div><label> Password </label></div>
-                            <div><input type="text" name="password"></div>
+                            <div><input type="password" name="password"></div>
                         </div>
         
                         <button type="submit"> Log in </button>

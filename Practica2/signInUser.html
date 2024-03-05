@@ -14,52 +14,35 @@
           </div>
     </div>
 
-    <div class ="content">
-        <div class="form_div" style="display: inline-block; background-color: lightgray;">
-            <form>
+    <div>
+
+        <p> Registra tu nueva cuenta de usuario! </p>
+        <div style="display: inline-block; background-color: lightgray;">
+            <form action="validateSignIn.html" method="post">
                 <fieldset>
-                    <div class="user_inputs">
-                        <div class="username_input_div">
+                    <div>
+                        <div>
                             <div><label> Username </label></div>
                             <div><input required type="text" name="new_username"></div>
                         </div>
                 
-                        <div class="email_input_div">
+                        <div>
                             <div><label> Email </label></div>
                             <div><input required type="text" name="new_email"></div>
                         </div>
                 
-                        <div class="password_input_div">
+                        <div>
                             <div><label> Password </label></div>
-                            <div><input required type="text" name="new_password"></div>
+                            <div><input required type="password" name="new_password"></div>
                         </div>
                 
-                        <div class="birtdate_input_div">
+                        <div>
                             <div><label> Birthdate </label></div>
                             <div><input required type="date" name="new_date"></div>
                         </div>
                     </div>
     
-                    <div class="artist_account_button_div">
-                        <div style="display: inline-block;">
-                            <p> Are you an artist/group? </p>
-                        </div>
-    
-                        <div class="artist_account_button">
-                            <button style="border-radius: 15%;"> Yes! </button>
-                        </div>
-                        
-                    </div>
-    
-                    <div class="artist_aditional_inputs" style="visibility: hidden;">
-                        <div class="musical_genres">
-                        </div>
-    
-                        <!-- Añadir más opciones de cuenta de artista -->
-    
-                    </div>
-    
-                    <div class="register_button_div" style="margin-top: 20px; display: inline-block;">
+                    <div style="margin-top: 20px; display: inline-block;">
                         <button type="submit" name="register_button" style="background-color: lightgreen;"> Sign In </button>
                     </div>
                 </fieldset>
