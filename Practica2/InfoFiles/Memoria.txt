@@ -7,6 +7,42 @@
 
 
 ------------------------------------------------------------- Estructura de BD -------------------------------------------------------------
+Formato de Tablas y Descripción:
+
+Usuario (id_user, username, nickname, password, foto, descripcion, karma, num_seguidores, num_seguidos):
+    Esta es la tabla con la información general de todos los usuarios y los datos necesarios para que puedan interactuar con el app.
+
+Ajustes (fuente, fontSize, temas, paginaPrincipal, id_user): 
+    Esta tabla es una anexa a Usuarios que tiene información necesaria para gestionar mejor accesibilidad y vistas un poco más personalizadas.    
+
+Album (id_artista, id_cancion, duracion_total, imagen, nombre, fecha):
+
+
+Artista (id_artista, integrantes):
+
+
+Seguidores (id_user, id_seguidor):
+
+
+Cancion (id_cancion, titulo, imagen, fecha, id_artista, likes, ruta, duracion, tags):
+
+
+Pedido (id_pedido, id_user, id_prod, estado, cantidad, total, fecha):
+
+
+Playlist (id_playlist, id_user, id_cancion, numero_canciones, duracion_total, imagen, nombre, fecha):
+
+
+Post (id_post, id_user, texto, imagen, likes, origen, tags, fecha):
+
+
+Postfav (id_post, id_user):
+
+
+Producto (id_prod, id_artista, imagen, nombre, descripcion, stock, precio):
+
+
+
 ------------------------------------------------------------- Estructura de BD -------------------------------------------------------------
 
 
