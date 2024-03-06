@@ -1,6 +1,9 @@
 <?php
-    $contentPanel = 'Pagina principal';
+    session_start();
+    $contentPanel = 'Contenido Principal';
+    $_SESSION['login'] = true;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,22 +17,18 @@
 
     <!-- Cabecera -->
     <div class="cabecera">
-        <?php
-            require 'comun/header.php';
-        ?>
+        <div style="margin-right: 30px; "> <?php require 'comun/header.php'; ?> </div>
     </div>
 
     <!-- Barra lateral -->
     <div class="barra_lateral">
-        <?php
-            require 'comun/sidebar.php';
-        ?>
+        <div> <?php require 'comun/sidebar.php'; ?> </div>    
     </div>
 
     <!-- Contenido de la app -->
     <main>
         <article>
-            <?= $contentPanel ?>
+            <?php echo "$contentPanel"; ?>
         </article>
     </main>
 

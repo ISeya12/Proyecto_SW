@@ -1,7 +1,3 @@
-<?php 
-    $isArtist = false;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +16,11 @@
 
     <div style="margin-top: 15px;"><label> Registra tu nueva cuenta de usuario! </label></div>
     <div style="display: inline-block; background-color: lightgray;">
-        <form action="validateSignIn.html" method="post">
+        <form action="ProcesarRegistro.php" method="post">
             <fieldset>
                 <div>
+
+                    <input hidden name="isArtist" value="0">
                     <div>
                         <div><label> Username </label></div>
                         <div><input required type="text" name="new_username"></div>
@@ -52,7 +50,7 @@
     </div>
 
     <div>
-        <p> Eres un artista? <a href="signUpArtist.html"> Crea tu cuenta aquí </a></p>
+        <p> Eres un artista? <a href="SignUpArtist.php"> Crea tu cuenta aquí </a></p>
     </div>
 
 </body>

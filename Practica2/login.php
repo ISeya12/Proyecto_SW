@@ -1,3 +1,7 @@
+<?php 
+    global $isArtist;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +36,7 @@
                 </div>
         
                 <div>
-                    <p> ¿No tienes cuenta? <a href="signUpUser.html"> Regístrate </a></p>
+                    <p> ¿No tienes cuenta? <a href="SignUpUser.php"> Regístrate </a></p>
                 </div>
             </div>
         </fieldset>

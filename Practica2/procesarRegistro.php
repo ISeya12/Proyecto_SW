@@ -3,63 +3,44 @@
 $input_valid = true;
 
 //  Common user inputs
-$username = checkUsername($_POST['new_username']);
-$email = checkEmail($_POST['new_email']);
-$password = $_POST['new_password'];
-$birthdate = checkBirthdate($_POST['new_birthdate']);
+$username = filter_input(INPUT_POST, 'new_username', FILTER_SANITIZE_SPECIAL_CHARS);
+$email = filter_input(INPUT_POST, 'new_email', FILTER_SANITIZE_SPECIAL_CHARS);
+$password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+$birthdate = $_POST['new_birthdate'];
+$isArtist = boolval($_POST['isArtist']);
 
 //  Artist inputs
-$artist_members;
 $musical_genres;
+
+
+
+echo "$username <br>";
+echo "$email <br>";
+echo "$password <br>";
+echo "$birthdate <br>";
 
 if(!$isArtist){
     $artist_members = null;
-    $musical_genres = null;
 }
 else{
     $artist_members = $_POST['musical_genres'];
-    $musical_genres =$_POST['new_artist_members'];
 }
 
-function checkUsername(string $u){
+if(isValidBirthdate($_POST['new_birthdate'], getdate(null), $isArtist)){
+    echo 'fecha valida';
+}
+else{
+    echo 'fecha invalida';
+}
 
-    $u = htmlspecialchars(trim(strip_tags($u)));
-    if(isUsernameOnDB($u)){
-        $input_valid = false;
-        return null;
+function isValidBirthdate(string $date, $actual_date, bool $isArtist){
+
+    //  Si es un artista -> Comprobar que la fecha sea anterior a la actual
+    //  Si es un usuario -> Comprobar que sea mayor de 18 años
+    if($isArtist){
+        return true;
     }
-    
-    return $u;
-}
-
-function checkEmail(string $m){
-
-    if(!filter_var($m, FILTER_VALIDATE_EMAIL)){
-        $input_valid = false;
-        return null;
+    else{
+        return true;
     }
-
-    $m = filter_var($m, FILTER_SANITIZE_EMAIL);
-
-    if(isEmailOnDB($m)){
-        $input_valid = false;
-        return null;
-    }
-
-    return $m;
-}
-
-function checkBirthdate(string $date){
-    //  Si es un usuario corriente -> debe tener al menos 16 años
-    //  Si es un artista -> Cualquier fecha anterior al día actual vale
-    //  La fecha es devuelta como un string con formato aaaa-mm-dd
-    return $date;
-}
-
-function isUsernameOnDB(string $data){
-    return false;
-}
-
-function isEmailOnDB(string $data){
-    return false;
 }

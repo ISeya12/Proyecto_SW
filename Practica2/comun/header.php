@@ -1,3 +1,8 @@
-<header>	
-	Has iniciado sesion como *Introducir tipo de usuario
-</header>
+<?php
+	$header = <<<EOS
+	<header>	
+		Bienvenid@, {$_SESSION['username']}
+	</header>
+	EOS;
+
+	echo $header;

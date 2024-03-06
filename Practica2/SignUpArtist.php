@@ -1,7 +1,3 @@
-<?php 
-    $isArtist = false;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +18,9 @@
     <div class="form_div" style="display: inline-block; background-color: lightgray; width: 250px;">
         <fieldset>
         <label> Register </label>
-        <form name="register_form" action="procesarRegistro.php" method="post">
+        <form name="register_form" action="ProcesarRegistro.php" method="post">
+
+            <input hidden name="isArtist" value="1">
             <div class="artist_inputs">
                 <div class="username_input_div">
                     <div><label> Username </label></div>
@@ -44,16 +42,10 @@
                     <div><input required type="date" name="new_birthdate"></div>
                 </div>
 
-                <div style="margin-top: 15px;">
-                    <div><label> Members accounts: </label></div>
-                    <div style="display: inline-block;"><input type="text" size="15"></div>
-                    <div style="display: inline-block;"><button type="button"> Add </button></div>
-                    <div style="margin-top: 5px;"><textarea name="new_artist_members" style="resize: none;" readonly></textarea></div>
-                </div>
-
                 <div style="margin-top: 10px;">
-                    <div style="display: inline-block; margin-bottom: 5px;"><label> Musical genres: </label></div>
-                    <select name="musical_genres" multiple>
+                    <div style="display: inline-block; margin-bottom: 5px;"><label> Musical genre: </label></div>
+                    <select name="musical_genres">
+                        <option>  </option>
                         <option> Rock </option>
                         <option> Pop </option>
                         <option> Rap </option>
