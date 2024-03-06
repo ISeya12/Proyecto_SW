@@ -32,12 +32,11 @@
                 </div>
         
                 <div>
-                    <p> ¿No tienes cuenta? <a href="signIn.html"> Regístrate </a></p>
+                    <p> ¿No tienes cuenta? <a href="signUpUser.html"> Regístrate </a></p>
                 </div>
             </div>
         </fieldset>
     </div>
     
-
 </body>
 </html>
