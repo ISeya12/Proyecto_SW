@@ -22,8 +22,6 @@ if ($imagen != NULL){
     //Mostrar imagen 
 } 
 
-$contenidoPrincipal .= $likes
+$contenidoPrincipal .= $likes;
 
-
-
-require RUTA_LAYOUTS.'/Layout.php';
+require (RUTA_LAYOUTS.'/Layout.php');
