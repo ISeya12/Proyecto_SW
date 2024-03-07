@@ -13,5 +13,18 @@ class Usuario{
         $this->password = $pass;
     }
 
+    public function getUsername()
+    {
+        return $this->username;
+    }
 
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
 }
