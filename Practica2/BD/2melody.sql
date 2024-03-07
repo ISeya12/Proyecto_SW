@@ -7,6 +7,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
+DROP TABLE IF EXISTS `ajustes`;
 CREATE TABLE `ajustes` (
   `fuente` varchar(255) DEFAULT NULL,
   `fontSize` int(11) DEFAULT NULL,
@@ -15,20 +16,13 @@ CREATE TABLE `ajustes` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `album` (
-  `id_artista` int(11) NOT NULL,
-  `id_cancion` int(11) NOT NULL,
-  `duracion_total` int(11) DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
-  `nombre` varchar(255) DEFAULT NULL,
-  `fecha` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+DROP TABLE IF EXISTS `artista`;
 CREATE TABLE `artista` (
   `id_artista` int(11) NOT NULL,
   `integrantes` tinytext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `cancion`;
 CREATE TABLE `cancion` (
   `id_cancion` int(11) NOT NULL,
   `titulo` varchar(255) DEFAULT NULL,
@@ -41,20 +35,19 @@ CREATE TABLE `cancion` (
   `tags` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `pedido`;
 CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `id_prod` int(11) DEFAULT NULL,
   `estado` varchar(255) DEFAULT NULL,
-  `cantidad` int(11) DEFAULT NULL,
   `total` float DEFAULT NULL,
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `playlist`;
 CREATE TABLE `playlist` (
   `id_playlist` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `id_cancion` int(11) DEFAULT NULL,
   `numero_canciones` int(11) DEFAULT NULL,
   `duracion_total` int(11) DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
@@ -62,6 +55,13 @@ CREATE TABLE `playlist` (
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `play_cancion`;
+CREATE TABLE `play_cancion` (
+  `id_playlist` int(11) NOT NULL,
+  `id_cancion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `id_post` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
@@ -73,11 +73,13 @@ CREATE TABLE `post` (
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `postfav`;
 CREATE TABLE `postfav` (
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `producto`;
 CREATE TABLE `producto` (
   `id_prod` int(11) NOT NULL,
   `id_artista` int(11) DEFAULT NULL,
@@ -88,11 +90,19 @@ CREATE TABLE `producto` (
   `precio` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `prod_pedido`;
+CREATE TABLE `prod_pedido` (
+  `id_prod` int(11) NOT NULL,
+  `id_pedido` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+DROP TABLE IF EXISTS `seguidores`;
 CREATE TABLE `seguidores` (
   `id_user` int(11) NOT NULL,
   `id_seguidor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id_user` int(11) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
@@ -109,10 +119,6 @@ CREATE TABLE `usuario` (
 ALTER TABLE `ajustes`
   ADD PRIMARY KEY (`id_user`);
 
-ALTER TABLE `album`
-  ADD PRIMARY KEY (`id_artista`,`id_cancion`),
-  ADD KEY `id_cancion` (`id_cancion`);
-
 ALTER TABLE `artista`
   ADD PRIMARY KEY (`id_artista`);
 
@@ -122,13 +128,16 @@ ALTER TABLE `cancion`
 
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `id_prod` (`id_prod`),
   ADD KEY `id_user` (`id_user`);
 
 ALTER TABLE `playlist`
   ADD PRIMARY KEY (`id_playlist`),
-  ADD KEY `id_cancion` (`id_cancion`),
   ADD KEY `id_user` (`id_user`);
+
+ALTER TABLE `play_cancion`
+  ADD PRIMARY KEY (`id_playlist`,`id_cancion`),
+  ADD KEY `id_playlist` (`id_playlist`)
+  ADD KEY `id_cancion` (`id_cancion`);
 
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id_post`),
@@ -141,6 +150,11 @@ ALTER TABLE `postfav`
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id_prod`),
   ADD KEY `id_artista` (`id_artista`);
+
+ALTER TABLE `prod_pedido`
+  ADD PRIMARY KEY (`id_prod`,`id_pedido`),
+  ADD KEY `id_prod` (`id_prod`),
+  ADD KEY `id_pedido` (`id_pedido`);
 
 ALTER TABLE `seguidores`
   ADD PRIMARY KEY (`id_user`,`id_seguidor`),
@@ -173,10 +187,6 @@ ALTER TABLE `usuario`
 ALTER TABLE `ajustes`
   ADD CONSTRAINT `ajustes_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`);
 
-ALTER TABLE `album`
-  ADD CONSTRAINT `album_ibfk_1` FOREIGN KEY (`id_cancion`) REFERENCES `cancion` (`id_cancion`),
-  ADD CONSTRAINT `album_ibfk_2` FOREIGN KEY (`id_artista`) REFERENCES `artista` (`id_artista`);
-
 ALTER TABLE `artista`
   ADD CONSTRAINT `artista_ibfk_1` FOREIGN KEY (`id_artista`) REFERENCES `usuario` (`id_user`);
 
@@ -184,12 +194,14 @@ ALTER TABLE `cancion`
   ADD CONSTRAINT `cancion_ibfk_1` FOREIGN KEY (`id_artista`) REFERENCES `artista` (`id_artista`);
 
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_prod`) REFERENCES `producto` (`id_prod`),
   ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`);
 
 ALTER TABLE `playlist`
-  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`id_cancion`) REFERENCES `cancion` (`id_cancion`),
   ADD CONSTRAINT `playlist_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`);
+
+ALTER TABLE `play_cancion`
+  ADD CONSTRAINT `play_cancion_ibfk_1` FOREIGN KEY (`id_playlist`) REFERENCES `playlist` (`id_playlist`),
+  ADD CONSTRAINT `play_cancion_ibfk_2` FOREIGN KEY (`id_cancion`) REFERENCES `cancion` (`id_cancion`);
 
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`);
@@ -200,6 +212,10 @@ ALTER TABLE `postfav`
 
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_artista`) REFERENCES `artista` (`id_artista`);
+
+ALTER TABLE `prod_pedido`
+  ADD CONSTRAINT `prod_pedido_ibfk_1` FOREIGN KEY (`id_prod`) REFERENCES `producto` (`id_prod`),
+  ADD CONSTRAINT `prod_pedido_ibfk_2` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`);
 
 ALTER TABLE `seguidores`
   ADD CONSTRAINT `seguidores_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`),
