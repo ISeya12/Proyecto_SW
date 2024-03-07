@@ -17,37 +17,42 @@ Clases:
 ------------------------------------------------------------- Estructura de BD -------------------------------------------------------------
 Formato de Tablas y Descripción:
 
-Usuario (id_user, username, nickname, password, foto, descripcion, karma, num_seguidores, num_seguidos):
+`usuario` (`id_user`, `username`, `nickname`, `password`, `foto`, `descripcion`, `karma`, `num_seguidores`, `num_seguidos`)
     Esta es la tabla con la información general de todos los usuarios y los datos necesarios para que puedan interactuar con el app.
 
-Ajustes (fuente, fontSize, temas, paginaPrincipal, id_user): 
+`ajustes` (`fuente`, `fontSize`, `temas`, `paginaPrincipal`, `id_user`)
     Esta tabla es una anexa a Usuarios que tiene información necesaria para gestionar mejor accesibilidad y vistas un poco más personalizadas.    
 
-Album (id_artista, id_cancion, duracion_total, imagen, nombre, fecha):
+`artista` (`id_artista`, `integrantes`)
+    Anexa de usuario para añadir información cuando es un artista el usuario.
 
+`cancion` (`id_cancion`, `titulo`, `imagen`, `fecha`, `id_artista`, `likes`, `ruta`, `duracion`, `tags`)
+    Tabla que guarda las canciones con su información y datos necesarios para mostralos luego en la web.
 
-Artista (id_artista, integrantes):
+`pedido` (`id_pedido`, `id_user`, `estado`, `total`, `fecha`)
+    Tabla con información de pedidos relacionados al usuario y su estado en el proceso de compra {como EN_PROCESO o PAGADO}.
 
+`playlist` (`id_playlist`, `id_user`, `numero_canciones`, `duracion_total`, `imagen`, `nombre`, `fecha`)
+    Tabla con la información de las playlists y su creador asociado{usuario-artista}.
 
-Seguidores (id_user, id_seguidor):
+`play_cancion` (`id_playlist`, `id_cancion`)
+    Tabla que relaciona los id de la tabla playlist y cancion para saber de que playlist sale cada cancion.
+    
+`post` (`id_post`, `id_user`, `texto`, `imagen`, `likes`, `origen`, `tags`, `fecha`)
+    Tabla que asociado un post y su información con su creador {usuario-artista} y guarda el id del mensaje padre.
 
+`postfav` (`id_post`, `id_user`)
+    Tabla que corresponde con los post añadidos a favoritos de dicho usuario.
 
-Cancion (id_cancion, titulo, imagen, fecha, id_artista, likes, ruta, duracion, tags):
+`producto` (`id_prod`, `id_artista`, `imagen`, `nombre`, `descripcion`, `stock`, `precio`)
+    Tabla con la información de los productos y el artista que ha creado dicha entrada.
 
+`prod_pedido` (`id_prod`, `id_pedido`)
+    Tabla que relaciona cada pedido con sus productos.
 
-Pedido (id_pedido, id_user, id_prod, estado, cantidad, total, fecha):
+`seguidores` (`id_user`, `id_seguidor`)
+    Tabla que relaciona cada usuario con los demás usuario a los que sigue.
 
-
-Playlist (id_playlist, id_user, id_cancion, numero_canciones, duracion_total, imagen, nombre, fecha):
-
-
-Post (id_post, id_user, texto, imagen, likes, origen, tags, fecha):
-
-
-Postfav (id_post, id_user):
-
-
-Producto (id_prod, id_artista, imagen, nombre, descripcion, stock, precio):
 
 
 
