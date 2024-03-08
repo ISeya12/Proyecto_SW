@@ -1,16 +1,29 @@
 <?php
 
+function generateStaticHeader(){
+
+	$html =<<<EOS
+	<header>
+		<p>
+			2Music, una app para perder el tiempo escuchando música sin limites!
+		</p>
+	</div>
+	</header>
+	EOS;
+
+	return $html;
+}
+
 function mostrarSaludo() {
 
 	$html =<<<EOS
 	<header>
-	<h1> 2Melody </h1>
 	<div class="saludo">
 		<p> 
 	EOS;
 
 	if (isset($_SESSION['login']) && ($_SESSION['login'] === true)) {
-		$html .= "Bienvenido, " . $_SESSION['username'] . " al foro\n";
+		$html .= "Bienvenido, " . $_SESSION['username'];
 	}
 	else {
 		$html .= "Inicie sesión para publicar en el foro\n";
