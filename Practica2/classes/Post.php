@@ -32,9 +32,9 @@ class Post{
     public function obtenerRespuestas($post_id){
 
         $result = [];
-        $conn = BD::getInstance()->getConexionBd();
+        $conection = BD::getInstance()->getConexionBd();
         $query = "SELECT * FROM post P WHERE P.origen IS $post_id ORDER BY P.fecha DESC";
-        $rs = $conn->query($query);
+        $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){
             $result[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
@@ -47,14 +47,13 @@ class Post{
     public function buscarPostPorUsuario($user){
 
         $result = [];
-        $conn = BD::getInstance()->getConexionBd();
+        $conection = BD::getInstance()->getConexionBd();
         $query = "SELECT * FROM post P JOIN usuario U ON P.id_user = U.id_user WHERE U.username = $user";
-        $rs = $conn->query($query);
+        $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){
             $result[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
         }
-
         $rs->free();
 
         return $result;
@@ -67,6 +66,23 @@ class Post{
         //Ejemplo: han pasado 5 horas y 10 minutos: Hace 5 horas
         //Ejemplo: han pasado 7 dias y 10 horas: Hace 7 dias
     }
+
+    private function buscarPostPorID($id){
+
+        $result = [];
+        $conection = BD::getInstance()->getConexionBd();
+        $query = "SELECT * FROM post P WHERE P.id_post IS $id";
+        $rs = $conection->query($query);
+
+        while($fila = $rs->fetch_assoc()){
+            $result[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
+        }
+        $rs->free();
+
+        return $result;
+    }
+
+    
 
     // Setters
     public function setTexto($texto) {
