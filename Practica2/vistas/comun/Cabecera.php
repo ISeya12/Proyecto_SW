@@ -13,9 +13,9 @@ EOS;
    <?= $header?>   
    
    <!-- Implementacion barra de busqueda -->
-   <form  action= "../scripts/procesarBusqueda.php"  method= "post"> 
+   <form  action= "./Login.php"  method= "post"> 
         <p> Barra de busqueda </p> 
-        <input type= "search"  value= " " name= "contenido">
+        <input type= "search" value= " ">
         <select name= "filtro"> 
             <option value= "art"> Artista </option> 
             <option value= "user"> Usuario </option> 
