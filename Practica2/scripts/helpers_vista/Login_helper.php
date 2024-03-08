@@ -11,8 +11,8 @@ function generateHeader(){
 
 function generateFormulary(){
 
-    $path_procesarLogin = '../scripts/ProcesarLogin.php';
-    $path_register = '../vistas/SignUpUser.php';
+    $path_procesarLogin = 'ProcesarLogin.php';
+    $path_register = 'SignUpUser.php';
 
     $html =<<<EOS
     <fieldset style="width: fit-content; ">
