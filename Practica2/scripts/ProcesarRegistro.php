@@ -1,5 +1,7 @@
 <?php
 
+require 'Usuario.php';
+
 $input_valid = true;
 
 //  Common user inputs
@@ -13,12 +15,6 @@ $isArtist = boolval($_POST['isArtist']);
 $musical_genres;
 
 
-
-echo "$username <br>";
-echo "$email <br>";
-echo "$password <br>";
-echo "$birthdate <br>";
-
 if(!$isArtist){
     $artist_members = null;
 }
@@ -26,21 +22,4 @@ else{
     $artist_members = $_POST['musical_genres'];
 }
 
-if(isValidBirthdate($_POST['new_birthdate'], getdate(null), $isArtist)){
-    echo 'fecha valida';
-}
-else{
-    echo 'fecha invalida';
-}
-
-function isValidBirthdate(string $date, $actual_date, bool $isArtist){
-
-    //  Si es un artista -> Comprobar que la fecha sea anterior a la actual
-    //  Si es un usuario -> Comprobar que sea mayor de 18 años
-    if($isArtist){
-        return true;
-    }
-    else{
-        return true;
-    }
-}
+Usuario::createUser($username, $email, null, $password, $birthdate, $isArtist);
