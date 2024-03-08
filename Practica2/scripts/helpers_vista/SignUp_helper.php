@@ -1,8 +1,5 @@
 <?php
 
-require_once ('../Config.php');
-
-
 function generateUserImage(){
 
     $image =<<<EOS

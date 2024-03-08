@@ -1,7 +1,5 @@
 <?php
 
-require_once '../Config.php';
-
 function generateHeader(){
 
     $html =<<<EOS

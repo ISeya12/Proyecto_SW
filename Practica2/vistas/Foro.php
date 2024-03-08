@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once 'Config.php';
 
 $contentPanel = '<h1>Foro</h1>';
 
@@ -24,4 +24,4 @@ if ($imagen != NULL){
 
 $contenidoPrincipal .= $likes;
 
-require (RUTA_LAYOUTS.'/Layout.php');
+require (RUTA_LAYOUTS . '/Layout.php');

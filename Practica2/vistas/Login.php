@@ -1,6 +1,6 @@
 <?php 
 
-require '../scripts/helpers_vista/Login_helper.php';
+require ('../scripts/helpers_vista/Login_helper.php');
 global $isArtist;
 
 $header = generateHeader();
