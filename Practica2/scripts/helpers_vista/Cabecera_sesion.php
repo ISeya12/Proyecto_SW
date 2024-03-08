@@ -9,9 +9,8 @@ function mostrarSaludo() {
 		<p> 
 	EOS;
 
-	if (isset($_SESSION["login"]) && ($_SESSION["login"] === true)) {
-		$html .= "Bienvenido, " . $_SESSION['nombre'] . " al foro\n";
-
+	if (isset($_SESSION['login']) && ($_SESSION['login'] === true)) {
+		$html .= "Bienvenido, " . $_SESSION['username'] . " al foro\n";
 	}
 	else {
 		$html .= "Inicie sesión para publicar en el foro\n";

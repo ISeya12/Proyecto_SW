@@ -9,9 +9,11 @@ $isValid = checkUser($username, $password);
 
 //  Log user or ask again for his account
 if($isValid){
+    session_start();
     $_SESSION['username'] = $username;
     $_SESSION['login'] = true;
-    require ('MainPage.php');
+
+    require ('../vistas/MainPage.php');
 }
 else{
     echo '<p> No existe ese usuario o la contraseña no es correcta </p><br>';
