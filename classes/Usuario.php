@@ -5,11 +5,12 @@ require_once 'BD.php';
 class Usuario{
 
     private $username;
-    private $email;
-    private $nickname;
+    private $nickname; 
     private $password;
     private $birthdate;
     private $isArtist;
+    private $email;
+ 
     
     function __construct($user, $email, $name, $pass, $birth, $artist){
         
@@ -27,7 +28,7 @@ class Usuario{
         $nullv = null;
         $karma = 0;
         $seguid = 0;
-        $query = "INSERT INTO `usuario` (`id_user`, `email`, `username`, `nickname`, `password`, `foto`, `descripcion`, `karma`, `num_seguidores`, `num_seguidos`) VALUES ";
+        $query = "INSERT INTO `usuario` (`id_user`, `nickname`, `password`, `foto`, `descripcion`, `karma`, `correo`) VALUES ";
         $values = "($nullv, $email, $username, $nickname, $password, $nullv, $nullv, $karma, $seguid, $seguid)";
         $query .= $values;
         $conection->query($query);

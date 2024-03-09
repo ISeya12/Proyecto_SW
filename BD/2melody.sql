@@ -49,6 +49,7 @@ CREATE TABLE `usuario` (
   `foto` varchar(255) DEFAULT NULL,
   `descripcion` tinytext DEFAULT NULL,
   `karma` int(11) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
   `correo` varchar(255) NOT NULL UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

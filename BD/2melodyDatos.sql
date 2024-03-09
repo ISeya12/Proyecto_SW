@@ -7,10 +7,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 TRUNCATE TABLE `usuario`;
-INSERT INTO `usuario` (`id_user`, `nickname`, `password`, `foto`, `descripcion`, `karma`, `correo`) VALUES
-( 'user1', 'User Uno', '$2y$10$O3c1kBFa2yDK5F47IUqusOJmIANjHP6EiPyke5dD18ldJEow.e0eS', 'foto_user1.jpg', '¡Hola! Soy User Uno.', 100,'user1@gmail.com'),
-( 'user2', 'User Dos', '$2y$10$O3c1kBFa2yDK5F47IUqusOJmIANjHP6EiPyke5dD18ldJEow.e0eS', 'foto_user2.jpg', 'Bienvenido a mi perfil.', 80, 'user2@gmail.com'),
-( 'user3', 'User Tres', '$2y$10$O3c1kBFa2yDK5F47IUqusOJmIANjHP6EiPyke5dD18ldJEow.e0eS', 'foto_user3.jpg', 'Descubre mi mundo.', 120, 'user3@gmail.com');
+INSERT INTO `usuario` (`id_user`, `nickname`, `password`, `foto`, `descripcion`, `karma`,`fecha`,`correo`) VALUES
+( 'user1', 'User Uno', '$2y$10$O3c1kBFa2yDK5F47IUqusOJmIANjHP6EiPyke5dD18ldJEow.e0eS', 'foto_user1.jpg', '¡Hola! Soy User Uno.', 100,'2001-03-09','user1@gmail.com'),
+( 'user2', 'User Dos', '$2y$10$O3c1kBFa2yDK5F47IUqusOJmIANjHP6EiPyke5dD18ldJEow.e0eS', 'foto_user2.jpg', 'Bienvenido a mi perfil.', 80,'2003-03-09', 'user2@gmail.com'),
+( 'user3', 'User Tres', '$2y$10$O3c1kBFa2yDK5F47IUqusOJmIANjHP6EiPyke5dD18ldJEow.e0eS', 'foto_user3.jpg', 'Descubre mi mundo.', 120, '2000-03-09','user3@gmail.com');
 
 TRUNCATE TABLE `ajustes`;
 INSERT INTO `ajustes` (`id_user`, `fuente`, `fontSize`, `temas`, `paginaPrincipal`) VALUES
