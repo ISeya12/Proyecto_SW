@@ -10,6 +10,7 @@ $password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
 $birthdate = $_POST['new_birthdate'];
 $isArtist = boolval($_POST['isArtist']);
 
+
 //  Artist inputs
 $musical_genres;
 
@@ -21,4 +22,4 @@ else{
     $artist_members = $_POST['musical_genres'];
 }
 
-Usuario::createUser($username, $email, null, $password, $birthdate, $isArtist);
+$usuario= Usuario::createUser($username, $email, null, $password, $birthdate, $isArtist);
