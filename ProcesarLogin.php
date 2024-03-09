@@ -4,7 +4,7 @@ require_once 'Config.php';
 require_once 'classes/Usuario.php'; 
 //  Get user input
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
-$password = $_POST['password'];
+$password = $_POST['password'] ?? null;
 
 //  Check credentials
 $isValid = checkUser($username, $password);
