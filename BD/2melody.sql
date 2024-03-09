@@ -24,7 +24,7 @@ CREATE TABLE `artista` (
 
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
-  `id_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_post` int(11) NOT NULL,
   `id_user` varchar(255) NOT NULL,
   `texto` text DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `postfav` (
 
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
-  `id_user` varchar(255)  NOT NULL UNIQUE,
+  `id_user` varchar(255)  NOT NULL,
   `nickname` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `foto` varchar(255) DEFAULT NULL,
@@ -51,6 +51,8 @@ CREATE TABLE `usuario` (
   `karma` int(11) DEFAULT NULL,
   `correo` varchar(255) NOT NULL UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 
 
 ALTER TABLE `ajustes`
@@ -62,14 +64,15 @@ ALTER TABLE `artista`
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id_post`),
   ADD KEY `id_user` (`id_user`);
+ALTER TABLE `post`
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `postfav`
   ADD PRIMARY KEY (`id_user`,`id_post`),
   ADD KEY `id_post` (`id_post`);
 
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`id_user`);
 
 
 ALTER TABLE `ajustes`
