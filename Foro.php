@@ -1,23 +1,23 @@
 <?php
 
-require_once '../Config.php';
-require_once RUTA_CLASSES . '/Post.php';
+require_once 'Config.php';
+require_once 'classes/Post.php';
 
-$content = showPost();
+$content = showTestPosts();
 
-require_once RUTA_LAYOUTS;
+require_once 'Layout.php';
 
-function showPost(){
+function showTestPosts(){
 
-    $user_id = 1;
-    $text = "Texto de ejemplo";
-    $img = null;
-    $tags = null;
-    $father_post = null;
-    $date = "2024-03-08";
+    $content = "<h1> Posts </h1>";
+    $num_posts = 4;
+    $posts = Post::obtenerListaDePostsEjemplo($num_posts);
 
-    $post = Post::crearPost($user_id, $text, $img, $tags, $father_post, $date);
-    $content = $post->generatePostHTML();
+    foreach($posts as $post){
+        $content .= "<div style=" . "\"display: inline-block;\" " . ">";
+        $content .= $post->generatePostHTML();
+        $content .= "</div> <br><br>";
+    }
 
     return $content;
 }

@@ -1,4 +1,6 @@
 <?php
+
+    require_once 'Config.php';
     $contentPanel = 'NUEVO ARTICULO';
 
     session_start();
@@ -13,10 +15,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inserción de artículo</title>
+    <title> Inserción de artículo </title>
 </head>
 <body>
-    <h1>Nuevo Artículo</h1>
+    <h1> Nuevo Artículo </h1>
     <form name="Datos" method="post" action="addforo.php" enctype="multipart/form-data">
         <input type="hidden" name="respuestas" value="<?php echo $respuestas; ?>">
         <input type="hidden" name="identificador" value="<?php echo $id; ?>">
