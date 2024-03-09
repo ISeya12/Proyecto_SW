@@ -29,11 +29,19 @@ function generateFormularyUser(){
                 <div>
 
                     <input hidden name="isArtist" value="0">
+
+
                     <div>
                         <div><label> Username </label></div>
                         <div><input required type="text" name="new_username"></div>
                     </div>
-            
+
+                    <div> 
+                        <div><label> Nickname </label></div>
+                        <div><input required type="text" name= "new_nick"></div>
+
+                    </div> 
+
                     <div>
                         <div><label> Email </label></div>
                         <div><input required type="text" name="new_email"></div>

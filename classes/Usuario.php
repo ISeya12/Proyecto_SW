@@ -79,6 +79,8 @@ class Usuario{
         }
     }
 
+
+
     public function getUsername(){
         return $this->username;
     }
@@ -100,6 +102,13 @@ class Usuario{
 
         return false; 
     }
+
+
+    /*
+        Metodo que busca en la base de datos un usuario por su nombre 
+
+     */
+
 
     public static function buscaUsuario($username){
         $conn= BD:: getInstance()->getConexionBd();
@@ -127,12 +136,20 @@ class Usuario{
     }
 
 
-    
+    /*
+        Comprueba si la contraseña es correcta 
+
+    */
     public function comprueba_password($password){
 
         return password_verify($password, $this->password); 
     }
 
+
+    /*
+        Comprueba si el usuario se trata de un artista 
+    */
+    
     public static function esArtista($id_u) {
 
         $conn= BD:: getInstance()->getConexionBd();
