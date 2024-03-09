@@ -97,6 +97,57 @@ class Post{
         //Ejemplo: han pasado 7 dias y 10 horas: Hace 7 dias
     }
 
+
+    private function modificarLike($id,$user){
+        $aux = 1;
+
+        if(likeAsignado($id,$user)){
+            $aux = -1;
+        }
+        
+        $conection = BD::getInstance()->getConexionBd();
+        $query=sprintf("UPDATE post p SET likes = '%d' WHERE p.id=%d" ,$num_likes + $aux, $id );
+        $rs = $conection->query($query);
+
+        if(rs->num_rows == 0){
+            $result = false;
+        }   
+        $rs->free();
+
+        
+    }
+   
+    
+
+    private function likeAsignado($id,$user){
+
+        $result = true ;
+        $conection = BD::getInstance()->getConexionBd();
+        $query = "SELECT * FROM postfav P WHERE P.id_post  = $id and P.id_user  = $user";
+        $rs = $conection->query($query);
+
+        if(rs->num_rows == 0){
+            $result = false;
+        }   
+        $rs->free();
+
+        return $result;
+    }
+    private function buscarPostFavPorUser($id){
+
+        $result = [];
+        $conection = BD::getInstance()->getConexionBd();
+        $query = "SELECT * FROM postfav P WHERE P.id_user = $id";
+        $rs = $conection->query($query);
+
+        while($fila = $rs->fetch_assoc()){
+            $result[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
+        }
+        $rs->free();
+
+        return $result;
+    }
+
     private function buscarPostPorID($id){
 
         $result = [];
@@ -125,15 +176,21 @@ class Post{
         //  Texto del post
         $post_info =<<<EOS2
         <div class="post_info">
-            $this->texto     
+            $this->texto      
         </div>
         EOS2;
-
+        $boton_like = <<<EOS
+        <form action="ProcesarLike.php" method="post">
+            <input type="hidden" name="postId" value="$this->id">
+            <button type="submit">&#10084</button>
+        </form>
+        EOS;
         //  Unir todo
         $html =<<<EOS3
         <div style="background-color: lightgray; width: 100%; height: 100%;">
         $user_info
         $post_info
+        $boton_like
         </div>
         EOS3;
 
