@@ -22,3 +22,4 @@ define('BD_NAME', '2melody');
 // y añadir el nombre y la contraseña de aqui abajo. Al añadir, seleccionar privilegios globales. 
 define('BD_USER', 'user');
 define('BD_PASS', 'pass');
+session_start();

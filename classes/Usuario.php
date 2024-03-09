@@ -27,12 +27,8 @@ class Usuario{
 
 
     /*
-
         Registra un nuevo usuario en la Base de Datos 
-
-
     */
-
 
     public static function createUser($username, $email, $nickname, $password, $birth, $artist){
 
@@ -44,7 +40,9 @@ class Usuario{
                 Mostrar error 
                 ¿Usar lo de redirigir? 
             */
+            return NULL; 
         }
+
         else {
             $conection = BD::getInstance()->getConexionBd();
             $nullv = null;
@@ -72,7 +70,7 @@ class Usuario{
                     }
 
                 }   
-                new Usuario($username, $email, $nickname, $password, $birth, $artist); 
+               return new Usuario($username, $email, $nickname, $password, $birth, $artist); 
             }
             else {
                 error_log("Error BD ({$conn->errno}): {$conn->error}");
@@ -103,11 +101,9 @@ class Usuario{
         return false; 
     }
 
- 
-
     public static function buscaUsuario($username){
         $conn= BD:: getInstance()->getConexionBd();
-        $query= sprintf("SELECT * FROM usuario U WHERE U.nickname= '%s'", $conn->real_escape_string($username)); 
+        $query= sprintf("SELECT * FROM usuario U WHERE U.id_user= '%s'", $conn->real_escape_string($username)); 
         $rs= $conn->query($query); 
         $result= false; 
 
@@ -117,7 +113,7 @@ class Usuario{
                 //Comprobar si el usuario es artista 
                 $artista= self::esArtista($fila['id_user']); 
 
-                $result= new Usuario($fila['nickname'], NULL, $fila['password'], NULL, $artista);
+                $result= new Usuario($fila['id_user'], $fila['correo'] , NULL, $fila['password'], NULL, $artista);
             
             }
             $rs->free(); 
@@ -132,12 +128,12 @@ class Usuario{
 
 
     
-    public function comprueba_password(){
+    public function comprueba_password($password){
 
         return password_verify($password, $this->password); 
     }
 
-    public function esArtista($id_u) {
+    public static function esArtista($id_u) {
 
         $conn= BD:: getInstance()->getConexionBd();
         $query= sprintf("SELECT * FROM artista A WHERE A.id_artista= '%s'", $conn->real_escape_string($id_u)); 

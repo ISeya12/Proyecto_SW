@@ -24,11 +24,14 @@ else{
 
 $usuario= Usuario::createUser($username, $email, null, $password, $birthdate, $isArtist);
 
+if($usuario) {
+    $_SESSION['username']= $username; 
 
-$SESSION['nombre']= $username; 
+    header("Location: Foro.php");
 
-$contenidoPrincipal=<<<EOS
-	<h1>Bienvenido {$SESSION['nombre']}</h1>
-EOS;
+}
 
-echo($contenidoPrincipal); 
+
+else {
+    header("Location: SignUpUser.php"); 
+}
