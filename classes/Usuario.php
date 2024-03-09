@@ -7,8 +7,11 @@ class Usuario{
     private $username;
     private $nickname; 
     private $password;
-    private $birthdate;
+    private $fotopath;
+    private $desc;
+    private $karma;
     private $isArtist;
+    private $birthdate;
     private $email;
  
     
@@ -27,9 +30,8 @@ class Usuario{
         $conection = BD::getInstance()->getConexionBd();
         $nullv = null;
         $karma = 0;
-        $seguid = 0;
-        $query = "INSERT INTO `usuario` (`id_user`, `nickname`, `password`, `foto`, `descripcion`, `karma`, `correo`) VALUES ";
-        $values = "($nullv, $email, $username, $nickname, $password, $nullv, $nullv, $karma, $seguid, $seguid)";
+        $query = "INSERT INTO `usuario` (`id_user`, `nickname`, `password`, `foto`, `descripcion`, `karma`, `fecha`, `correo`) VALUES ";
+        $values = "($username, $nickname, $password, $nullv, $nullv, $karma, $birth, $email)";
         $query .= $values;
         $conection->query($query);
     }
@@ -45,28 +47,7 @@ class Usuario{
     public function getPassword(){
         return $this->password;
     }
-}
 
-<?php
-
-require_once 'BD.php';
-
-class Usuario{
-
-    private $username;
-    private $nickname;
-    private $password;
-    private $birthdate;
-    private $isArtist;
-    
-    function __construct($user, $name, $pass, $birth, $artist){
-        
-        $this->username = $user;
-        $this->nickname = $name;
-        $this->password = $pass;
-        $this->birthdate = $birth;
-        $this->isArtist = $artist;
-    }
     public static function login ($username, $password) {
         $usuario= self:: buscaUsuario($username); 
         
@@ -76,18 +57,6 @@ class Usuario{
 
         return false; 
     }
-    public static function createUser($username, $nickname, $password, $birth, $artist){
-
-        $conection = BD::getInstance()->getConexionBd();
-        $nullv = null;
-        $karma = 0;
-        $seguid = 0;
-        $query = "INSERT INTO `usuario` (`id_user`, `username`, `nickname`, `password`, `foto`, `descripcion`, `karma`, `num_seguidores`, `num_seguidos`) VALUES ";
-        $values = "($nullv, $username, $nickname, $password, $nullv, $nullv, $karma, $seguid, $seguid)";
-        $query .= $values;
-        $conection->query($query);
-    }
-
 
     public static function buscaUsuario($username){
         $conn= BD:: getInstance()->getConexionBd();
@@ -115,19 +84,7 @@ class Usuario{
     }
 
 
-    public function getUsername(){
-        return $this->username;
-    }
-
-    public function getNickname(){
-        return $this->nickname;
-    }
-
-    public function getPassword(){
-        return $this->password;
-    }
-
-
+    
     public function comprueba_password(){
 
         return password_verify($password, $this->password); 
@@ -153,5 +110,5 @@ class Usuario{
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
     }
-
 }
+
