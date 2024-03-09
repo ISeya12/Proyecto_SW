@@ -23,3 +23,12 @@ else{
 }
 
 $usuario= Usuario::createUser($username, $email, null, $password, $birthdate, $isArtist);
+
+
+$SESSION['nombre']= $username; 
+
+$contenidoPrincipal=<<<EOS
+	<h1>Bienvenido {$SESSION['nombre']}</h1>
+EOS;
+
+echo($contenidoPrincipal); 

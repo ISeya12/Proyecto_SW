@@ -44,43 +44,41 @@ class Usuario{
                 Mostrar error 
                 ¿Usar lo de redirigir? 
             */
-
-        }
-
-        $conection = BD::getInstance()->getConexionBd();
-        $nullv = null;
-        $karma = 0;
-        $query = "INSERT INTO usuario (id_user, nickname, password, foto, descripcion, karma, fecha, correo) VALUES ";
-        $values = "($username, $nickname, $password, $nullv, $nullv, $karma, $birth, $email); ";
-        $query .= $values;
-        $conection->query($query);
-
-        $result= false; 
-
-        if($conection) {
-            if($artist) {
-                $query= "INSERT INTO artista (id_artista, integrantes) VALUES "; 
-                $values= "($id_user, $nullv)"; 
-                $query .= $values; 
-    
-                $conection->query($query); 
-    
-                if($conection) {
-                }
-    
-                else {
-                    error_log("Error BD ({$conn->errno}): {$conn->error}");
-                }
-
-            }
-
-            $conection->free(); 
-            new Usuario($username, $email, $nickname, $password, $birth, $artist); 
         }
         else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
+            $conection = BD::getInstance()->getConexionBd();
+            $nullv = null;
+            $karma = 0;
+            $query = "INSERT INTO usuario (id_user, nickname, password, foto, descripcion, karma, fecha, correo) VALUES ";
+            $values = "('$username', '$nickname', '$password', '$nullv', '$nullv', $karma, '$birth', '$email'); ";
+            $query .= $values;
+            $conection->query($query);
 
+            $result= false; 
+
+            if($conection) {
+                if($artist) {
+                    $query= "INSERT INTO artista (id_artista, integrantes) VALUES "; 
+                    $values= "('$id_user', '$nullv'); "; 
+                    $query .= $values; 
+    
+                    $conection->query($query); 
+    
+                   if($conection) {
+                    }
+    
+                    else {
+                        error_log("Error BD ({$conn->errno}): {$conn->error}");
+                    }
+
+                }   
+                new Usuario($username, $email, $nickname, $password, $birth, $artist); 
+            }
+            else {
+                error_log("Error BD ({$conn->errno}): {$conn->error}");
+            }
+
+        }
     }
 
     public function getUsername(){
