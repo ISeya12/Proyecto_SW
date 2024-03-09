@@ -1,14 +1,16 @@
 <?php
 
-require_once '../Config.php';
+session_start();
+
+require_once 'Config.php';
 
 $content = showProfile();
 
-require_once RUTA_LAYOUTS;
+require_once 'Layout.php';
 
 function showProfile(){
     
-    $html = "<p> Estas viendo tu perfil </p>";
+    $html = "<p> Estas viendo tu perfil, @" . $_SESSION['username'] . "</p>";
 
     return $html;
 }

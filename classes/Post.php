@@ -31,6 +31,31 @@ class Post{
         return $p;
     }
 
+    public static function obtenerPostDeUsuario($id){
+
+        $result = [];
+        $conection = BD::getInstance()->getConexionBd();
+        $query = "SELECT * FROM post P WHERE P.origen IS $id ORDER BY P.fecha DESC";
+        $rs = $conection->query($query);
+
+        //
+        //  OBTENER DATOS DE LA BD
+        //
+
+        return $result;
+    }
+
+    public static function obtenerListaDePostsEjemplo($num){
+
+        $posts = [];
+
+        for($i = 0; $i < $num; $i++){
+            $posts[] = Post::crearPost("@Usuario_$i", "Texto de ejemplo", null, null, null, "2024-03-09");
+        }
+
+        return $posts;
+    }
+
     public static function obtenerRespuestas($post_id){
 
         $result = [];
@@ -84,25 +109,34 @@ class Post{
         return $result;
     }
 
-    public static function getExamplePosts(){
-        
-    }
-
     public function generatePostHTML(){
 
+        //  Imagen de usuario junto a su username
         $user_info =<<<EOS
-        @$this->autor <br>
+        <div class="user_info">
+            <img src="img/foto_perfil.png" width="50px" height="50px">
+            <div style="display: inline-block; position: absolute; margin-top: 15px;"> @$this->autor </div>
+        </div>
         EOS;
 
+        //  Texto del post
         $post_info =<<<EOS2
-        $this->texto
+        <div class="post_info">
+            $this->texto     
+        </div>
         EOS2;
 
-        $html = "$user_info" . "$post_info";
+        //  Unir todo
+        $html =<<<EOS3
+        <div style="background-color: lightgray; width: 100%; height: 100%;">
+        $user_info
+        $post_info
+        </div>
+        EOS3;
+
         return $html;
     }
 
-    // Setters
     public function setTexto($texto) {
         $this->texto = $texto;
     }

@@ -1,8 +1,7 @@
 <?php
 
-require RUTA_CLASSES.'/Usuario.php';
-
-$input_valid = true;
+require_once 'Config.php';
+require_once 'classes/Usuario.php';
 
 //  Common user inputs
 $username = filter_input(INPUT_POST, 'new_username', FILTER_SANITIZE_SPECIAL_CHARS);

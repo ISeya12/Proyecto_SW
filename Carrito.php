@@ -1,10 +1,10 @@
 <?php
 
-require_once '../../Config.php';
+require_once 'Config.php';
 
 $content = showProfile();
 
-require_once RUTA_LAYOUTS;
+require_once 'Layout.php';
 
 function showProfile(){
     

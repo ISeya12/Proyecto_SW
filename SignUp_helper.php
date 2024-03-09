@@ -1,11 +1,13 @@
 <?php
 
+require_once 'Config.php';
+
 function generateUserImage(){
 
     $image =<<<EOS
     <div style="background-color: green;">
         <div style="background-color: greenyellow; display: inline-block;">
-            <img src="../img/register_user_image.png"  alt="foto de perfil" height="200" width="200">
+            <img src="img/register_user_image.png"  alt="foto de perfil" height="200" width="200">
         </div>
     </div>
     EOS;
