@@ -1,16 +1,17 @@
 <?php 
 
 //  Rutas de archivos
-define('RUTA_P2', 'Practica2/');
-define('RUTA_BD', 'BD/');
-define('RUTA_CLASSES', 'classes/');
-define('RUTA_CSS' , 'css/');
-define('RUTA_IMG' , 'img/');
-define('RUTA_DOCS', 'InfoFiles/');
-define('RUTA_SCRIPTS', 'scripts/');
-define('RUTA_HELPERS', RUTA_SCRIPTS . 'helpers_vista/');
-define('RUTA_VISTAS', 'vistas/');
-define('RUTA_LAYOUTS' , RUTA_VISTAS . 'comun/');
+define('RAIZ_APP', dirname(__DIR__));
+define('RUTA_P2', RAIZ_APP.'/Practica2');
+define('RUTA_BD', RUTA_P2.'/BD');
+define('RUTA_CLASSES', RUTA_P2.'/classes');
+define('RUTA_CSS' , RUTA_P2.'/css');
+define('RUTA_IMG' , RUTA_P2.'/img');
+define('RUTA_DOCS', RUTA_P2.'/InfoFiles');
+define('RUTA_SCRIPTS', RUTA_P2.'/scripts');
+define('RUTA_HELPERS', RUTA_SCRIPTS . '/helpers_vista');
+define('RUTA_VISTAS', RUTA_P2.'/vistas');
+define('RUTA_LAYOUTS' , RUTA_VISTAS . '/comun/layout.php');
 
 
 //  Parámetros BD

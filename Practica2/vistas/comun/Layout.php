@@ -7,28 +7,17 @@
     <title> Document </title>
 </head>
 <body>
-    
-    <div>
-        <div class="header">
-            <?php 
-                require_once 'Cabecera.php';
-            ?>
-        </div>
+    <?php 
+        require_once 'Cabecera.php';
+        require_once 'Sidebar.php'; 
+    ?>
 
-        <div class="sidebar" style="display: inline-block; ">
-            <?php require_once 'Sidebar.php'; ?>
-        </div>
-            
-        <div class="main_content" style="display: inline-block;">
-            <main>
-                <?= $content ?>
-            </main>
-        </div>
+    <main style="display: inline-block;">
+        <?= $content ?>
+    </main>
 
-        <div class="footer">
-            <?php require_once 'Footer.php'; ?>
-        </div>
-    </div>
-
+    <?php 
+        require_once 'Footer.php'; 
+    ?>
 </body>
 </html>

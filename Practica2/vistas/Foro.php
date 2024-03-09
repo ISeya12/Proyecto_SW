@@ -1,12 +1,11 @@
 <?php
 
-require_once 'Config.php';
-require_once 'Post.php';
-
+require_once '../Config.php';
+require_once RUTA_CLASSES . '/Post.php';
 
 $content = showPost();
 
-require_once 'Layout.php';
+require_once RUTA_LAYOUTS;
 
 function showPost(){
 

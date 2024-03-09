@@ -1,6 +1,6 @@
 <?php
 
-require 'Usuario.php';
+require RUTA_CLASSES.'/Usuario.php';
 
 $input_valid = true;
 

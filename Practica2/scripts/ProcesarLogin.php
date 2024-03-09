@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'Config.php';
+require_once '../Config.php';
 
 //  Get user input
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
