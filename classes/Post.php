@@ -13,16 +13,17 @@ class Post{
     private $fecha_publicacion;
     private $post_origen;
 
-    private function __construct($user, $text, $img, $tags, $origen, $date){
+    private function __construct($id,$user, $text, $img, $likes, $tags, $origen, $date){
         
-        $this->id = null;
+        $this->id = $id;
         $this->autor = $user;
         $this->texto = $text;
         $this->imagen = $img;
-        $this->num_likes = 0;
+        $this->num_likes = $likes;
+        $this->post_origen = $origen;
         $this->tags = $tags;
         $this->fecha_publicacion = $date;
-        $this->post_origen = $origen;
+     
     }
 
     public static function crearPost($user_id, $text, $img, $tags, $father_post, $date){
@@ -52,7 +53,7 @@ class Post{
         $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){
-            $post[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
+            $post[] = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
         
@@ -67,7 +68,7 @@ class Post{
         $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){
-            $result[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
+            $result[] = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
         
@@ -82,7 +83,7 @@ class Post{
         $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){
-            $result[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
+            $result[] = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
 
@@ -98,68 +99,50 @@ class Post{
     }
 
 
-    private function modificarLike($id,$user){
-        $aux = 1;
 
-        if(likeAsignado($id,$user)){
-            $aux = -1;
-        }
-        
-        $conection = BD::getInstance()->getConexionBd();
-        $query=sprintf("UPDATE post p SET likes = '%d' WHERE p.id=%d" ,$num_likes + $aux, $id );
-        $rs = $conection->query($query);
 
-        if(rs->num_rows == 0){
-            $result = false;
-        }   
-        $rs->free();
-
-        
-    }
-   
-    
-
-    private function likeAsignado($id,$user){
+    public static function likeAsignado($id,$user){
 
         $result = true ;
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM postfav P WHERE P.id_post  = $id and P.id_user  = $user";
+        $query = sprintf("SELECT * FROM postfav P WHERE P.id_post  = %d AND P.id_user  = '%s'",$id , $user);
         $rs = $conection->query($query);
 
-        if(rs->num_rows == 0){
+        if($rs->num_rows == 0){
             $result = false;
         }   
         $rs->free();
 
         return $result;
     }
-    private function buscarPostFavPorUser($id){
+
+
+
+    
+    public static function buscarPostFavPorUser($id){
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
         $query = "SELECT * FROM postfav P WHERE P.id_user = $id";
         $rs = $conection->query($query);
 
-        while($fila = $rs->fetch_assoc()){
-            $result[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
-        }
-        $rs->free();
 
         return $result;
     }
 
-    private function buscarPostPorID($id){
+    public static function buscarPostPorID($id){
 
-        $result = [];
+        
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P WHERE P.id_post IS $id";
+        $query = "SELECT * FROM post P WHERE P.id_post = $id";
         $rs = $conection->query($query);
+       
 
         while($fila = $rs->fetch_assoc()){
-            $result[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
+            $result = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
-
+        echo $result->id;
         return $result;
     }
 
@@ -176,7 +159,8 @@ class Post{
         //  Texto del post
         $post_info =<<<EOS2
         <div class="post_info">
-            $this->texto      
+            <p>$this->texto </p>
+            <p>$this->num_likes</p>     
         </div>
         EOS2;
         $boton_like = <<<EOS
@@ -197,6 +181,105 @@ class Post{
         return $html;
     }
 
+    public static function insertaFav($post, $user)
+    {
+        $result = false;
+
+        $conn = BD::getInstance()->getConexionBd();
+        $query = sprintf(
+            "INSERT INTO postfav (id_post,id_user) VALUES (%d, '%s')",
+            $post->id,
+            $user
+        );
+        $result = $conn->query($query);
+        if (!$result) {
+        error_log($conn->error);
+        }
+
+        return $result;
+    }
+    public static function borraFav($post, $user)
+    {
+        $result = false;
+
+        $conn = BD::getInstance()->getConexionBd();
+        $query = sprintf(
+            "DELETE FROM postfav WHERE (id_post = %d AND id_user = '%s')",
+            $post->id,
+            $user
+        );
+        $result = $conn->query($query);
+        if (!$result)  {
+            error_log($conn->error);
+        }
+
+        return $result;
+    }
+    private static function inserta($post)
+    {
+        $result = false;
+
+        $conn = BD::getInstance()->getConexionBd();
+        $query = sprintf(
+            "INSERT INTO post (id_user, texto, imagen, likes, origen, tags, fecha)
+                       VALUES ('%s','%s','%s', %d, %d,'%s', '%s')",
+            $post->autor,
+            $conn->real_escape_string($post->texto),
+            $conn->real_escape_string($post->imagen),
+            $post->num_likes,
+            !is_null($post->post_origen) ? $post->post_origen : 'null',
+            $post->tags,
+            $conn->real_escape_string($post->fecha_publicacion)
+        );
+        $result = $conn->query($query);
+        if ($result) {
+            $post->id = $conn->insert_id;
+            $result = $post;
+        } else {
+            error_log($conn->error);
+        }
+
+        return $result;
+    }
+
+    public static function actualiza($post)
+    {
+        $result = false;
+        $conn = BD::getInstance()->getConexionBd();
+        $query = sprintf(
+            "UPDATE post M SET M.likes = %d WHERE M.id_post = %d",
+            $post->num_likes,
+            $post->id
+        );
+        $result = $conn->query($query);
+        if (!$result) {
+            error_log($conn->error);
+        } else if ($conn->affected_rows != 1) {
+            error_log("Se han actualizado '$conn->affected_rows' !");
+        }
+
+        return $result;
+    }
+    public function guarda()
+    {
+        if (!$this->id) {
+            self::inserta($this);
+        } else {
+            self::actualiza($this);
+        }
+
+        return $this;
+    }
+    public function guardaFav()
+    {
+        if (!$this->id) {
+            self::insertaFav($this);
+     //   } else {
+      //      self::actualiza($this);
+        }
+
+        return $this;
+    }
     public function setTexto($texto) {
         $this->texto = $texto;
     }
@@ -209,6 +292,12 @@ class Post{
         $this->tags = $tags;
     }
 
+    public function setLikes($num) {
+        $this->num_likes = $num;
+    }
+    public function getId(){
+        return $this->id;
+    }
     public function getAutor(){
         return $this->autor;
     }
