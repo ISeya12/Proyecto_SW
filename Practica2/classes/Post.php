@@ -1,5 +1,7 @@
 <?php
 
+require_once 'BD.php';
+
 class Post{
 
     private $id;
@@ -23,13 +25,13 @@ class Post{
         $this->post_origen = $origen;
     }
 
-    public function crearPost($user_id, $text, $img, $tags, $father_post, $date){
+    public static function crearPost($user_id, $text, $img, $tags, $father_post, $date){
 
         $p = new Post($user_id, $text, $img, $tags, $father_post, $date);
         return $p;
     }
 
-    public function obtenerRespuestas($post_id){
+    public static function obtenerRespuestas($post_id){
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
@@ -44,7 +46,7 @@ class Post{
         return $result;
     }
 
-    public function buscarPostPorUsuario($user){
+    public static function buscarPostPorUsuario($user){
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
@@ -60,7 +62,7 @@ class Post{
     }
 
     //Devuelve el tiempo transcurrido desde que se publicó el post hasta ahora
-    public function tiempoTranscurrido(){
+    public static function tiempoTranscurrido(){
         //Ejemplo: han pasado 10 segundos: Hace 10 seg
         //Ejemplo: han pasado 2 minutos y 10 segundos: Hace 2 min
         //Ejemplo: han pasado 5 horas y 10 minutos: Hace 5 horas
@@ -82,7 +84,23 @@ class Post{
         return $result;
     }
 
-    
+    public static function getExamplePosts(){
+        
+    }
+
+    public function generatePostHTML(){
+
+        $user_info =<<<EOS
+        @$this->autor <br>
+        EOS;
+
+        $post_info =<<<EOS2
+        $this->texto
+        EOS2;
+
+        $html = "$user_info" . "$post_info";
+        return $html;
+    }
 
     // Setters
     public function setTexto($texto) {

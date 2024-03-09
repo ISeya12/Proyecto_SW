@@ -1,27 +1,23 @@
 <?php
-require_once 'Config.php';
 
-$contentPanel = '<h1>Foro</h1>';
+require_once '../Config.php';
+require_once RUTA_CLASSES . '/Post.php';
 
-$autor = Post::getAutor();
-$texto = Post::getTexto();
-$imagen = Post::getImagen();
-$likes = Post::getLikes();
-$tags = Post::getTags();
-$tiempo = Post::tiempoTranscurrido();
-$padre = Post::getPadre();
+$content = showPost();
 
-$contenidoPrincipal .= <<<EOS
-    //Foto del autor
-    <p>$tiempo</p>
-    <p>$autor, $tags</p>
-    <p>$texto</p>
-EOS;
+require_once RUTA_LAYOUTS;
 
-if ($imagen != NULL){
-    //Mostrar imagen 
-} 
+function showPost(){
 
-$contenidoPrincipal .= $likes;
+    $user_id = 1;
+    $text = "Texto de ejemplo";
+    $img = null;
+    $tags = null;
+    $father_post = null;
+    $date = "2024-03-08";
 
-require (RUTA_LAYOUTS . '/Layout.php');
+    $post = Post::crearPost($user_id, $text, $img, $tags, $father_post, $date);
+    $content = $post->generatePostHTML();
+
+    return $content;
+}

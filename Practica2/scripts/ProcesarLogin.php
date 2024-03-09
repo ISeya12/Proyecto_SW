@@ -1,5 +1,6 @@
 <?php 
 
+require_once '../Config.php';
 
 //  Get user input
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -14,7 +15,7 @@ if($isValid){
     $_SESSION['username'] = $username;
     $_SESSION['login'] = true;
     
-    require_once '../vistas/comun/Layout.php';
+    header('Location: Foro.php');
 }
 else{
     echo '<p> No existe ese usuario o la contraseña no es correcta </p><br>';
@@ -23,5 +24,3 @@ else{
 function checkUser($user, $pass){
     return $user == 'user' && $pass == 'pass';
 }
-
-?>
