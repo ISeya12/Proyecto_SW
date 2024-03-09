@@ -46,14 +46,17 @@ class Post{
     }
 
     public static function obtenerListaDePostsEjemplo($num){
+        $post = [];
+        $conection = BD::getInstance()->getConexionBd();
+        $query = "SELECT * FROM post P ORDER BY P.fecha DESC";
+        $rs = $conection->query($query);
 
-        $posts = [];
-
-        for($i = 0; $i < $num; $i++){
-            $posts[] = Post::crearPost("@Usuario_$i", "Texto de ejemplo", null, null, null, "2024-03-09");
+        while($fila = $rs->fetch_assoc()){
+            $post[] = new Post($fila['id_user'], $fila['texto'], $fila['imagen'], $fila['tags'], $fila['origen'], $fila['fecha']);
         }
-
-        return $posts;
+        $rs->free();
+        
+        return $post;
     }
 
     public static function obtenerRespuestas($post_id){
@@ -75,7 +78,7 @@ class Post{
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P JOIN usuario U ON P.id_user = U.id_user WHERE U.username = $user";
+        $query = "SELECT * FROM post P JOIN usuario U ON P.id_user = U.id_user WHERE U.id_user = $user";
         $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){

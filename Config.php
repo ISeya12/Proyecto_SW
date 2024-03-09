@@ -16,7 +16,7 @@ define('RUTA_LAYOUTS' , RUTA_VISTAS . '/comun/layout.php');
 
 //  Parámetros BD
 define('BD_HOST', 'localhost');
-define('BD_NAME', 'localhost');
+define('BD_NAME', '2melody');
 
 // Cuenta a crear en el phpmyadmin --> Desde phpmyadmin, pulsar pestaña Cuentas de usuario, pulsar Agregar nuevo Usuario,
 // y añadir el nombre y la contraseña de aqui abajo. Al añadir, seleccionar privilegios globales. 
