@@ -1,7 +1,7 @@
 <?php 
 
 require_once '../Config.php';
-require RUTA_HELPERS.'Login_helper.php';
+require_once RUTA_HELPERS.'Login_helper.php';
 
 global $isArtist;
 
