@@ -49,7 +49,7 @@ class Post{
     public static function obtenerListaDePostsEjemplo($num){
         $post = [];
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P ORDER BY P.fecha DESC";
+        $query = "SELECT * FROM post P WHERE P.origen IS NULL ORDER BY P.fecha DESC";
         $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){
