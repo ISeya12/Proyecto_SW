@@ -19,6 +19,7 @@ if($isValid){
 }
 else{
     echo '<p> No existe ese usuario o la contraseña no es correcta </p><br>';
+    exit();
 }
 
 function checkUser($user, $pass){
