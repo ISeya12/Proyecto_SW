@@ -19,7 +19,7 @@ if($isValid){
 }
 else{
     header('Location: Login.php'); 
-   
+   exit();
 }
 
 function checkUser($user, $pass){
