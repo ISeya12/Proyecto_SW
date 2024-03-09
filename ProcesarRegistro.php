@@ -5,6 +5,7 @@ require_once 'classes/Usuario.php';
 
 //  Common user inputs
 $username = filter_input(INPUT_POST, 'new_username', FILTER_SANITIZE_SPECIAL_CHARS);
+$nickname = filter_input(INPUT_POST, 'new_nickname', FILTER_SANITIZE_SPECIAL_CHARS); 
 $email = filter_input(INPUT_POST, 'new_email', FILTER_SANITIZE_SPECIAL_CHARS);
 $password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
 $birthdate = $_POST['new_birthdate'];
@@ -22,13 +23,16 @@ else{
     $artist_members = $_POST['musical_genres'];
 }
 
-$usuario= Usuario::createUser($username, $email, null, $password, $birthdate, $isArtist);
+$usuario= Usuario::createUser($username, $email, $nickname, $password, $birthdate, $isArtist);
+
+if($usuario) {
+    $_SESSION['username']= $username; 
+
+    header("Location: Foro.php");
+
+}
 
 
-$SESSION['nombre']= $username; 
-
-$contenidoPrincipal=<<<EOS
-	<h1>Bienvenido {$SESSION['nombre']}</h1>
-EOS;
-
-echo($contenidoPrincipal); 
+else {
+    header("Location: SignUpUser.php"); 
+}
