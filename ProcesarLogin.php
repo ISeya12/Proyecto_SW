@@ -16,6 +16,7 @@ if($isValid){
     $_SESSION['login'] = true;
     
     header('Location: Foro.php');
+    exit();
 }
 else{
     echo '<p> No existe ese usuario o la contraseña no es correcta </p><br>';
