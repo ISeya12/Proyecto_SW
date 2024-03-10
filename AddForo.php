@@ -10,9 +10,8 @@ $post_text = $_POST['post_text'];
 $post_image = null;
 $post_father = null;
 
-
-if(isset($_POST['post_image'])){
-    $post_image = $_POST['post_image'];
+if(isset($_POST['images'])){
+    $post_image = $_POST['images'];
 }
 
 $user = Usuario::buscaUsuario($username);
