@@ -21,14 +21,15 @@
 
         //  Imagen del post
         $post_image = "";
-        if(isset($image) && !empty($image)){
-            $image =<<<EOS3
+
+        if(!empty($image)){
+            $post_image =<<<EOS3
             <div class="post_image">
-                <img src="img/postImages/$image" width="50" heigth="50">
+                <img src="img/postImages/$image.jpg" width="70" heigth="70">
             </div>
             EOS3;
         }
-
+ 
         //  Numero de likes
         $boton_like = <<<EOS4
         <form action="ProcesarLike.php" method="post">
