@@ -3,12 +3,15 @@
 require_once 'Config.php';
 
 $id = $_POST['likeId'];
-$user = $_SESSION['username'];
+$user = null;
+if(isset($_SESSION['username'])){
+    $user = $_SESSION['username'];
+}
 //Check credentials
 $isValid = true;
 
 //Log user or ask again for his account
-if($isValid){
+if($isValid && $user){
     //añadir like BD
     $aux = 1;
     $post = Post::buscarPostPorID($id);
@@ -20,9 +23,8 @@ if($isValid){
         Post::insertaFav($post, $user);
     }
     
-    ($post->getAutor)->aumentaKarma($aux);
+    Usuario::buscaUsuario($post->getAutor())->aumentaKarma($aux);
     $post->aumentaLikes($aux);
-
     Post::actualiza($post);
 }
 header('Location: Foro.php');

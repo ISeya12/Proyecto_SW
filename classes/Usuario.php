@@ -80,8 +80,49 @@ class Usuario{
         }
     }
 
+    public static function actualiza($user){
+
+        $result = false;
+        $conn = BD::getInstance()->getConexionBd();
+      
+        $query = sprintf(
+            "UPDATE usuario 
+            SET 
+                nickname = '%s',
+                password = '%s',
+                foto = '%s',
+                descripcion = '%s',
+                karma = %d,
+                fecha = '%s',
+                correo = '%s'
+            WHERE id_user = %d",
+             $user->nickname, 
+             $user->password,
+             $user->fotopath,
+             $user->desc,
+             $user->karma,
+             $user->birthdate,            
+             $user->email,
+            $user->username
+        );
+        $result = $conn->query($query);
+
+        if (!$result) {
+            error_log($conn->error);
+        }
+        else if ($conn->affected_rows != 1) {
+            error_log("Se han actualizado '$conn->affected_rows' !");
+        }
+
+        return $result;
+    }
+
     public function publicarPost($post_text, $post_image){
-        return Post::crearPost($this->username, $post_text, $post_image, 0, null, null, Post::generatePostDate());
+        
+        $post =  Post::crearPost($this->username, $post_text, $post_image, 0, null, null, Post::generatePostDate());
+        return $post->guarda();
+
+        
     }
 
     public static function login ($username, $password) {
@@ -140,6 +181,9 @@ class Usuario{
         return $this->password;
     }
 
+    public function aumentaKarma($num){
+        $this->karma = $this->karma + $num;
+    }
     /*
         Metodo que busca en la base de datos un usuario por su nombre 
      */

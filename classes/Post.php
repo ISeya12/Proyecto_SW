@@ -213,8 +213,21 @@ class Post{
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
-            "UPDATE post M SET M.likes = %d WHERE M.id_post = %d",
+            "UPDATE post 
+            SET 
+                id_user = '%s',
+                texto = '%s',
+                imagen = '%s',
+                likes = %d,
+                tags = '%s',
+                fecha= '%s'
+            WHERE id_post = %d",
+            $post->autor,
+            $post->texto,
+            $post->imagen,
             $post->num_likes,
+            $post->tags,
+            $post->fecha_publicacion,
             $post->id
         );
 
@@ -244,14 +257,20 @@ class Post{
 
     public function guardaFav(){
 
+        !$this->id ? self::insertaFav($this) : self::actualiza($this);
+
+        /*
         if (!$this->id) {
             self::insertaFav($this);
-        }
-        else {
+        } else {
             self::actualiza($this);
         }
-
+        */
         return $this;
+    }
+
+    public function aumentaLikes($num){
+        $this->num_likes +=  $num;
     }
 
     public function setTexto($texto) {
