@@ -81,7 +81,11 @@ class Usuario{
     }
 
     public function publicarPost($post_text, $post_image){
-        return Post::crearPost($this->username, $post_text, $post_image, 0, null, null, Post::generatePostDate());
+        
+        $post =  Post::crearPost($this->username, $post_text, $post_image, 0, null, null, Post::generatePostDate());
+        return $post->guarda();
+
+        
     }
 
     public static function login ($username, $password) {
