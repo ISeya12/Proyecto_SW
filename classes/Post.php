@@ -14,7 +14,6 @@ class Post{
     private $post_origen;
 
     private function __construct($id,$user, $text, $img, $likes, $tags, $origen, $date){
-        
         $this->id = $id;
         $this->autor = $user;
         $this->texto = $text;
@@ -27,9 +26,7 @@ class Post{
     }
 
     public static function crearPost($user_id, $text, $img, $tags, $father_post, $date){
-
-        $p = new Post($user_id, $text, $img, $tags, $father_post, $date);
-        return $p;
+        return new Post($user_id, $text, $img, $tags, $father_post, $date);
     }
 
     public static function obtenerPostDeUsuario($id){
@@ -49,11 +46,12 @@ class Post{
     public static function obtenerListaDePosts($origen_aux = 'NULL'){
         $post = [];
         $conection = BD::getInstance()->getConexionBd();
-        if($origen_aux == 'NULL'){
+
+        if($origen_aux == 'NULL')
             $operation = 'IS';
-        }else {
+        else 
             $operation = '=';
-        }
+
         $query = "SELECT * FROM post P WHERE P.origen $operation $origen_aux ORDER BY P.fecha DESC";
         $rs = $conection->query($query);
 
@@ -110,29 +108,26 @@ class Post{
         $query = "SELECT * FROM postfav P WHERE P.id_user = $id";
         $rs = $conection->query($query);
 
-
         return $result;
     }
 
     public static function buscarPostPorID($id){
 
-        
         $conection = BD::getInstance()->getConexionBd();
         $query = "SELECT * FROM post P WHERE P.id_post = $id";
         $rs = $conection->query($query);
        
-
         while($fila = $rs->fetch_assoc()){
             $result = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
-        echo $result->id;
+        
         return $result;
     }
 
     public function generatePostHTML(){
 
-        //  Imagen de usuario junto a su username
+        //Imagen de usuario junto a su username
         $user_info =<<<EOS
         <div class="user_info">
             <img src="img/foto_perfil.png" width="50px" height="50px">
@@ -140,14 +135,14 @@ class Post{
         </div>
         EOS;
 
-        //  Texto del post
+        //Texto del post
         $post_info =<<<EOS2
         <div class="post_info">
             <p>$this->texto </p> 
         </div>
         EOS2;
+
         $boton_like = <<<EOS
-      
         <form action="ProcesarLike.php" method="post">
             <input type="hidden" name="likeId" value="$this->id">
             <button type="submit">$this->num_likes &#10084</button>
@@ -156,10 +151,9 @@ class Post{
             <input type="hidden" name="respuestasId" value="$this->id">
             <button type="submit">Ver Respuestas</button>
         </form>
-
         EOS;
         
-        //  Unir todo
+        //Unir todo
         $html =<<<EOS3
         <div style="background-color: lightgray; width: 100%; height: 100%;">
         $user_info
@@ -180,10 +174,11 @@ class Post{
             $post->id,
             $user
         );
+
         $result = $conn->query($query);
-        if (!$result) {
-        error_log($conn->error);
-        }
+        
+        if (!$result) 
+            error_log($conn->error);
 
         return $result;
     }
@@ -197,10 +192,11 @@ class Post{
             $post->id,
             $user
         );
+
         $result = $conn->query($query);
-        if (!$result)  {
+
+        if (!$result)
             error_log($conn->error);
-        }
 
         return $result;
     }
@@ -221,13 +217,14 @@ class Post{
             $post->tags,
             $conn->real_escape_string($post->fecha_publicacion)
         );
+
         $result = $conn->query($query);
+
         if ($result) {
             $post->id = $conn->insert_id;
             $result = $post;
-        } else {
+        } else
             error_log($conn->error);
-        }
 
         return $result;
     }
@@ -241,53 +238,66 @@ class Post{
             $post->num_likes,
             $post->id
         );
-        $result = $conn->query($query);
-        if (!$result) {
-            error_log($conn->error);
-        } else if ($conn->affected_rows != 1) {
-            error_log("Se han actualizado '$conn->affected_rows' !");
-        }
 
+        $result = $conn->query($query);
+
+        if (!$result)
+            error_log($conn->error);
+         else if ($conn->affected_rows != 1)
+            error_log("Se han actualizado '$conn->affected_rows' !");
+        
         return $result;
     }
 
     public function guarda(){
 
+        !$this->id ? self::inserta($this) : self::actualiza($this);
+
+        /*
         if (!$this->id) {
             self::inserta($this);
         } else {
             self::actualiza($this);
         }
-
+        */
         return $this;
     }
 
     public function guardaFav(){
 
+        !$this->id ? self::insertaFav($this) : self::actualiza($this);
+
+        /*
         if (!$this->id) {
             self::insertaFav($this);
         } else {
             self::actualiza($this);
         }
-
+        */
         return $this;
     }
 
-    public function setTexto($texto) {
+    public function aumentaLikes($num){
+        $this->likes = $this->likes + $num;
+    }
+
+
+    public function setTexto($texto){
         $this->texto = $texto;
     }
 
-    public function setImagen($imagen) {
+    public function setImagen($imagen){
         $this->imagen = $imagen;
     }
 
-    public function setTags($tags) {
+    public function setTags($tags){
         $this->tags = $tags;
     }
 
-    public function setLikes($num) {
+    public function setLikes($num){
         $this->num_likes = $num;
     }
+
     public function getId(){
         return $this->id;
     }
@@ -318,5 +328,4 @@ class Post{
     public function getPadre(){
         return $this->post_origen;
     }
-    
 }

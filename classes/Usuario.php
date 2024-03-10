@@ -16,7 +16,6 @@ class Usuario{
  
     
     function __construct($user, $email, $name, $pass, $birth, $artist){
-        
         $this->username = $user;
         $this->email = $email;
         $this->nickname = $name;
@@ -26,13 +25,10 @@ class Usuario{
     }
 
 
-    /*
-        Registra un nuevo usuario en la Base de Datos 
-    */
-
+    //Registra un nuevo usuario en la Base de Datos 
     public static function createUser($username, $email, $nickname, $password, $birth, $artist){
 
-        /*Primero compruebo si ya existe un usuario con el mismo username*/ 
+        //Primero compruebo si ya existe un usuario con el mismo username
         $user_buscado= self:: buscaUsuario($username);
 
         if($user_buscado){ //Ya existia un usuario con ese nombre 
@@ -62,54 +58,30 @@ class Usuario{
     
                     $conection->query($query); 
     
-                   if($conection) {
-                    }
-    
-                    else {
+                    if(!$conection)
                         error_log("Error BD ({$conn->errno}): {$conn->error}");
-                    }
-
-                }   
+                }
                return new Usuario($username, $email, $nickname, $password, $birth, $artist); 
             }
-            else {
+            else 
                 error_log("Error BD ({$conn->errno}): {$conn->error}");
-            }
-
         }
     }
 
 
 
-    public function getUsername(){
-        return $this->username;
-    }
 
-    public function getNickname(){
-        return $this->nickname;
-    }
-
-    public function getPassword(){
-        return $this->password;
-    }
 
     public static function login ($username, $password) {
         $usuario= self:: buscaUsuario($username); 
-        
-        if($usuario && $usuario->comprueba_password($password)){ //El login es correcto 
+
+        if($usuario && $usuario->comprueba_password($password)) //El login es correcto 
             return $usuario; 
-        }
 
         return false; 
     }
 
-
-    /*
-        Metodo que busca en la base de datos un usuario por su nombre 
-
-     */
-
-
+    //Metodo que busca en la base de datos un usuario por su nombre 
     public static function buscaUsuario($username){
         $conn= BD:: getInstance()->getConexionBd();
         $query= sprintf("SELECT * FROM usuario U WHERE U.id_user= '%s'", $conn->real_escape_string($username)); 
@@ -123,33 +95,21 @@ class Usuario{
                 $artista= self::esArtista($fila['id_user']); 
 
                 $result= new Usuario($fila['id_user'], $fila['correo'] , NULL, $fila['password'], NULL, $artista);
-            
             }
             $rs->free(); 
-
         }
-        else {
+        else
             error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
 
         return $result; 
     }
 
-
-    /*
-        Comprueba si la contraseña es correcta 
-
-    */
+    //Comprueba si la contraseña es correcta 
     public function comprueba_password($password){
-
         return password_verify($password, $this->password); 
     }
-
-
-    /*
-        Comprueba si el usuario se trata de un artista 
-    */
     
+    //Comprueba si el usuario se trata de un artista 
     public static function esArtista($id_u) {
 
         $conn= BD:: getInstance()->getConexionBd();
@@ -160,15 +120,30 @@ class Usuario{
         if($rs) {
             $fila= $rs->fetch_assoc(); 
 
-            if($fila) {
-
+            if($fila) 
                 return 'Si'; 
-            }
-            else return 'No'; 
+            else 
+                return 'No'; 
         }
-        else {
+        else 
             error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
+    }
+
+    public function aumentaKarma($num){
+        $this->karma = $this->karma + $num;
+    }
+
+    
+    public function getUsername(){
+        return $this->username;
+    }
+
+    public function getNickname(){
+        return $this->nickname;
+    }
+
+    public function getPassword(){
+        return $this->password;
     }
 }
 
