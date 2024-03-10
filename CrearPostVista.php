@@ -29,13 +29,9 @@ function displayAllLocalImages(){
         <option> Perfil1 </option>
         <option> Perfil2 </option>
         <option> Perfil3 </option>
-        <option> Perfil4 </option>
-        <option> Perfil5 </option>
         <option> Image1 </option>
         <option> Image2 </option>
         <option> Image3 </option>
-        <option> Image4 </option>
-        <option> Image5 </option>
     </select>
     EOS;
 
