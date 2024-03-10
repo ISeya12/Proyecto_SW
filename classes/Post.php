@@ -220,12 +220,12 @@ class Post{
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
             "INSERT INTO post (id_user, texto, imagen, likes, origen, tags, fecha)
-                       VALUES ('%s','%s','%s', %d, %d,'%s', '%s')",
+                       VALUES ('%s','%s','%s', %d, %s, '%s', '%s')",
             $post->autor,
             $conn->real_escape_string($post->texto),
-            $conn->real_escape_string($post->imagen),
+            is_null($post->imagen) ? 'NULL' : $conn->real_escape_string($post->imagen),
             $post->num_likes,
-            !is_null($post->post_origen) ? $post->post_origen : 'null',
+            is_null($post->post_origen) ? 'NULL' : $post->post_origen,
             $post->tags,
             $conn->real_escape_string($post->fecha_publicacion)
         );
@@ -279,7 +279,7 @@ class Post{
 
     public function guardaFav(){
 
-        !$this->id ? self::insertaFav($this) : self::actualiza($this);
+        !$this->id ? self::insertaFav($this, $this->id) : self::actualiza($this);
 
         /*
         if (!$this->id) {
