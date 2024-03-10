@@ -1,6 +1,8 @@
 <?php
 
 require_once 'Config.php';
+require_once 'classes/Post.php';
+
 $usuario= $_GET["user"] ?? NULL;
 
 $content = showProfile($usuario);
@@ -22,7 +24,13 @@ function showProfile($usuario){
     }
 
     if($usuario) {
-        $html= "<h1> Perfil de @" . $usuario. "</h1>"; 
+        $html= "<h1> Perfil de @".$usuario. "</h1>"; 
+        $posts= Post:: obtenerPostsDeUsuario($usuario); 
+        foreach($posts as $post){
+            $html .= "<div style=" . "\"display: inline-block;\" " . ">";
+            $html .= $post->generatePostHTML();
+            $html .= "</div> <br><br>";
+        }
     }
 
 
