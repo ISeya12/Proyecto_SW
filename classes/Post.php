@@ -1,6 +1,7 @@
 <?php
 
 require_once 'BD.php';
+require_once 'Usuario.php';
 
 class Post{
 
@@ -13,7 +14,8 @@ class Post{
     private $fecha_publicacion;
     private $post_origen;
 
-    private function __construct($id,$user, $text, $img, $likes, $tags, $origen, $date){
+    private function __construct($id, $user, $text, $img, $likes, $tags, $origen, $date){
+        
         $this->id = $id;
         $this->autor = $user;
         $this->texto = $text;
@@ -25,32 +27,37 @@ class Post{
      
     }
 
-    public static function crearPost($user_id, $text, $img, $tags, $father_post, $date){
-        return new Post($user_id, $text, $img, $tags, $father_post, $date);
+    public static function crearPost($username, $text, $img, $likes, $tags, $father_post, $date){
+
+        return new Post(null, $username, $text, $img, $likes, $tags, $father_post, $date);
     }
 
-    public static function obtenerPostDeUsuario($id){
+    public static function obtenerPostsDeUsuario($username){
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P WHERE P.origen IS $id ORDER BY P.fecha DESC";
+        $query = "SELECT * FROM post P WHERE P.id_user IS $username ORDER BY P.fecha DESC";
         $rs = $conection->query($query);
-
-        //
-        //  OBTENER DATOS DE LA BD
-        //
+        
+        while($fila = $rs->fetch_assoc()){
+            $result[] = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
+        }
+        $rs->free();
 
         return $result;
     }
 
     public static function obtenerListaDePosts($origen_aux = 'NULL'){
+
         $post = [];
         $conection = BD::getInstance()->getConexionBd();
 
-        if($origen_aux == 'NULL')
+        if($origen_aux == 'NULL'){
             $operation = 'IS';
-        else 
+        }
+        else {
             $operation = '=';
+        }
 
         $query = "SELECT * FROM post P WHERE P.origen $operation $origen_aux ORDER BY P.fecha DESC";
         $rs = $conection->query($query);
@@ -78,12 +85,14 @@ class Post{
         return $result;
     }
 
-    //Devuelve el tiempo transcurrido desde que se publicó el post hasta ahora
-    public static function tiempoTranscurrido(){
-        //Ejemplo: han pasado 10 segundos: Hace 10 seg
-        //Ejemplo: han pasado 2 minutos y 10 segundos: Hace 2 min
-        //Ejemplo: han pasado 5 horas y 10 minutos: Hace 5 horas
-        //Ejemplo: han pasado 7 dias y 10 horas: Hace 7 dias
+    public static function generatePostDate(){
+
+        $date = getdate();
+        $day = $date['mday'];
+        $month = $date['mon'];
+        $year = $date['year'];
+
+        return $day . "-" . $month . "-" . $year;
     }
 
     public static function likeAsignado($id,$user){
@@ -107,6 +116,7 @@ class Post{
         $conection = BD::getInstance()->getConexionBd();
         $query = "SELECT * FROM postfav P WHERE P.id_user = $id";
         $rs = $conection->query($query);
+        dfgd
 
         return $result;
     }
@@ -117,17 +127,18 @@ class Post{
         $query = "SELECT * FROM post P WHERE P.id_post = $id";
         $rs = $conection->query($query);
        
+
         while($fila = $rs->fetch_assoc()){
             $result = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
-        
+
         return $result;
     }
 
     public function generatePostHTML(){
 
-        //Imagen de usuario junto a su username
+        //  Imagen de usuario junto a su username
         $user_info =<<<EOS
         <div class="user_info">
             <img src="img/foto_perfil.png" width="50px" height="50px">
@@ -135,39 +146,40 @@ class Post{
         </div>
         EOS;
 
-        //Texto del post
+        //  Texto del post
         $post_info =<<<EOS2
         <div class="post_info">
             <p>$this->texto </p> 
         </div>
         EOS2;
 
-        $boton_like = <<<EOS
+        //  Numero de likes
+        $boton_like = <<<EOS3
         <form action="ProcesarLike.php" method="post">
             <input type="hidden" name="likeId" value="$this->id">
             <button type="submit">$this->num_likes &#10084</button>
         </form>
-        <form action="ForoRespuesta.php" method="post">
+        <form action="Foro.php" method="post">
             <input type="hidden" name="respuestasId" value="$this->id">
             <button type="submit">Ver Respuestas</button>
         </form>
-        EOS;
-        
-        //Unir todo
-        $html =<<<EOS3
+        EOS3;
+
+        //  Unir todo
+        $html =<<<EOS4
         <div style="background-color: lightgray; width: 100%; height: 100%;">
         $user_info
         $post_info
         $boton_like
         </div>
-        EOS3;
+        EOS4;
 
         return $html;
     }
 
     public static function insertaFav($post, $user){
-        $result = false;
 
+        $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
             "INSERT INTO postfav (id_post,id_user) VALUES (%d, '%s')",
@@ -176,16 +188,17 @@ class Post{
         );
 
         $result = $conn->query($query);
-        
-        if (!$result) 
+
+        if (!$result) {
             error_log($conn->error);
+        }
 
         return $result;
     }
 
     public static function borraFav($post, $user){
-        $result = false;
 
+        $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
             "DELETE FROM postfav WHERE (id_post = %d AND id_user = '%s')",
@@ -195,8 +208,9 @@ class Post{
 
         $result = $conn->query($query);
 
-        if (!$result)
+        if (!$result)  {
             error_log($conn->error);
+        }
 
         return $result;
     }
@@ -204,7 +218,6 @@ class Post{
     private static function inserta($post){
 
         $result = false;
-
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
             "INSERT INTO post (id_user, texto, imagen, likes, origen, tags, fecha)
@@ -223,8 +236,10 @@ class Post{
         if ($result) {
             $post->id = $conn->insert_id;
             $result = $post;
-        } else
+        }
+        else {
             error_log($conn->error);
+        }
 
         return $result;
     }
@@ -241,63 +256,55 @@ class Post{
 
         $result = $conn->query($query);
 
-        if (!$result)
+        if (!$result) {
             error_log($conn->error);
-         else if ($conn->affected_rows != 1)
+        }
+        else if ($conn->affected_rows != 1) {
             error_log("Se han actualizado '$conn->affected_rows' !");
-        
+        }
+
         return $result;
     }
 
     public function guarda(){
 
-        !$this->id ? self::inserta($this) : self::actualiza($this);
-
-        /*
         if (!$this->id) {
             self::inserta($this);
-        } else {
+        }
+        else {
             self::actualiza($this);
         }
-        */
+
         return $this;
     }
 
     public function guardaFav(){
 
-        !$this->id ? self::insertaFav($this) : self::actualiza($this);
-
-        /*
         if (!$this->id) {
             self::insertaFav($this);
-        } else {
+        }
+        else {
             self::actualiza($this);
         }
-        */
+
         return $this;
     }
 
-    public function aumentaLikes($num){
-        $this->likes = $this->likes + $num;
-    }
-
-
-    public function setTexto($texto){
+    public function setTexto($texto) {
         $this->texto = $texto;
     }
 
-    public function setImagen($imagen){
+    public function setImagen($imagen) {
         $this->imagen = $imagen;
     }
 
-    public function setTags($tags){
+    public function setTags($tags) {
         $this->tags = $tags;
     }
 
-    public function setLikes($num){
+    public function setLikes($num) {
         $this->num_likes = $num;
     }
-
     public function getId(){
         return $this->id;
     }
@@ -328,4 +335,5 @@ class Post{
     public function getPadre(){
         return $this->post_origen;
     }
+    
 }
