@@ -245,15 +245,6 @@ class Post{
     public function guardaFav(){
 
         !$this->id ? self::insertaFav($this, $this->id) : self::actualiza($this);
-
-        /*
-        if (!$this->id) {
-            self::insertaFav($this);
-        }
-        else {
-            self::actualiza($this);
-        }
-
         return $this;
     }
 

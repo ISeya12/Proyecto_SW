@@ -76,7 +76,8 @@ class Usuario{
             else {
                 error_log("Error BD ({$conection->errno}): {$conection->error}");
             }
-
+        }
+    }
     public static function actualiza($user){
         
         $result = false;
