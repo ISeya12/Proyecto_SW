@@ -104,13 +104,22 @@ function generateFormularyArtist(){
                     <div style="display: inline-block; margin-bottom: 5px;"><label> Musical genre: </label></div>
                     <select name="musical_genres">
                         <option>  </option>
-                        <option> Rock </option>
                         <option> Pop </option>
+                        <option> Rock </option>
                         <option> Rap </option>
                         <option> Hip Hop </option>
-                        <option> Latina </option>
+                        <option> Latino </option>
                         <option> Jazz </option>
                         <option> R&B </option>
+                        <option> K-Pop </option>
+                        <option> J-Pop </option>
+                        <option> Dubstep </option>
+                        <option> Clásica </option>
+                        <option> Disco </option>
+                        <option> Funk </option>
+                        <option> Jazz </option>
+                        <option> Reggae </option>
+                        <option> Metal </option>
                     </select>
                 </div>
             </div>
