@@ -178,16 +178,15 @@ class Post{
 
         return $result;
     }
-    public static function borrarPost($post, $user){
+    public static function borrarPost($post){
 
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
-            "DELETE FROM post WHERE (id_post = %d AND id_user = '%s')",
+            "DELETE FROM post WHERE (id_post = %d)",
             $post->id,
-            $user
         );
-
+        echo $query;
         $result = $conn->query($query);
 
         if (!$result)  {
@@ -246,6 +245,29 @@ class Post{
 
         return $result;
     }
+
+    public static function actualizaPost($post){
+
+        $result = false;
+        $conn = BD::getInstance()->getConexionBd();
+        $query = sprintf(
+            "UPDATE post M SET M.likes = %d WHERE M.id_post = %d",
+            $post->num_likes,
+            $post->id
+        );
+
+        $result = $conn->query($query);
+
+        if (!$result) {
+            error_log($conn->error);
+        }
+        else if ($conn->affected_rows != 1) {
+            error_log("Se han actualizado '$conn->affected_rows' !");
+        }
+
+        return $result;
+    }
+
 
     public function guarda(){
 
