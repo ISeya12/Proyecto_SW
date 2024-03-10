@@ -36,9 +36,13 @@
             <input type="hidden" name="likeId" value="$id">
             <button type="submit">$likes &#10084</button>
         </form>
-        <form action="Foro.php" method="post">
+        <form action="RespuestasForo.php" method="post">
             <input type="hidden" name="respuestasId" value="$id">
             <button type="submit">Ver Respuestas</button>
+        </form>
+        <form action="CrearPost.php" method="post">
+            <input type="hidden" name="id_padre" value="$id">
+            <button type="submit">Responder</button>
         </form>
         EOS4;
 
