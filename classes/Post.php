@@ -138,7 +138,7 @@ class Post{
     public function generatePostHTML(){
 
         //  Imagen de usuario junto a su username
-        return creacionPostHTML($this->autor, $this->num_likes, $this->texto, $this->id);
+        return creacionPostHTML($this->autor, $this->imagen, $this->num_likes, $this->texto, $this->id);
     }
 
     public static function insertaFav($post, $user){
@@ -185,15 +185,12 @@ class Post{
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
             "INSERT INTO post (id_user, texto, imagen, likes, origen, tags, fecha)
-                       VALUES ('%s','%s','%s', %d, %d,'%s', '%s')",
+                       VALUES ('%s','%s','%s', %d, %s, '%s', '%s')",
             $post->autor,
             $conn->real_escape_string($post->texto),
-
-            !is_null($post->imagen) ?  $conn->real_escape_string($post->imagen) : 'null',
-           
+            is_null($post->imagen) ? 'NULL' : $conn->real_escape_string($post->imagen),
             $post->num_likes,
-            !is_null($post->post_origen) ? $post->post_origen : 'null',
-            
+            is_null($post->post_origen) ? 'NULL' : $post->post_origen,
             $post->tags,
             $conn->real_escape_string($post->fecha_publicacion)
         );
@@ -247,13 +244,7 @@ class Post{
 
     public function guardaFav(){
 
-        if (!$this->id) {
-            self::insertaFav($this);
-        }
-        else {
-            self::actualiza($this);
-        }
-
+        !$this->id ? self::insertaFav($this, $this->id) : self::actualiza($this);
         return $this;
     }
 

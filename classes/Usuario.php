@@ -58,21 +58,26 @@ class Usuario{
             if($conection) {
                 if($artist) {
                     $query= "INSERT INTO artista (id_artista, integrantes) VALUES "; 
-                    $values= "('$id_user', '$nullv'); "; 
+                    $values= "('$username', '$nullv'); "; 
                     $query .= $values; 
     
                     $conection->query($query); 
     
-                    if(!$conection) 
-                        error_log("Error BD ({$conn->errno}): {$conn->error}");
+                   if($conection) {
+                    }
+    
+                    else {
+                        error_log("Error BD ({$conection->errno}): {$conection->error}");
+                    }
+
                 }   
                return new Usuario($username, $nickname, $password, $nullv, $nullv, $karma, $artist, $birth, $email,); 
             }
-            else 
-                error_log("Error BD ({$conn->errno}): {$conn->error}");
+            else {
+                error_log("Error BD ({$conection->errno}): {$conection->error}");
+            }
         }
     }
-
     public static function actualiza($user){
         
         $result = false;
@@ -108,8 +113,9 @@ class Usuario{
         return $result;
     }
 
-    public function publicarPost($post_text, $post_image){
-        $post =  Post::crearPost($this->username, $post_text, $post_image, 0, null, null, Post::generatePostDate());
+    public function publicarPost($post_text, $post_image, $post_father){
+        
+        $post =  Post::crearPost($this->username, $post_text, $post_image, 0, null, $post_father, Post::generatePostDate());
         return $post->guarda();
     }
 
