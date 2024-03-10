@@ -9,7 +9,7 @@ $post_text = $_POST['post_text'];
 $post_image = null;
 
 
-if(isset($_POST['id_padre'])) $post_father= $_POST['id_padre']; 
+if($_POST['id_padre'] != "") $post_father= $_POST['id_padre']; 
 else $post_father= 'NULL'; 
 
 
