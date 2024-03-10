@@ -3,12 +3,14 @@
 
 function generatePostPublicationHTML(){
 
+    $images = displayAllLocalImages();
+
     $html =<<<EOS
     <fieldset>
         <legend style="text-align: center; "><strong> Nueva Publicación </strong></legend>
         <form name="datos_post" action="Addforo.php" method="post" enctype="multipart/form-data">
             Mensaje: <textarea name="post_text" required style="resize: none; "></textarea><br><br>
-            Imagen: <input name="post_image" type="file">
+            Imagen: $images
             <br><br>
             Publicar <input type="submit">
         </form>
