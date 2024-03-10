@@ -251,8 +251,9 @@ class Post{
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
-            "UPDATE post M SET M.likes = %d WHERE M.id_post = %d",
-            $post->num_likes,
+            "UPDATE post M SET M.texto = %d AND M.imagen WHERE M.id_post = %d",
+            $post->texto,
+            $post->imagen,
             $post->id
         );
 
