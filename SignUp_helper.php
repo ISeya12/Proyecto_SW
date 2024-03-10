@@ -27,20 +27,20 @@ function generateFormularyUser(){
         <form action="ProcesarRegistro.php" method="post">
             <fieldset>
                 <div>
-
                     <input hidden name="isArtist" value="0">
-
-
-                    <div>
-                        <div><label> Username </label></div>
-                        <div><input required type="text" name="new_username"></div>
-                    </div>
 
                     <div> 
                         <div><label> Nickname </label></div>
-                        <div><input required type="text" name= "new_nick"></div>
+                        <div><input required type="text" name= "new_nickname"></div>
 
                     </div> 
+
+                    <div>
+                        <div><label> Username (Ej: @paco03) </label></div>
+                        <div><input required type="text" name="new_username"></div>
+                    </div>
+
+                    
 
                     <div>
                         <div><label> Email </label></div>
