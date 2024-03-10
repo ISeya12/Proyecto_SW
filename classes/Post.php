@@ -36,7 +36,7 @@ class Post{
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P WHERE P.id_user IS $username ORDER BY P.fecha DESC";
+        $query = sprintf( "SELECT * FROM post P WHERE P.id_user = '%s' ORDER BY P.fecha DESC", $username);
         $rs = $conection->query($query);
         
         while($fila = $rs->fetch_assoc()){
@@ -188,9 +188,12 @@ class Post{
                        VALUES ('%s','%s','%s', %d, %d,'%s', '%s')",
             $post->autor,
             $conn->real_escape_string($post->texto),
-            $conn->real_escape_string($post->imagen),
+
+            !is_null($post->imagen) ?  $conn->real_escape_string($post->imagen) : 'null',
+           
             $post->num_likes,
             !is_null($post->post_origen) ? $post->post_origen : 'null',
+            
             $post->tags,
             $conn->real_escape_string($post->fecha_publicacion)
         );
