@@ -2,7 +2,7 @@
 
 require_once 'Config.php';
 
-$id = $_POST['postId'];
+$id = $_POST['likeId'];
 $user = $_SESSION['username'];
 //  Check credentials
 $isValid = true;

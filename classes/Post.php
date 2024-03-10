@@ -46,10 +46,15 @@ class Post{
         return $result;
     }
 
-    public static function obtenerListaDePostsEjemplo($num){
+    public static function obtenerListaDePosts($origen_aux = 'NULL'){
         $post = [];
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P WHERE P.origen IS NULL ORDER BY P.fecha DESC";
+        if($origen_aux == 'NULL'){
+            $operation = 'IS';
+        }else {
+            $operation = '=';
+        }
+        $query = "SELECT * FROM post P WHERE P.origen $operation $origen_aux ORDER BY P.fecha DESC";
         $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){
@@ -58,21 +63,6 @@ class Post{
         $rs->free();
         
         return $post;
-    }
-
-    public static function obtenerRespuestas($post_id){
-
-        $result = [];
-        $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P WHERE P.origen IS $post_id ORDER BY P.fecha DESC";
-        $rs = $conection->query($query);
-
-        while($fila = $rs->fetch_assoc()){
-            $result[] = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
-        }
-        $rs->free();
-        
-        return $result;
     }
 
     public static function buscarPostPorUsuario($user){
@@ -159,15 +149,23 @@ class Post{
         //  Texto del post
         $post_info =<<<EOS2
         <div class="post_info">
-            <p>$this->texto </p>
-            <p>$this->num_likes</p>     
+            <p>$this->texto </p> 
         </div>
         EOS2;
         $boton_like = <<<EOS
+      
         <form action="ProcesarLike.php" method="post">
-            <input type="hidden" name="postId" value="$this->id">
-            <button type="submit">&#10084</button>
+            <input type="hidden" name="likeId" value="$this->id">
+            <button type="submit">$this->num_likes &#10084</button>
         </form>
+        <form action="Foro.php" method="post">
+            <input type="hidden" name="respuestasId" value="$this->id">
+            <button type="submit">Ver Respuestas</button>
+        </form>
+
+    
+     
+
         EOS;
         //  Unir todo
         $html =<<<EOS3
