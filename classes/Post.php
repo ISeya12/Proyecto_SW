@@ -279,14 +279,20 @@ class Post{
 
     public function guardaFav(){
 
+        !$this->id ? self::insertaFav($this) : self::actualiza($this);
+
+        /*
         if (!$this->id) {
             self::insertaFav($this);
-        }
-        else {
+        } else {
             self::actualiza($this);
         }
-
+        */
         return $this;
+    }
+
+    public function aumentaLikes($num){
+        $this->num_likes +=  $num;
     }
 
     public function setTexto($texto) {

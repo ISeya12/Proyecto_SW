@@ -20,9 +20,8 @@ if($isValid){
         Post::insertaFav($post, $user);
     }
     
-    ($post->getAutor)->aumentaKarma($aux);
+    Usuario::buscaUsuario($post->getAutor())->aumentaKarma($aux);
     $post->aumentaLikes($aux);
-
     Post::actualiza($post);
 }
 header('Location: Foro.php');
