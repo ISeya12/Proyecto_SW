@@ -8,7 +8,7 @@ require_once 'Layout.php';
 
 function showProfile(){
     
-    $html = "<p> Estas viendo la tienda </p>";
+    $html = "<p> Estas viendo el merchandising </p>";
 
     return $html;
 }

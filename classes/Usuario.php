@@ -5,7 +5,6 @@ require_once 'classes/Post.php';
 
 class Usuario{
 
-    private $id;
     private $username;
     private $nickname; 
     private $password;
@@ -15,23 +14,24 @@ class Usuario{
     private $isArtist;
     private $birthdate;
     private $email;
- 
-    
-    function __construct($user, $email, $name, $pass, $birth, $artist){
+
+
+    function __construct($user, $nickname, $pass, $fotopath, $desc, $karma, $isArtist, $birth, $email){
         
         $this->username = $user;
-        $this->email = $email;
-        $this->nickname = $name;
+        $this->nickname = $nickname;
         $this->password = $pass;
+        $this->fotopath = $fotopath;
+        $this->desc = $desc;
+        $this->karma = $karma;
+        $this->isArtist = $isArtist;
         $this->birthdate = $birth;
-        $this->isArtist = $artist;
+        $this->email = $email;
     }
 
 
-    /*
-        Registra un nuevo usuario en la Base de Datos 
-    */
-    public static function createUser($username, $email, $nickname, $password, $birth, $artist){
+    //Registra un nuevo usuario en la Base de Datos 
+    public static function createUser($username, $nickname, $password, $email, $birth, $artist){
 
         /*Primero compruebo si ya existe un usuario con el mismo username*/ 
         $user_buscado= self:: buscaUsuario($username);
@@ -58,7 +58,7 @@ class Usuario{
             if($conection) {
                 if($artist) {
                     $query= "INSERT INTO artista (id_artista, integrantes) VALUES "; 
-                    $values= "('$id_user', '$nullv'); "; 
+                    $values= "('$username', '$nullv'); "; 
                     $query .= $values; 
     
                     $conection->query($query); 
@@ -67,27 +67,24 @@ class Usuario{
                     }
     
                     else {
-                        error_log("Error BD ({$conn->errno}): {$conn->error}");
+                        error_log("Error BD ({$conection->errno}): {$conection->error}");
                     }
 
                 }   
-               return new Usuario($username, $email, $nickname, $password, $birth, $artist); 
+               return new Usuario($username, $nickname, $password, $nullv, $nullv, $karma, $artist, $birth, $email,); 
             }
             else {
-                error_log("Error BD ({$conn->errno}): {$conn->error}");
+                error_log("Error BD ({$conection->errno}): {$conection->error}");
             }
-
         }
     }
-
     public static function actualiza($user){
-
+        
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
-      
+        
         $query = sprintf(
-            "UPDATE usuario 
-            SET 
+            "UPDATE usuario SET
                 nickname = '%s',
                 password = '%s',
                 foto = '%s',
@@ -95,62 +92,53 @@ class Usuario{
                 karma = %d,
                 fecha = '%s',
                 correo = '%s'
-            WHERE id_user = %d",
-             $user->nickname, 
-             $user->password,
-             $user->fotopath,
-             $user->desc,
-             $user->karma,
-             $user->birthdate,            
-             $user->email,
-            $user->username
+            WHERE id_user = '%s'",
+                $user->nickname, 
+                $user->password,
+                $user->fotopath,
+                $user->desc,
+                $user->karma,
+                $user->birthdate,            
+                $user->email,
+                $user->username
         );
         $result = $conn->query($query);
 
-        if (!$result) {
+
+        if (!$result)
             error_log($conn->error);
-        }
-        else if ($conn->affected_rows != 1) {
+        else if ($conn->affected_rows != 1)
             error_log("Se han actualizado '$conn->affected_rows' !");
-        }
 
         return $result;
     }
 
-    public function publicarPost($post_text, $post_image){
+    public function publicarPost($post_text, $post_image, $post_father){
         
-        $post =  Post::crearPost($this->username, $post_text, $post_image, 0, null, null, Post::generatePostDate());
+        $post =  Post::crearPost($this->username, $post_text, $post_image, 0, null, $post_father, Post::generatePostDate());
         return $post->guarda();
-
-        
     }
 
-    public static function login ($username, $password) {
+    public static function login($username, $password) {
 
         $usuario = self::buscaUsuario($username); 
         
-        if($usuario && $usuario->comprueba_password($password)){ //El login es correcto 
+        if($usuario && $usuario->comprueba_password($password)) //El login es correcto 
             return $usuario; 
-        }
 
         return false; 
     }
 
-    /*
-        Comprueba si la contraseña es correcta
-    */
+    //Comprueba si la contraseña es correcta
     public function comprueba_password($password){
-
         return password_verify($password, $this->password); 
     }
 
 
-    /*
-        Comprueba si el usuario se trata de un artista 
-    */
+    //Comprueba si el usuario se trata de un artista 
     public static function esArtista($id_u) {
 
-        $conn= BD:: getInstance()->getConexionBd();
+        $conn= BD::getInstance()->getConexionBd();
         $query= sprintf("SELECT * FROM artista A WHERE A.id_artista= '%s'", $conn->real_escape_string($id_u)); 
         $rs= $conn->query($query); 
         $result= false; 
@@ -158,38 +146,19 @@ class Usuario{
         if($rs) {
             $fila= $rs->fetch_assoc(); 
 
-            if($fila) {
-
-                return 'Si'; 
-            }
-            else return 'No'; 
+            if($fila)
+                return 1; 
+            else 
+                return 0; 
         }
-        else {
+        else 
             error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
     }
-
-    public function getUsername(){
-        return $this->username;
-    }
-
-    public function getNickname(){
-        return $this->nickname;
-    }
-
-    public function getPassword(){
-        return $this->password;
-    }
-
-    public function aumentaKarma($num){
-        $this->karma = $this->karma + $num;
-    }
-    /*
-        Metodo que busca en la base de datos un usuario por su nombre 
-     */
+    
+    //Metodo que busca en la base de datos un usuario por su nombre 
     public static function buscaUsuario($username){
 
-        $conn= BD:: getInstance()->getConexionBd();
+        $conn= BD::getInstance()->getConexionBd();
         $query= sprintf("SELECT * FROM usuario U WHERE U.id_user= '%s'", $conn->real_escape_string($username)); 
         $rs= $conn->query($query); 
         $result= false; 
@@ -201,17 +170,33 @@ class Usuario{
             if($fila) {
                 //Comprobar si el usuario es artista 
                 $artista= self::esArtista($fila['id_user']); 
-
-                $result= new Usuario($fila['id_user'], $fila['correo'] , NULL, $fila['password'], NULL, $artista);
+                $result= new Usuario($fila['id_user'], $fila['nickname'], $fila['password'], $fila['foto'],
+                                    $fila['descripcion'], $fila['karma'], $artista, $fila['fecha'], $fila['correo']);
             }
 
             $rs->free(); 
         }
-        else {
+        else
             error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
 
         return $result; 
+    }
+
+    public function aumentaKarma($num){
+        $this->karma = $this->karma + $num;
+    }
+
+
+    public function getUsername(){
+        return $this->username;
+    }
+
+    public function getNickname(){
+        return $this->nickname;
+    }
+
+    public function getPassword(){
+        return $this->password;
     }
 }
 

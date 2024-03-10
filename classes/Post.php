@@ -2,7 +2,7 @@
 
 require_once 'BD.php';
 require_once 'Usuario.php';
-
+require_once 'Post_Helper.php';
 class Post{
 
     private $id;
@@ -74,7 +74,7 @@ class Post{
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P JOIN usuario U ON P.id_user = U.id_user WHERE U.id_user = $user";
+        $query = sprintf("SELECT * FROM post P JOIN usuario U ON P.id_user = U.id_user WHERE U.id_user = '%s';", $user); 
         $rs = $conection->query($query);
 
         while($fila = $rs->fetch_assoc()){
@@ -138,42 +138,7 @@ class Post{
     public function generatePostHTML(){
 
         //  Imagen de usuario junto a su username
-        $user_info =<<<EOS
-        <div class="user_info">
-            <img src="img/foto_perfil.png" width="50px" height="50px">
-            <div style="display: inline-block; position: absolute; margin-top: 15px;"> @$this->autor </div>
-        </div>
-        EOS;
-
-        //  Texto del post
-        $post_info =<<<EOS2
-        <div class="post_info">
-            <p>$this->texto </p> 
-        </div>
-        EOS2;
-
-        //  Numero de likes
-        $boton_like = <<<EOS3
-        <form action="ProcesarLike.php" method="post">
-            <input type="hidden" name="likeId" value="$this->id">
-            <button type="submit">$this->num_likes &#10084</button>
-        </form>
-        <form action="Foro.php" method="post">
-            <input type="hidden" name="respuestasId" value="$this->id">
-            <button type="submit">Ver Respuestas</button>
-        </form>
-        EOS3;
-
-        //  Unir todo
-        $html =<<<EOS4
-        <div style="background-color: lightgray; width: 100%; height: 100%;">
-        $user_info
-        $post_info
-        $boton_like
-        </div>
-        EOS4;
-
-        return $html;
+        return creacionPostHTML($this->autor, $this->imagen, $this->num_likes, $this->texto, $this->id);
     }
 
     public static function insertaFav($post, $user){
@@ -220,12 +185,12 @@ class Post{
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
             "INSERT INTO post (id_user, texto, imagen, likes, origen, tags, fecha)
-                       VALUES ('%s','%s','%s', %d, %d,'%s', '%s')",
+                       VALUES ('%s','%s','%s', %d, %s, '%s', '%s')",
             $post->autor,
             $conn->real_escape_string($post->texto),
-            $conn->real_escape_string($post->imagen),
+            is_null($post->imagen) ? 'NULL' : $conn->real_escape_string($post->imagen),
             $post->num_likes,
-            !is_null($post->post_origen) ? $post->post_origen : 'null',
+            is_null($post->post_origen) ? 'NULL' : $post->post_origen,
             $post->tags,
             $conn->real_escape_string($post->fecha_publicacion)
         );
@@ -248,21 +213,8 @@ class Post{
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
-            "UPDATE post 
-            SET 
-                id_user = '%s',
-                texto = '%s',
-                imagen = '%s',
-                likes = %d,
-                tags = '%s',
-                fecha= '%s'
-            WHERE id_post = %d",
-            $post->autor,
-            $post->texto,
-            $post->imagen,
+            "UPDATE post M SET M.likes = %d WHERE M.id_post = %d",
             $post->num_likes,
-            $post->tags,
-            $post->fecha_publicacion,
             $post->id
         );
 
@@ -292,21 +244,14 @@ class Post{
 
     public function guardaFav(){
 
-        !$this->id ? self::insertaFav($this) : self::actualiza($this);
-
-        /*
-        if (!$this->id) {
-            self::insertaFav($this);
-        } else {
-            self::actualiza($this);
-        }
-        */
+        !$this->id ? self::insertaFav($this, $this->id) : self::actualiza($this);
         return $this;
     }
 
     public function aumentaLikes($num){
         $this->num_likes +=  $num;
     }
+
 
     public function setTexto($texto) {
         $this->texto = $texto;
