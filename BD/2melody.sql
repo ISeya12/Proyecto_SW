@@ -6,7 +6,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-
+/*Esta tabla es una anexa a Usuarios que tiene información necesaria para gestionar mejor accesibilidad y vistas un poco más personalizadas.*/
 DROP TABLE IF EXISTS `ajustes`;
 CREATE TABLE `ajustes` (
   `id_user` varchar(255) NOT NULL,
@@ -16,12 +16,14 @@ CREATE TABLE `ajustes` (
   `paginaPrincipal` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+/*Anexa de usuario para añadir información cuando es un artista el usuario.*/
 DROP TABLE IF EXISTS `artista`;
 CREATE TABLE `artista` (
   `id_artista` varchar(255) NOT NULL,
   `integrantes` tinytext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+/*Tabla que asociado un post y su información con su creador {usuario-artista} y guarda el id del mensaje padre.*/
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `id_post` int(11) NOT NULL,
@@ -34,13 +36,14 @@ CREATE TABLE `post` (
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+/*Tabla que corresponde con los post añadidos a favoritos de dicho usuario.*/
 DROP TABLE IF EXISTS `postfav`;
 CREATE TABLE `postfav` (
   `id_post` int(11) NOT NULL,
   `id_user` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
+/*Esta es la tabla con la información general de todos los usuarios y los datos necesarios para que puedan interactuar con el app.*/
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id_user` varchar(255)  NOT NULL,

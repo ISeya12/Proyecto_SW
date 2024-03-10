@@ -5,7 +5,7 @@ function islogged()
     return isset($_SESSION['username']);
 }
 
-function sameUsser($idUsuario)
+function sameUser($idUsuario)
 {
     return islogged() && $_SESSION['username'] == $idUsuario;
 }

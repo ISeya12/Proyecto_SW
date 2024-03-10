@@ -1,19 +1,49 @@
 ------------------------------------------------------------- Scripts para las vistas -------------------------------------------------------------
 Login/Register:
     -Login.php
+    -Logout.php
     -SignUpUser.php
     -SignUpArtist.php
     -ProcesarLogin.php
-------------------------------------------------------------- Scripts para las vistas -------------------------------------------------------------
-
-
+    -ProcesarRegistro.php
+Vista Común:
+    -Layout.php
+    -Cabecera.php
+    -SideBar.php
+    -Footer.php
+Foro:
+    -Foro.php
+    -Publicacion.php
+    -CrearPost.php
+    -CrearPostVista.php
+    -EliminarPost.php
+Tienda:
+    -Tienda.php
+    -Entradas.php
+    -Merch.php
+    -Carrito.php
+Musica:
+    -Musica.php
+Perfil:
+    -Perfil.php
 ------------------------------------------------------------- Scripts adicionales -------------------------------------------------------------
 Clases:
     -Usuario
     -Post
-------------------------------------------------------------- Scripts adicionales -------------------------------------------------------------
-
-
+    -BD
+Helpers:
+    -Login_helper.php
+    -Post_helper.php
+    -SignUp_helper.php
+    -Cabecera_sesion.php
+    -Post_helper.php
+    -Verificador.php
+    -AddForo
+Navegacion:
+    -Config.php
+Otros:
+    -ProcesarLike.php
+    -Config.php
 ------------------------------------------------------------- Estructura de BD -------------------------------------------------------------
 Formato de Tablas y Descripción:
 
@@ -32,12 +62,6 @@ Formato de Tablas y Descripción:
 `postfav` (`id_post`, `id_user`)
     Tabla que corresponde con los post añadidos a favoritos de dicho usuario.
 
-
-
-
-
-
-
 `cancion` (`id_cancion`, `titulo`, `imagen`, `fecha`, `id_artista`, `likes`, `ruta`, `duracion`, `tags`)
     Tabla que guarda las canciones con su información y datos necesarios para mostralos luego en la web.
 
@@ -49,7 +73,6 @@ Formato de Tablas y Descripción:
 
 `play_cancion` (`id_playlist`, `id_cancion`)
     Tabla que relaciona los id de la tabla playlist y cancion para saber de que playlist sale cada cancion.
-    
 
 `producto` (`id_prod`, `id_artista`, `imagen`, `nombre`, `descripcion`, `stock`, `precio`)
     Tabla con la información de los productos y el artista que ha creado dicha entrada.
@@ -59,12 +82,8 @@ Formato de Tablas y Descripción:
 
 `seguidores` (`id_user`, `id_seguidor`)
     Tabla que relaciona cada usuario con los demás usuario a los que sigue.
-
-
-
-
-------------------------------------------------------------- Estructura de BD -------------------------------------------------------------
-
-
 ------------------------------------------------------------- Prototipo funcional -------------------------------------------------------------
-------------------------------------------------------------- Prototipo funcional -------------------------------------------------------------
+Usuarios y contraseñas para probar las funcionalidades:
+user1 - adminpass
+user2 - adminpass
+user3 - adminpass
