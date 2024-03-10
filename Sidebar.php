@@ -14,7 +14,7 @@
                     Opciones:
                 </summary>
                 <dd><a href="CrearPost.php">Publicar post</a></dd>
-                <dd><a href="ModificarPost.php">Modificar post</a></dd>
+                <dd><a href="Modificar.php">Modificar post</a></dd>
                 <dd><a href="BorrarPost.php">Borrar post</a></dd>
             </details>
         </dt>
