@@ -21,8 +21,4 @@ define('BD_NAME', '2melody');
 define('BD_USER', 'user');
 define('BD_PASS', 'pass');
 
-
-require_once RUTA_CLASSES.'/BD.php';
-require_once RUTA_CLASSES.'/Usuario.php';
-require_once RUTA_CLASSES.'/Post.php';
 session_start();
