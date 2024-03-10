@@ -7,4 +7,3 @@
     session_destroy(); 
     session_start(); 
     header('Location: Foro.php'); 
-?>

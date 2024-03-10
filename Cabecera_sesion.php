@@ -1,7 +1,6 @@
 <?php
 
 require_once 'Config.php'; 
-require_once 'Verificador.php'; 
 
 function generateStaticHeader() {
     if (!islogged()) {
@@ -47,4 +46,9 @@ function mostrarSaludo() {
 	EOS2;
 
 	return $html;
+}
+
+function islogged()
+{
+    return isset($_SESSION['username']);
 }
