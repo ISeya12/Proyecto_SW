@@ -7,14 +7,6 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 /*Esta tabla es una anexa a Usuarios que tiene información necesaria para gestionar mejor accesibilidad y vistas un poco más personalizadas.*/
-DROP TABLE IF EXISTS `ajustes`;
-CREATE TABLE `ajustes` (
-  `id_user` varchar(255) NOT NULL,
-  `fuente` varchar(255) DEFAULT NULL,
-  `fontSize` int(11) DEFAULT NULL,
-  `temas` varchar(255) DEFAULT NULL,
-  `paginaPrincipal` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Anexa de usuario para añadir información cuando es un artista el usuario.*/
 DROP TABLE IF EXISTS `artista`;
@@ -59,9 +51,6 @@ CREATE TABLE `usuario` (
 
 
 
-ALTER TABLE `ajustes`
-  ADD PRIMARY KEY (`id_user`);
-
 ALTER TABLE `artista`
   ADD PRIMARY KEY (`id_artista`);
 
@@ -78,9 +67,6 @@ ALTER TABLE `postfav`
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_user`);
 
-
-ALTER TABLE `ajustes`
-  ADD CONSTRAINT `ajustes_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`);
 
 ALTER TABLE `artista`
   ADD CONSTRAINT `artista_ibfk_1` FOREIGN KEY (`id_artista`) REFERENCES `usuario` (`id_user`);
