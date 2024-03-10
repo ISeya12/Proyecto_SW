@@ -7,7 +7,7 @@
         $user_info =<<<EOS
         <div class="user_info">
             <img src="img/foto_perfil.png" width="50px" height="50px">
-            <div style="display: inline-block; position: absolute; margin-top: 15px;"> <a href= "Perfil.php?user= $autor" name= "user">
+            <div style="display: inline-block; position: absolute; margin-top: 15px;"> <a href= "Perfil.php?user=$autor" name= "user">
              @$autor</a> </div>
         </div>
         EOS;
