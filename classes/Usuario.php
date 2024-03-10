@@ -140,6 +140,9 @@ class Usuario{
         return $this->password;
     }
 
+    public function aumentaKarma($num){
+        $this->karma = $this->karma + $num;
+    }
     /*
         Metodo que busca en la base de datos un usuario por su nombre 
      */
