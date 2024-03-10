@@ -4,6 +4,7 @@ require_once 'Config.php';
 require_once 'Verificador.php'; 
 
 function generateStaticHeader() {
+	$IconImage = 'img/2_Melody_logo_.png';
     if (!islogged()) {
         $loginImage = 'img/foto_login_user.png';
         $altText = 'Foto de login';
@@ -17,7 +18,7 @@ function generateStaticHeader() {
     <header>
         <p>
             2Melody, una app para perder el tiempo escuchando música sin límites!
-        </p>
+        </p>s
         <li><a href="$link"><img src="$loginImage" height="30" width="30" alt="$altText"></a></li>
     </header>
     EOS;
