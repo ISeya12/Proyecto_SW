@@ -116,7 +116,6 @@ class Post{
         $conection = BD::getInstance()->getConexionBd();
         $query = "SELECT * FROM postfav P WHERE P.id_user = $id";
         $rs = $conection->query($query);
-        dfgd
 
         return $result;
     }

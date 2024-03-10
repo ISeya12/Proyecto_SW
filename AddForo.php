@@ -16,7 +16,6 @@ if(isset($_POST['post_image'])){
 
 $user = Usuario::buscaUsuario($username);
 $post = $user->publicarPost($post_text, $post_image);
+$content = $post->generatePostHTML();
 
-echo $post->generatePostHTML();
-
-// require_once 'Layout.php';
+require_once 'Layout.php';
