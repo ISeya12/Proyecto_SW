@@ -36,7 +36,7 @@ class Post{
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P WHERE P.id_user IS $username ORDER BY P.fecha DESC";
+        $query = sprintf( "SELECT * FROM post P WHERE P.id_user = '%s' ORDER BY P.fecha DESC", $username);
         $rs = $conection->query($query);
         
         while($fila = $rs->fetch_assoc()){
