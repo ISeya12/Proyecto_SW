@@ -6,5 +6,5 @@
 
     session_destroy(); 
     session_start(); 
-    header('Location: Perfil.php'); 
+    header('Location: Foro.php'); 
 ?>
