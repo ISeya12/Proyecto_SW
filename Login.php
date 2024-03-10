@@ -8,10 +8,12 @@ global $isArtist;
 
 $header = generateHeader();
 $content = generateFormulary();
+$errors = generateErrorMessage();
 
 $html =<<<EOS
 $header
 $content
+$errors
 EOS;
-    
+
 echo $html;

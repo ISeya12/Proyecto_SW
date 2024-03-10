@@ -1,7 +1,8 @@
 <?php 
 
 require_once 'Config.php';
-require_once 'classes/Usuario.php'; 
+require_once 'classes/Usuario.php';
+
 //  Get user input
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
 $password = $_POST['password'] ?? null;
@@ -18,8 +19,8 @@ if($isValid){
     exit();
 }
 else{
-    header('Location: Login.php'); 
-   exit();
+    $_SESSION['login'] = false;
+    require_once 'Login.php';
 }
 
 function checkUser($user, $pass){

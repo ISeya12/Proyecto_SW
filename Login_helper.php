@@ -44,3 +44,13 @@ function generateFormulary(){
 
     return $html;
 }
+
+function generateErrorMessage(){
+
+    $html = "";
+    if(isset($_SESSION['login']) && !$_SESSION['login']){
+        $html = "Username y/o contraseña incorrectos!";
+    }
+
+    return $html;
+}

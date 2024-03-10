@@ -7,7 +7,7 @@ function generateUserImage(){
     $image =<<<EOS
     <div style="background-color: green;">
         <div style="background-color: greenyellow; display: inline-block;">
-            <img src="img/register_user_image.png"  alt="foto de perfil" height="200" width="200">
+            <img src="img/register_user_image.png" alt="foto de perfil" height="200" width="200">
         </div>
     </div>
     EOS;
@@ -24,23 +24,21 @@ function generateFormularyUser(){
     $text = "<div style='margin-top: 15px;'><label> Registra tu nueva cuenta de usuario! </label></div>\n";
     $form =<<<EOS
     <div style="display: inline-block; background-color: lightgray;">
-        <form action="ProcesarRegistro.php" method="post">
-            <fieldset>
+        <fieldset>
+            <form action="ProcesarRegistro.php" method="post">
                 <div>
                     <input hidden name="isArtist" value="0">
-
-                    <div> 
-                        <div><label> Nickname </label></div>
-                        <div><input required type="text" name= "new_nickname"></div>
-
-                    </div> 
 
                     <div>
                         <div><label> Username (Ej: @paco03) </label></div>
                         <div><input required type="text" name="new_username"></div>
                     </div>
-
                     
+                    <div> 
+                        <div><label> Nickname </label></div>
+                        <div><input required type="text" name= "new_nickname"></div>
+
+                    </div>
 
                     <div>
                         <div><label> Email </label></div>
@@ -61,8 +59,8 @@ function generateFormularyUser(){
                 <div style="margin-top: 20px; display: inline-block;">
                     <button type="submit" name="register_button" style="background-color: lightgreen;"> Sign In </button>
                 </div>
-            </fieldset>
-        </form>
+            </form>
+        </fieldset>
     </div>
     EOS;
 
