@@ -1,12 +1,14 @@
 <?php
 
 require_once 'Config.php';
+$usuario= $_GET["user"] ?? NULL;
 
-$content = showProfile();
+$content = showProfile($usuario);
 
 require_once 'Layout.php';
 
-function showProfile(){
+function showProfile($usuario){
+    
     if (!isset($_SESSION['username'])){
         $html= "<p> No estas logead@,  <a href= 'Login.php'> <strong>  pulsa aqui para iniciar sesion </strong> </a> </p>";
     }
@@ -17,8 +19,12 @@ function showProfile(){
         $logout = "<p> ¿Quieres cerrar sesión? <a href= 'Logout.php'> <strong> pulsa aquí </strong> </p>"; 
 
         $html .= $logout; 
-
     }
+
+    if($usuario) {
+        $html= "<h1> Perfil de @" . $usuario. "</h1>"; 
+    }
+
 
     return $html;
 }
