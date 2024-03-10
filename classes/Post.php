@@ -158,15 +158,12 @@ class Post{
             <input type="hidden" name="likeId" value="$this->id">
             <button type="submit">$this->num_likes &#10084</button>
         </form>
-        <form action="Foro.php" method="post">
+        <form action="ForoRespuesta.php" method="post">
             <input type="hidden" name="respuestasId" value="$this->id">
             <button type="submit">Ver Respuestas</button>
         </form>
-
-    
-     
-
         EOS;
+        
         //  Unir todo
         $html =<<<EOS3
         <div style="background-color: lightgray; width: 100%; height: 100%;">
