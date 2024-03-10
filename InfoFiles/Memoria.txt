@@ -87,3 +87,6 @@ Usuarios y contraseñas para probar las funcionalidades:
 user1 - adminpass
 user2 - adminpass
 user3 - adminpass
+user4 - adminpass
+user5 - adminpass
+user6 - adminpass
