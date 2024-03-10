@@ -123,7 +123,7 @@ class Post{
     public static function buscarPostPorID($id){
 
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P WHERE P.id_post = $id";
+        $query = sprintf("SELECT * FROM post P WHERE P.id_post = %d",  $id);
         $rs = $conection->query($query);
        
 
@@ -131,7 +131,6 @@ class Post{
             $result = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
-
         return $result;
     }
 
