@@ -178,7 +178,24 @@ class Post{
 
         return $result;
     }
+    public static function borrarPost($post, $user){
 
+        $result = false;
+        $conn = BD::getInstance()->getConexionBd();
+        $query = sprintf(
+            "DELETE FROM post WHERE (id_post = %d AND id_user = '%s')",
+            $post->id,
+            $user
+        );
+
+        $result = $conn->query($query);
+
+        if (!$result)  {
+            error_log($conn->error);
+        }
+
+        return $result;
+    }
     private static function inserta($post){
 
         $result = false;
