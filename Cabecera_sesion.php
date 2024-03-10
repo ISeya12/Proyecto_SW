@@ -1,7 +1,6 @@
 <?php
 
 require_once 'Config.php'; 
-require_once 'Verificador.php'; 
 
 function generateStaticHeader() {
     if (!islogged()) {
@@ -17,7 +16,7 @@ function generateStaticHeader() {
     <header>
         <p>
             2Melody, una app para perder el tiempo escuchando música sin límites!
-        </p>s
+        </p>
         <li><a href="$link"><img src="$loginImage" height="30" width="30" alt="$altText"></a></li>
     </header>
     EOS;
@@ -47,4 +46,9 @@ function mostrarSaludo() {
 	EOS2;
 
 	return $html;
+}
+
+function islogged()
+{
+    return isset($_SESSION['username']);
 }

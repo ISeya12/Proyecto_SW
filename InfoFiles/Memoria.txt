@@ -4,8 +4,6 @@ Login/Register:
     -Logout.php
     -SignUpUser.php
     -SignUpArtist.php
-    -ProcesarLogin.php
-    -ProcesarRegistro.php
 Vista Común:
     -Layout.php
     -Cabecera.php
@@ -13,10 +11,9 @@ Vista Común:
     -Footer.php
 Foro:
     -Foro.php
-    -Publicacion.php
     -CrearPost.php
-    -CrearPostVista.php
     -EliminarPost.php
+    -Modificar.php
 Tienda:
     -Tienda.php
     -Entradas.php
@@ -28,17 +25,19 @@ Perfil:
     -Perfil.php
 ------------------------------------------------------------- Scripts adicionales -------------------------------------------------------------
 Clases:
-    -Usuario
-    -Post
-    -BD
+    -Usuario.php
+    -Post.php
+    -BD.php
 Helpers:
     -Login_helper.php
     -Post_helper.php
     -SignUp_helper.php
     -Cabecera_sesion.php
     -Post_helper.php
-    -Verificador.php
-    -AddForo
+    -AddForo.php
+    -CrearPostVista.php
+    -ProcesarLogin.php
+    -ProcesarRegistro.php
 Navegacion:
     -Config.php
 Otros:
