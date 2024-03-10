@@ -23,7 +23,10 @@ if($isValid && $user){
         Post::insertaFav($post, $user);
     }
     
-    Usuario::buscaUsuario($post->getAutor())->aumentaKarma($aux);
+    $usuario = Usuario::buscaUsuario($post->getAutor());
+    $usuario->aumentaKarma($aux);
+    Usuario::actualiza($usuario);
+    
     $post->aumentaLikes($aux);
     Post::actualiza($post);
 }
