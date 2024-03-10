@@ -10,7 +10,7 @@ if(isset($_SESSION['username'])){
 //Check credentials
 $isValid = true;
 
-//Log user or ask again for his account
+//Log usear or ask again for his account
 if($isValid && $user){
     //añadir like BD
     $aux = 1;
