@@ -4,16 +4,39 @@
 
 function generatePostPublicationHTML(){
 
+    $images = displayAllLocalImages();
+
     $html =<<<EOS
     <fieldset>
         <legend style="text-align: center; "><strong> Nueva Publicación </strong></legend>
-            <form name="datos_post" action="Addforo.php" method="post" enctype="multipart/form-data">
-                Mensaje: <textarea name="post_text" required style="resize: none; "></textarea><br><br>
-                Imagen: <input name="post_image" type="file" height="200" width="200">
-                <br><br>
-                Publicar <input type="submit">
-            </form>
+        <form name="datos_post" action="Addforo.php" method="post" enctype="multipart/form-data">
+            Mensaje: <textarea name="post_text" required style="resize: none; "></textarea><br><br>
+            Imagen: $images
+            <br><br>
+            Publicar <input type="submit">
+        </form>
     </fieldset>
+    EOS;
+
+    return $html;
+}
+
+function displayAllLocalImages(){
+
+    $html =<<<EOS
+    <select name="images">
+        <option>  </option>
+        <option> Perfil1 </option>
+        <option> Perfil2 </option>
+        <option> Perfil3 </option>
+        <option> Perfil4 </option>
+        <option> Perfil5 </option>
+        <option> Image1 </option>
+        <option> Image2 </option>
+        <option> Image3 </option>
+        <option> Image4 </option>
+        <option> Image5 </option>
+    </select>
     EOS;
 
     return $html;
