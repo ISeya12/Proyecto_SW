@@ -1,7 +1,7 @@
 <?php
     require_once('Config.php'); 
 
-    function creacionPostHTML($autor, $likes, $texto, $id){
+    function creacionPostHTML($autor, $image, $likes, $texto, $id){
 
         //  Imagen de usuario junto a su username
         $user_info =<<<EOS
@@ -19,8 +19,18 @@
         </div>
         EOS2;
 
+        //  Imagen del post
+        $post_image = "";
+        if(isset($image) && !empty($image)){
+            $image =<<<EOS3
+            <div class="post_image">
+                <img src="$image" width="50" heigth="50">
+            </div>
+            EOS3;
+        }
+
         //  Numero de likes
-        $boton_like = <<<EOS3
+        $boton_like = <<<EOS4
         <form action="ProcesarLike.php" method="post">
             <input type="hidden" name="likeId" value="$id">
             <button type="submit">$likes &#10084</button>
@@ -29,16 +39,17 @@
             <input type="hidden" name="respuestasId" value="$id">
             <button type="submit">Ver Respuestas</button>
         </form>
-        EOS3;
+        EOS4;
 
         //  Unir todo
-        $html =<<<EOS4
+        $html =<<<EOS5
         <div style="background-color: lightgray; width: 100%; height: 100%;">
         $user_info
         $post_info
+        $post_image
         $boton_like
         </div>
-        EOS4;
+        EOS5;
 
         return $html;
     }
