@@ -7,11 +7,9 @@ define('RUTA_BD', RUTA_P2.'/BD');
 define('RUTA_CLASSES', RUTA_P2.'/classes');
 define('RUTA_CSS' , RUTA_P2.'/css');
 define('RUTA_IMG' , RUTA_P2.'/img');
-define('RUTA_DOCS', RUTA_P2.'/InfoFiles');
-define('RUTA_SCRIPTS', RUTA_P2.'/scripts');
-define('RUTA_HELPERS', RUTA_SCRIPTS . '/helpers_vista');
+define('RUTA_HELPERS', RUTA_P2.'/helpers');
 define('RUTA_VISTAS', RUTA_P2.'/vistas');
-define('RUTA_LAYOUTS' , RUTA_VISTAS . '/comun/layout.php');
+define('RUTA_LAYOUTS' , RUTA_VISTAS.'/layout/Layout.php');
 
 
 //  Parámetros BD
@@ -24,7 +22,7 @@ define('BD_USER', 'user');
 define('BD_PASS', 'pass');
 
 
-require_once 'classes/BD.php';
-require_once 'classes/Usuario.php';
-require_once 'classes/Post.php';
+require_once '/Practica2/classes/BD.php';
+require_once '/Practica2/classes/Usuario.php';
+require_once '/Practica2/classes/Post.php';
 session_start();
