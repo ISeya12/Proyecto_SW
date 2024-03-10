@@ -3,6 +3,7 @@
 require_once 'Config.php'; 
 
 function generateStaticHeader() {
+    $IconImage = 'img/2_Melody_logo_.png';
     if (!islogged()) {
         $loginImage = 'img/foto_login_user.png';
         $altText = 'Foto de login';
