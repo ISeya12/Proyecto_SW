@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Config.php';
-require_once 'classes/Post.php';
-require_once 'classes/Usuario.php';
+require_once '../../../Config.php';
+require_once RUTA_CLASSES.'/Post.php';
+require_once RUTA_CLASSES.'/Usuario.php';
 
 
 $post = Post::buscarPostPorID($_POST['ModificarID']);
