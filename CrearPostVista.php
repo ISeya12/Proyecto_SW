@@ -17,3 +17,20 @@ function generatePostPublicationHTML(){
 
     return $html;
 }
+
+function displayAllLocalImages(){
+
+    $html =<<<EOS
+    <select name="images">
+        <option>  </option>
+        <option> Perfil1 </option>
+        <option> Perfil2 </option>
+        <option> Perfil3 </option>
+        <option> Image1 </option>
+        <option> Image2 </option>
+        <option> Image3 </option>
+    </select>
+    EOS;
+
+    return $html;
+}
