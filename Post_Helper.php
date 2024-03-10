@@ -24,7 +24,7 @@
         if(isset($image) && !empty($image)){
             $image =<<<EOS3
             <div class="post_image">
-                <img src="$image" width="50" heigth="50">
+                <img src="img/postImages/$image" width="50" heigth="50">
             </div>
             EOS3;
         }
