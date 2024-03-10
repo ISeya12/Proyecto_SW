@@ -10,8 +10,6 @@ $isValid = true;
 
 if($isValid && $user){
     $post = Post::buscarPostPorID($id);
-    $usuario = Usuario::buscaUsuario($post->getAutor());
-
     Post::borrarPost($post);
 }
 

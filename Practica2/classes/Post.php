@@ -123,7 +123,7 @@ class Post{
     public static function buscarPostPorID($id){
 
         $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM post P WHERE P.id_post = $id";
+        $query = sprintf("SELECT * FROM post P WHERE P.id_post = %d",  $id);
         $rs = $conection->query($query);
        
 
@@ -131,7 +131,6 @@ class Post{
             $result = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
-
         return $result;
     }
 
@@ -251,8 +250,9 @@ class Post{
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
-            "UPDATE post M SET M.likes = %d WHERE M.id_post = %d",
-            $post->num_likes,
+            "UPDATE post M SET M.texto = %d AND M.imagen WHERE M.id_post = %d",
+            $post->texto,
+            $post->imagen,
             $post->id
         );
 
