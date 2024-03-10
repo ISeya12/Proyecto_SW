@@ -88,9 +88,6 @@ class Post{
         //Ejemplo: han pasado 7 dias y 10 horas: Hace 7 dias
     }
 
-
-
-
     public static function likeAsignado($id,$user){
 
         $result = true ;
@@ -106,9 +103,6 @@ class Post{
         return $result;
     }
 
-
-
-    
     public static function buscarPostFavPorUser($id){
 
         $result = [];
@@ -163,9 +157,6 @@ class Post{
             <button type="submit">Ver Respuestas</button>
         </form>
 
-    
-     
-
         EOS;
         //  Unir todo
         $html =<<<EOS3
@@ -179,8 +170,7 @@ class Post{
         return $html;
     }
 
-    public static function insertaFav($post, $user)
-    {
+    public static function insertaFav($post, $user){
         $result = false;
 
         $conn = BD::getInstance()->getConexionBd();
@@ -196,8 +186,8 @@ class Post{
 
         return $result;
     }
-    public static function borraFav($post, $user)
-    {
+
+    public static function borraFav($post, $user){
         $result = false;
 
         $conn = BD::getInstance()->getConexionBd();
@@ -213,8 +203,9 @@ class Post{
 
         return $result;
     }
-    private static function inserta($post)
-    {
+
+    private static function inserta($post){
+
         $result = false;
 
         $conn = BD::getInstance()->getConexionBd();
@@ -240,8 +231,8 @@ class Post{
         return $result;
     }
 
-    public static function actualiza($post)
-    {
+    public static function actualiza($post){
+
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
@@ -258,8 +249,9 @@ class Post{
 
         return $result;
     }
-    public function guarda()
-    {
+
+    public function guarda(){
+
         if (!$this->id) {
             self::inserta($this);
         } else {
@@ -268,16 +260,18 @@ class Post{
 
         return $this;
     }
-    public function guardaFav()
-    {
+
+    public function guardaFav(){
+
         if (!$this->id) {
             self::insertaFav($this);
-     //   } else {
-      //      self::actualiza($this);
+        } else {
+            self::actualiza($this);
         }
 
         return $this;
     }
+
     public function setTexto($texto) {
         $this->texto = $texto;
     }
