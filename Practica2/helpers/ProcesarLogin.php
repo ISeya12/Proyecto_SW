@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../Config.php';
+require_once '../../Config.php';
 require_once RUTA_CLASSES.'/Usuario.php'; 
 
 //Obtener el input
@@ -26,3 +26,5 @@ else{
 function checkUser($user, $pass){
     return Usuario::login($user, $pass); 
 }
+
+

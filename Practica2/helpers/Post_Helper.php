@@ -31,7 +31,7 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
 
     //Numero de likes
     $boton_like = <<<EOS4
-    <form action="ProcesarLike.php" method="post">
+    <form action="../../helpers/ProcesarLike.php" method="post">
         <input type="hidden" name="likeId" value="$id">
         <button type="submit">$likes &#10084</button>
     </form>

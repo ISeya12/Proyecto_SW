@@ -1,6 +1,7 @@
 <?php
-require_once '../../Config.php';
 
+require_once '../../Config.php';
+require_once RUTA_HELPERS.'/ProcesarLogin.php';
 function generateHeader(){
 
     $html =<<<EOS

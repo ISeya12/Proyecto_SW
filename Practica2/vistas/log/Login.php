@@ -3,7 +3,6 @@
 require_once '../../Config.php';
 require_once RUTA_HELPERS.'/Login_helper.php';
 
-
 global $isArtist;
 
 $header = generateHeader();
