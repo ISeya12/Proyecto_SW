@@ -1,18 +1,16 @@
 <?php 
 
-$id = $_POST['ModificarID'];
-$user = null;
+require_once 'Config.php';
 
-if(isset($_SESSION['username']))
-    $user = $_SESSION['username'];
+$id = $_POST['id_padre'];
+$tx = $_POST['post_text'];
+$img = $_POST['images'];
+$post = Post::buscarPostPorID($id);
+$post->setTexto($tx);
+$post->setImagen($img);
 
-$isValid = true;
-
-if($isValid && $user){
-    $post = Post::buscarPostPorID($id);
-    $usuario = Usuario::buscaUsuario($post->getAutor());
-    Post::actualizaPost($post);
-}
-
+Post::actualiza($post);
 header('Location: Foro.php');
 exit();
+
+
