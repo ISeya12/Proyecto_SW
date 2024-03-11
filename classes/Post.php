@@ -14,7 +14,7 @@ class Post{
     private $fecha_publicacion;
     private $post_origen;
 
-    private function __construct($id, $user, $text, $img, $likes, $tags, $origen, $date){
+    private function __construct($id, $user, $text, $img, $likes, $origen, $tags,  $date){
         
         $this->id = $id;
         $this->autor = $user;
@@ -29,7 +29,7 @@ class Post{
 
     public static function crearPost($username, $text, $img, $likes, $tags, $father_post, $date){
 
-        return new Post(null, $username, $text, $img, $likes, $tags, $father_post, $date);
+        return new Post(null, $username, $text, $img, $likes,$father_post, $tags,  $date);
     }
 
     public static function obtenerPostsDeUsuario($username){
@@ -126,9 +126,9 @@ class Post{
         $query = sprintf("SELECT * FROM post P WHERE P.id_post = %d",  $id);
         $rs = $conection->query($query);
        
-
+        //mirar lo de origen que se pone a 0
         while($fila = $rs->fetch_assoc()){
-            $result = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
+            $result = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'], $fila['tags'],  $fila['fecha']);
         }
         $rs->free();
         return $result;
@@ -228,31 +228,22 @@ class Post{
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
         $query = sprintf(
-            "UPDATE post M SET M.likes = %d WHERE M.id_post = %d",
+            "UPDATE post SET
+            id_user = '%s',
+            texto = '%s',
+            imagen = '%s',
+            likes = %d,
+            origen = %s,
+            tags = '%s',
+            fecha = '%s'
+            WHERE id_post = %d",
+            $post->autor,
+            $conn->real_escape_string($post->texto),
+            is_null($post->imagen) ? 'NULL' :  $conn->real_escape_string($post->imagen) ,
             $post->num_likes,
-            $post->id
-        );
-
-        $result = $conn->query($query);
-
-        if (!$result) {
-            error_log($conn->error);
-        }
-        else if ($conn->affected_rows != 1) {
-            error_log("Se han actualizado '$conn->affected_rows' !");
-        }
-
-        return $result;
-    }
-
-    public static function actualizaPost($post){
-
-        $result = false;
-        $conn = BD::getInstance()->getConexionBd();
-        $query = sprintf(
-            "UPDATE post M SET M.texto = %d AND M.imagen WHERE M.id_post = %d",
-            $post->texto,
-            $post->imagen,
+            is_null($post->post_origen) ? 'NULL' : $post->post_origen,
+            $post->tags,
+            $conn->real_escape_string($post->fecha_publicacion),
             $post->id
         );
 

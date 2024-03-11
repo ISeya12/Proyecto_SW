@@ -6,18 +6,20 @@ require_once 'classes/Usuario.php';
 
 
 $post = Post::buscarPostPorID($_POST['ModificarID']);
-$content = generatePostPublicationHTML($post->getTexto());
+$content = generatePostPublicationHTML($post);
 
 require_once 'Layout.php';
 
-function generatePostPublicationHTML($postText){
+function generatePostPublicationHTML($post){
+    $id = $post->getId();
+    $tx = $post->getTexto();
     $images = displayAllLocalImages();
     $html =<<<EOS
     <fieldset>
         <legend style="text-align: center; "><strong> Modificacion </strong></legend>
         <form name="datos_post" action="ProcesarModificacion.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id_padre" >
-            Mensaje: <textarea name="post_text" required style="resize: none;">$postText</textarea><br><br>
+            <input type="hidden" name="id_padre" value="$id">
+            Mensaje: <textarea name="post_text" required style="resize: none;">$tx</textarea><br><br>
             Imagen: $images
             <br><br>
             Publicar <input type="submit">
