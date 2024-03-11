@@ -2,7 +2,7 @@
 
 require_once 'BD.php';
 require_once 'Usuario.php';
-require_once 'Post_Helper.php';
+require_once RUTA_HELPERS.'/Post_Helper.php';
 class Post{
 
     private $id;

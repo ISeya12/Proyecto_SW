@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../../Config.php';
+require_once '../Config.php';
 require_once RUTA_CLASSES.'/Usuario.php'; 
 
 //Obtener el input
@@ -15,11 +15,11 @@ if($isValid){
     $_SESSION['username'] = $username;
     $_SESSION['login'] = true;
     
-    header('Location: Foro.php');
+    header('Location: '.RUTA_VISTAS.'Foro.php');
     exit();
 }
 else{
-    header('Location: Login.php'); 
+    header('Location: '.RUTA_VISTAS.'Login.php'); 
     exit();
 }
 

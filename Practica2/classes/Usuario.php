@@ -1,7 +1,7 @@
 <?php
 
 require_once 'BD.php';
-require_once 'classes/Post.php';
+require_once 'Post.php';
 
 class Usuario{
 

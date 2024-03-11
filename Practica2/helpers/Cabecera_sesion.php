@@ -5,11 +5,11 @@ function generateStaticHeader() {
     if (!islogged()) {
         $loginImage = 'img/foto_login_user.png';
         $altText = 'Foto de login';
-        $link = 'Login.php';
+        $link = '../log/Login.php';
     } else {
         $loginImage = 'img/foto_logout_user.png';
         $altText = 'Foto de logout';
-        $link = 'Logout.php'; 
+        $link = '../log/Logout.php'; 
     }
     $html = <<<EOS
     <header>
@@ -28,19 +28,19 @@ function mostrarSaludo() {
 	$html =<<<EOS
 	<header>
 	<div class="saludo">
-		<p> 
+	<p> 
 	EOS;
 
-	if (isset($_SESSION['login']) && ($_SESSION['login'] === true)) 
+	if (isset($_SESSION['login']) && ($_SESSION['login'] === true)) {
 		$html .= "Bienvenido, " . $_SESSION['username'];
-	else 
+    }else {
 		$html .= "Inicie sesión para publicar en el foro\n";
-
-	$html .=<<<EOS2
-        </p>
-        </div>
-        </header>
-	EOS2;
+    }
+    $html .=<<<EOS2
+    </p>
+    </div>
+    </header>
+    EOS2;
 
 	return $html;
 }
