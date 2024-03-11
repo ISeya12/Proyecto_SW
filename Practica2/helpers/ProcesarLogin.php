@@ -15,11 +15,11 @@ if($isValid){
     $_SESSION['username'] = $username;
     $_SESSION['login'] = true;
     
-    header('Location: '.RUTA_VISTAS.'Foro.php');
+    header('Location: '.RUTA_VISTAS.'/foro/Foro.php');
     exit();
 }
 else{
-    header('Location: '.RUTA_VISTAS.'Login.php'); 
+    header('Location: '.RUTA_VISTAS.'/log/Login.php'); 
     exit();
 }
 
