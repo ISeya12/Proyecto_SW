@@ -1,7 +1,7 @@
 <nav style="display: inline-block;">
     <ul>
         <!-- ME VUELVO LOCO. NO SE POR QUE LECHES NO FUNCIONAN AQUI LAS RUTAS :') -->
-        <li class="perfil_shortcut"><a href="<?= RUTA_VISTAS?>/Perfil.php"><img src= "$variable ./foto_perfil.png'" height= "50" width= "50" alt="Foto perfil"></a></li>
+        <li class="perfil_shortcut"><a href="<?= RUTA_VISTAS?>/Perfil.php"><img src= "/foto_perfil.png" height= "50" width= "50" alt="Foto perfil"></a></li>
         <li class="foro_shorcut"><a href="Foro.php"><img src='../img/foto_foro.png' height= "50" width = "50"  alt="Foto de foro"></a></li>
             <ul>
                 <li><a href="foro/Escritura_articulo.php"> Publicar post </a></li>
