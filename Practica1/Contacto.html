@@ -11,12 +11,16 @@
     <header>
         <!-- Cabecera de hyperlinks -->
         <h3>
-        <a href = "Index.html">Index</a> 
-        <a href = "Detalles.html">Detalles</a>
-        <a href = "Planificacion.html">Planificacion</a>
-        <a href = "Bocetos.html">Bocetos</a>
-        <a href = "Miembros.html">Miembros</a>
-        <a href = "Contacto.html">Contacto </a>
+            <nav>
+                <ul>
+                    <li><a href = "Index.html">Index</a> </li>
+                    <li><a href = "Detalles.html">Detalles</a></li>
+                    <li><a href = "Planificacion.html">Planificacion</a></li>
+                    <li><a href = "Bocetos.html">Bocetos</a></li>
+                    <li><a href = "Miembros.html">Miembros</a></li>
+                    <li><a href = "Contacto.html">Contacto </a></li>
+                </ul>
+            </nav>
         </h3>
         <h1>Contacto</h1>
     </header>
@@ -31,7 +35,7 @@
 
             <!-- Campo direccion -->
             <label>Dirección de email de contacto:</label>
-            <input id="direccion" type="text" name="direccion" value="" />
+            <input id="direccion" type="email" name="direccion" value="" />
             <p></p>
 
             <!-- Motivo consulta -->
@@ -42,7 +46,7 @@
             <p></p>
 
             <!-- Términos y condiciones -->
-            <p>Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio:<input id="TyC" name="TyC" type="checkbox" value=""/></p>
+            <p>Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio:<input required id="TyC" name="TyC" type="checkbox" value=""/></p>
             
             <!-- Consulta -->
             <textarea name="consulta" rows="4" cols="50"></textarea>
