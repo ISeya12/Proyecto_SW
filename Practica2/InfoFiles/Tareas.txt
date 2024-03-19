@@ -1,0 +1,8 @@
+------------------------------------------------ Rutas y correccion de la P2 ------------------------------------------------
+-Likes
+-Posts
+-Respuestas
+-Edicion y modificacion de posts
+-Quitar gran parte de los div
+----------------------------------------------------------- Ideas -----------------------------------------------------------
+-ScrollBar en el desplegable de géneros musicales (SignUpHelper.php)

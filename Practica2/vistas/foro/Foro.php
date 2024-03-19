@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../Config.php';
-require_once RUTA_HELPERS.'/Post_Helper.php';
+require_once RUTA_HELPERS.'/PostHelper.php';
 
 $content = showTestPosts();
 

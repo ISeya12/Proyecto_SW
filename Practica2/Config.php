@@ -2,6 +2,13 @@
 
 //  Rutas de archivos
 define('RAIZ_APP', dirname(__DIR__));
+
+define('RUTA_P2_PATH', '/Proyecto_SW/Practica2');
+define('RUTA_IMG_PATH' , RUTA_P2_PATH.'/img');
+define('RUTA_VISTAS_PATH' , RUTA_P2_PATH.'/vistas');
+define('RUTA_HELPERS_PATH' , RUTA_P2_PATH.'/helpers');
+define('RUTA_CSS_PATH' , RUTA_P2_PATH.'/css');
+
 define('RUTA_P2', RAIZ_APP.'/Practica2');
 define('RUTA_BD', RUTA_P2.'/BD');
 define('RUTA_CLASSES', RUTA_P2.'/classes');
@@ -21,8 +28,4 @@ define('BD_NAME', '2melody');
 define('BD_USER', 'user');
 define('BD_PASS', 'pass');
 
-
-require_once RUTA_CLASSES.'/BD.php';
-require_once RUTA_CLASSES.'/Usuario.php';
-require_once RUTA_CLASSES.'/Post.php';
 session_start();

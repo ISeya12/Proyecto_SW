@@ -1,7 +1,7 @@
 <?php 
 
-require_once '../../Config.php';
-require_once RUTA_CLASSES.'/Usuario.php'; 
+require_once '../Config.php';
+require_once RUTA_CLASSES.'/Usuario.php';
 
 //Obtener el input
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -15,16 +15,14 @@ if($isValid){
     $_SESSION['username'] = $username;
     $_SESSION['login'] = true;
     
-    header('Location: '.RUTA_VISTAS.'/foro/Foro.php');
+    header('Location: '.RUTA_VISTAS_PATH.'/foro/Foro.php');
     exit();
 }
 else{
-    header('Location: '.RUTA_VISTAS.'/log/Login.php'); 
+    header('Location: '.RUTA_VISTAS_PATH.'/log/Login.php'); 
     exit();
 }
 
 function checkUser($user, $pass){
     return Usuario::login($user, $pass); 
 }
-
-

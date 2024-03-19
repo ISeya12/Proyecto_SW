@@ -1,5 +1,7 @@
 <?php
 
+require_once RUTA_CLASSES.'/Post.php';
+
 function creacionPostHTML($autor, $image, $likes, $texto, $id){
 
     //Imagen de usuario junto a su username

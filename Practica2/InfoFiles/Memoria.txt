@@ -31,11 +31,11 @@ Clases:
     -Post.php
     -BD.php
 Helpers:
-    -Login_helper.php
-    -Post_helper.php
-    -SignUp_helper.php
-    -Cabecera_sesion.php
-    -Post_helper.php
+    -LoginHelper.php
+    -PostHelper.php
+    -SignUpHelper.php
+    -CabeceraSesion.php
+    -PostHelper.php
     -CrearPostVista.php
     -ProcesarLogin.php
     -ProcesarRegistro.php

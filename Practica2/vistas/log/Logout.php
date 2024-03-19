@@ -6,4 +6,4 @@ unset($_SESSION['login']);
 
 session_destroy(); 
 session_start(); 
-header('Location:' .RUTA_VISTAS.'/foro/Foro.php'); 
+header('Location:' .RUTA_VISTAS_PATH.'/foro/Foro.php'); 

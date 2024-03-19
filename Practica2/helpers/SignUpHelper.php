@@ -1,12 +1,10 @@
 <?php
 
 function generateUserImage(){
-
+    $iconImage = RUTA_IMG_PATH.'/RegisterUserImage.png';
     $image =<<<EOS
-    <div style="background-color: green;">
-        <div style="background-color: greenyellow; display: inline-block;">
-            <img src="img/register_user_image.png"  alt="foto de perfil" height="200" width="200">
-        </div>
+    <div style="background-color: greenyellow;">
+        <img src="$iconImage"  alt="foto de perfil" height="200" width="200">
     </div>
     EOS;
 
@@ -14,15 +12,17 @@ function generateUserImage(){
 }
 
 function generateArtistAccountLink(){
-    return "<div><p> Eres un artista? <a href='SignUpArtist.php'> Crea tu cuenta aquí </a></p></div>";
+    $enlace = RUTA_VISTAS_PATH.'/log/SignUpArtist.php';
+    return "<div><p> Eres un artista? <a href= $enlace> Crea tu cuenta aquí </a></p></div>";
 }
 
 function generateFormularyUser(){
 
+    $enlace = RUTA_HELPERS_PATH.'/ProcesarRegistro.php';
     $text = "<div style='margin-top: 15px;'><label> Registra tu nueva cuenta de usuario! </label></div>\n";
     $form =<<<EOS
     <div style="display: inline-block; background-color: lightgray;">
-        <form action="ProcesarRegistro.php" method="post">
+        <form action= $enlace method="post">
             <fieldset>
                 <div>
                     <input hidden name="isArtist" value="0">
@@ -34,7 +34,7 @@ function generateFormularyUser(){
                     </div> 
 
                     <div>
-                        <div><label> Username (Ej: @paco03) </label></div>
+                        <div><label> Username (Ej: paco03) </label></div>
                         <div><input required type="text" name="new_username"></div>
                     </div>
 
@@ -67,12 +67,12 @@ function generateFormularyUser(){
 
 function generateFormularyArtist(){
 
+    $enlace = RUTA_HELPERS_PATH.'/ProcesarRegistro.php';
     $text = "<p> Registra tu nueva cuenta de artista! </p>\n";
     $form =<<<EOS
     <div class="form_div" style="display: inline-block; background-color: lightgray; width: 250px;">
     <fieldset>
-        <label> Register </label>
-        <form name="register_form" action="ProcesarRegistro.php" method="post">
+        <form name="register_form" action= $enlace method="post">
 
             <input hidden name="isArtist" value="1">
             <div class="artist_inputs">

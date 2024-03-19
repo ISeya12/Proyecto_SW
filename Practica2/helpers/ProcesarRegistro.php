@@ -25,7 +25,7 @@ $usuario= Usuario::createUser($username, $email, $nickname, $password, $birthdat
 
 if($usuario) {
     $_SESSION['username']= $username; 
-    header("Location: Foro.php");
+    header('Location: '.RUTA_VISTAS_PATH.'/foro/Foro.php');
 }
 else 
-    header("Location: SignUpUser.php"); 
+    header('Location: '.RUTA_VISTAS_PATH.'/log/SignUpUser.php'); 
