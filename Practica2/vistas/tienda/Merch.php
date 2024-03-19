@@ -8,7 +8,7 @@ require_once RUTA_LAYOUTS;
 
 function showProfile(){
     
-    $html = "<p> Estas viendo la tienda </p>";
+    $html = "<p> Estas viendo el merchandising </p>";
 
     return $html;
 }

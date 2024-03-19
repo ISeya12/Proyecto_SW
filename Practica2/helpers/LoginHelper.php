@@ -1,9 +1,11 @@
 <?php
 
+require_once '../../Config.php';
+
 function generateHeader(){
 
     $html =<<<EOS
-    <header> 2Music ¡Música sin limites para perder el tiempo! </header>\n
+        <header> 2Music ¡Música sin limites para perder el tiempo! </header>\n
     EOS;
 
     return $html;
@@ -11,15 +13,15 @@ function generateHeader(){
 
 function generateFormulary(){
 
-    $path_procesarLogin = 'ProcesarLogin.php';
-    $path_register = 'SignUpUser.php';
+    $procesarLoginPath = RUTA_HELPERS_PATH.'/ProcesarLogin.php';
+    $registerPath = RUTA_VISTAS_PATH.'/log/SignUpUser.php';
 
     $html =<<<EOS
     <fieldset style="width: fit-content; ">
         <legend style="text-align: center;"> Login </legend>
         <div style="width: fit-content; text-align: center;">
             <div>
-                <form action="$path_procesarLogin" method="post">
+                <form action="$procesarLoginPath" method="post">
                     <div>
                         <div><label> Username </label></div>
                         <div><input type="text" name="username"></div>
@@ -34,7 +36,7 @@ function generateFormulary(){
             </div>
     
             <div>
-                <p> ¿No tienes cuenta? <a href="$path_register"> Regístrate </a></p>
+                <p> ¿No tienes cuenta? <a href="$registerPath"> Regístrate </a></p>
             </div>
         </div>
     </fieldset>

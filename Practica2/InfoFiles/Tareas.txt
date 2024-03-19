@@ -1,46 +1,8 @@
-
-
--------------------------------------------------------------Practica 2-------------------------------------------------------------
-
-1.Módulos por hacer:
-    -Login
-    -Base de Datos
-    -Foro
-
-
-Scripts de vistas
-
-Login -> Óscar 
--Iniciar sesion con usuario ya registrado en BD
--Registrar usuario en BD
-
-Foro -> Ignacio, Óscar
--Interfaz inicial que muestra posts
--Publicar un post
--Modificar un post publicado anteriormente
--Borrar un post publicado anteriormente
--Votar un post
--Responder a un post
--Ver respuestas de otros usuario a un post
--Responder a una respuesta de un usuario se un post
-
-Layout(Barra lateral + contenido) -> Alonso 
--Barra lateral navegable
--Mostrar contenido en el centro de la pantalla
--Barra de búsqueda de usuarios
--Filtros de búsqueda(usuario/artista/ambos)
-
-Base de datos -> Hugo
--Diagrama entidad-relación
--Implementación de BD
-
--------------------------------------------------------------Practica 2-------------------------------------------------------------
-
-Perfil ->
--Visualizar mi perfil
-
-Música ->
--Ver "mis playlists"
-
-Tienda ->
--Ver una "tienda" genérica
+------------------------------------------------ Rutas y correccion de la P2 ------------------------------------------------
+-Likes
+-Posts
+-Respuestas
+-Edicion y modificacion de posts
+-Quitar gran parte de los div
+----------------------------------------------------------- Ideas -----------------------------------------------------------
+-ScrollBar en el desplegable de géneros musicales (SignUpHelper.php)
