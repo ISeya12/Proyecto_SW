@@ -3,9 +3,7 @@
 function generateUserImage(){
     $iconImage = RUTA_IMG_PATH.'/RegisterUserImage.png';
     $image =<<<EOS
-    <div style="background-color: greenyellow;">
         <img src="$iconImage"  alt="foto de perfil" height="200" width="200">
-    </div>
     EOS;
 
     return $image;
@@ -13,120 +11,119 @@ function generateUserImage(){
 
 function generateArtistAccountLink(){
     $enlace = RUTA_VISTAS_PATH.'/log/SignUpArtist.php';
-    return "<div><p> Eres un artista? <a href= $enlace> Crea tu cuenta aquí </a></p></div>";
+    return "<p> Eres un artista? <a href= $enlace> Crea tu cuenta aquí </a></p>";
 }
 
 function generateFormularyUser(){
 
     $enlace = RUTA_HELPERS_PATH.'/ProcesarRegistro.php';
-    $text = "<div style='margin-top: 15px;'><label> Registra tu nueva cuenta de usuario! </label></div>\n";
     $form =<<<EOS
-    <div style="display: inline-block; background-color: lightgray;">
+        <fieldset class= "formRegistro">
+        <legend> Registra tu nueva cuenta de usuario </legend> 
         <form action= $enlace method="post">
-            <fieldset>
-                <div>
-                    <input hidden name="isArtist" value="0">
-
-                    <div> 
-                        <div><label> Nickname </label></div>
-                        <div><input required type="text" name= "new_nickname"></div>
-
-                    </div> 
-
-                    <div>
-                        <div><label> Username (Ej: paco03) </label></div>
-                        <div><input required type="text" name="new_username"></div>
-                    </div>
-
-                    <div>
-                        <div><label> Email </label></div>
-                        <div><input required type="text" name="new_email"></div>
-                    </div>
             
-                    <div>
-                        <div><label> Password </label></div>
-                        <div><input required type="password" name="new_password"></div>
-                    </div>
-            
-                    <div>
-                        <div><label> Birthdate </label></div>
-                        <div><input required type="date" name="new_birthdate"></div>
-                    </div>
-                </div>
+                <input hidden name="isArtist" value="0"> 
+                <label> Nickname </label>
+                <p> </p> 
+                <input required type="text" name= "new_nickname">
 
-                <div style="margin-top: 20px; display: inline-block;">
-                    <button type="submit" name="register_button" style="background-color: lightgreen;"> Sign In </button>
-                </div>
-            </fieldset>
+                <p> </p> 
+
+                <label> Username (Ej: paco03) </label>
+                <p> </p> 
+                <input required type="text" name="new_username">
+                    
+                <p> </p> 
+                    
+                <label> Email </label>
+                <p> </p> 
+                <input required type="text" name="new_email">
+          
+                <p> </p> 
+
+                <label> Password </label>
+                <p> </p> 
+                <input required type="password" name="new_password">
+                    
+                <p> </p> 
+                    
+                <label> Birthdate </label>
+                <p> </p> 
+                <input required type="date" name="new_birthdate">
+                <p> </p> 
+                <button type="submit" name="register_button" > Sign In </button>
         </form>
-    </div>
+        </fieldset>
     EOS;
 
-    return "$text" . "$form";
+    return $form;
 }
 
 function generateFormularyArtist(){
 
     $enlace = RUTA_HELPERS_PATH.'/ProcesarRegistro.php';
-    $text = "<p> Registra tu nueva cuenta de artista! </p>\n";
     $form =<<<EOS
-    <div class="form_div" style="display: inline-block; background-color: lightgray; width: 250px;">
-    <fieldset>
-        <form name="register_form" action= $enlace method="post">
+        <fieldset class= "formRegistro">
+        <legend> Registra tu nueva cuenta de artista </legend> 
+        <form action= $enlace method="post">
+            
+                <input hidden name="isArtist" value="1"> 
+                <label> Nickname </label>
+                <p> </p> 
+                <input required type="text" name= "new_nickname">
 
-            <input hidden name="isArtist" value="1">
-            <div class="artist_inputs">
-                <div class="username_input_div">
-                    <div><label> Username </label></div>
-                    <div><input required type="text" name="new_username"></div>
-                </div>
-        
-                <div class="email_input_div">
-                    <div><label> Email </label></div>
-                    <div><input required type="email" name="new_email"></div>
-                </div>
-        
-                <div class="password_input_div">
-                    <div><label> Password </label></div>
-                    <div><input required type="password" name="new_password"></div>
-                </div>
-        
-                <div class="birtdate_input_div">
-                    <div><label> Birthdate </label></div>
-                    <div><input required type="date" name="new_birthdate"></div>
-                </div>
+                <p> </p> 
 
-                <div style="margin-top: 10px;">
-                    <div style="display: inline-block; margin-bottom: 5px;"><label> Musical genre: </label></div>
-                    <select name="musical_genres">
-                        <option>  </option>
-                        <option> Pop </option>
-                        <option> Rock </option>
-                        <option> Rap </option>
-                        <option> Hip Hop </option>
-                        <option> Latino </option>
-                        <option> Jazz </option>
-                        <option> R&B </option>
-                        <option> K-Pop </option>
-                        <option> J-Pop </option>
-                        <option> Dubstep </option>
-                        <option> Clásica </option>
-                        <option> Disco </option>
-                        <option> Funk </option>
-                        <option> Jazz </option>
-                        <option> Reggae </option>
-                        <option> Metal </option>
-                    </select>
-                </div>
-            </div>
+                <label> Username (Ej: paco03) </label>
+                <p> </p> 
+                <input required type="text" name="new_username">
+                    
+                <p> </p> 
+                    
+                <label> Email </label>
+                <p> </p> 
+                <input required type="text" name="new_email">
+          
+                <p> </p> 
 
-            <div class="register_button_div" style="margin-top: 20px; display: inline-block;">
-                <button type="submit" name="register_button" style="background-color: lightgreen;"> Sign In </button>
-            </div>
+                <label> Password </label>
+                <p> </p> 
+                <input required type="password" name="new_password">
+                    
+                <p> </p> 
+                    
+                <label> Birthdate </label>
+                <p> </p> 
+                <input required type="date" name="new_birthdate">
+                <p> </p> 
+
+                <label> Musical genre: </label></div>
+                <select name="musical_genres">
+                    <option>  </option>
+                    <option> Pop </option>
+                    <option> Rock </option>
+                    <option> Rap </option>
+                    <option> Hip Hop </option>
+                    <option> Latino </option>
+                    <option> Jazz </option>
+                    <option> R&B </option>
+                    <option> K-Pop </option>
+                    <option> J-Pop </option>
+                    <option> Dubstep </option>
+                    <option> Clásica </option>
+                    <option> Disco </option>
+                    <option> Funk </option>
+                    <option> Jazz </option>
+                    <option> Reggae </option>
+                    <option> Metal </option>
+                </select>
+
+                <p> </p> 
+                <button type="submit" name="register_button" > Sign In </button>
         </form>
-    </fieldset>
-    </div>
+        </fieldset>
     EOS;
 
-    return "$text" . "$form"; 
+
+    return $form; 
 }

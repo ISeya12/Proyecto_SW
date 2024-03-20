@@ -3,7 +3,7 @@
 require_once '../../Config.php';
 require_once RUTA_HELPERS.'/SignUpHelper.php';
 
-$html = generateUserImage();
-$html .= generateFormularyArtist();
+$content = generateUserImage();
+$content .= generateFormularyArtist();
 
-echo $html;
+require_once RUTA_LAYOUTS; 

@@ -5,7 +5,7 @@ function generatePostPublicationHTML($id_padre= 'NULL'){
 
     $html =<<<EOS
     <fieldset>
-        <legend style="text-align: center; "><strong> Nueva Publicación </strong></legend>
+        <legend ><strong> Nueva Publicación </strong></legend>
         <form name="datos_post" action="Addforo.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id_padre" value="$id_padre">
             Mensaje: <textarea name="post_text" required style="resize: none; "></textarea><br><br>

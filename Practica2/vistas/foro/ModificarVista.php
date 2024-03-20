@@ -14,7 +14,7 @@ function generatePostPublicationHTML($postText){
     $images = displayAllLocalImages();
     $html =<<<EOS
     <fieldset>
-        <legend style="text-align: center; "><strong> Modificacion </strong></legend>
+        <legend><strong> Modificacion </strong></legend>
         <form name="datos_post" action="ProcesarModificacion.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id_padre" >
             Mensaje: <textarea name="post_text" required style="resize: none;">$postText</textarea><br><br>

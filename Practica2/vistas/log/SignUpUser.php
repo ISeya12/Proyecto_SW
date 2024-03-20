@@ -3,8 +3,8 @@
 require_once '../../Config.php';
 require_once RUTA_HELPERS.'/SignUpHelper.php';
 
-$html = generateUserImage();
-$html .= generateFormularyUser();
-$html .= generateArtistAccountLink();
+$content = generateUserImage();
+$content .= generateFormularyUser();
+$content .= generateArtistAccountLink();
 
-echo $html;
+require_once RUTA_LAYOUTS; 

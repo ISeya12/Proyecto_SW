@@ -19,25 +19,15 @@ function generateFormulary(){
     $html =<<<EOS
     <fieldset class= "formLogin"">
         <legend> Login </legend>
-            <div>
                 <form action="$procesarLoginPath" method="post">
-                    <div>
-                        <div><label> Username </label></div>
-                        <div><input type="text" name="username"></div>
-                    </div>
-                    <div>
-                        <div><label> Password </label></div>
-                        <div><input type="password" name="password"></div>
-                    </div>
-    
+                        <label> Username </label>
+                        <input type="text" name="username">
+                
+                        <label> Password </label>
+                        <input type="password" name="password">
                     <button type="submit"> Log in </button>
                 </form>
-            </div>
-    
-            <div>
-                <p> ¿No tienes cuenta? <a href="$registerPath"> Regístrate </a></p>
-            </div>
-        </div>
+         <p> ¿No tienes cuenta? <a href="$registerPath"> Regístrate </a></p>
     </fieldset>
     EOS;
 

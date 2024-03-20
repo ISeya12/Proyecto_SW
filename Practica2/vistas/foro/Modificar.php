@@ -21,9 +21,9 @@ function ModificatePost(){
             <button type="submit"> Modificar</button>
         </form>
         EOS;
-        $content .= "<div style=" . "\"display: inline-block;\" " . ">";
+        $content .= "<section class= 'estiloPost'>";
         $content .= $post->generatePostHTML();
-        $content .= "</div> <br><br>";
+        $content .= "</section>";
         //echo $id;
     }
 

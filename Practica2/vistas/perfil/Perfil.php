@@ -22,9 +22,9 @@ function showProfile($usuario){
         
         $posts= Post:: obtenerPostsDeUsuario($usuario); 
         foreach($posts as $post){
-            $html .= "<div style=" . "\"display: inline-block;\" " . ">";
+            $html .= "<section class= 'estiloPost'>";
             $html .= $post->generatePostHTML();
-            $html .= "</div> <br><br>";
+            $html .= "</section>";
         }
     }
 

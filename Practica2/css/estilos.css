@@ -33,10 +33,20 @@ div.user_info {
 	display: flex; 
 }
 
-
-
 fieldset.formLogin {
-	display: inline-block;
-	width: 180px;
-	height: 30px; 
+	width: 200px;
+}
+
+fieldset legend {
+	text-align: center;
+}
+
+fieldset.formRegistro {
+	width: 300px; 
+	display: flex;
+	background-color: lightgray;
+}
+
+fieldset button  {
+	background-color: lightgreen;
 }
