@@ -3,6 +3,7 @@
 -Posts
 -Respuestas
 -Edicion y modificacion de posts
--Quitar gran parte de los div
+-Quitar gran parte de los div (Alonso)
+-Quitar las etiquetas style de la pagina (Alonso)
 ----------------------------------------------------------- Ideas -----------------------------------------------------------
 -ScrollBar en el desplegable de géneros musicales (SignUpHelper.php)

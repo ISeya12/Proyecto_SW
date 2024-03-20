@@ -16,7 +16,7 @@ function generateStaticHeader() {
         $texto = "2Melody, una app para perder el tiempo escuchando música sin límites!"; 
     }
     $html = <<<EOS
-    <header>
+    <header class= 'header'>
         <p>
             <img src = '$iconImage' alt="Logo app" height="50" width="75">
             $texto

@@ -8,7 +8,7 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
     $user_info =<<<EOS
     <div class="user_info">
         <img src="img/foto_perfil.png" width="50px" height="50px">
-        <div style="display: inline-block; position: absolute; margin-top: 15px;"> <a href= "Perfil.php?user=$autor" name= "user">
+        <div> <a href= "Perfil.php?user=$autor" name= "user">
             @$autor</a> </div>
     </div>
     EOS;
@@ -49,16 +49,17 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
 
     //  Unir todo
     $html =<<<EOS5
-        <div style="background-color: lightgray; width: 100%; height: 100%;">
+        <section class= "estiloPost">
         $user_info
         $post_info
         $post_image
         $boton_like
-        </div>
+        </section>
     EOS5;
 
     return $html;
 }
+
 
 function showResp($id_post){
 
@@ -69,15 +70,15 @@ function showResp($id_post){
 
         $html = "<h1> Respuestas a @".$post_aux->getAutor(). "</h1>";
 
-        $html .= "<div style=" . "\"display: inline-block;\" " . ">";
+        $html .= "<section class= 'estiloPost'>";
         $html .= $post_aux->generatePostHTML();
-        $html .= "</div> <br><br>";
+        $html .= "</section> ";
 
         $posts = Post::obtenerListaDePosts($id_post); 
         foreach($posts as $post){
-            $html .= "<div style=" . "\"display: inline-block;\" " . ">";
+            $html .="<section class= 'estiloPost'>";
             $html .= $post->generatePostHTML();
-            $html .= "</div> <br><br>";
+            $html .= "</section>";
         }
     }
 
@@ -91,9 +92,9 @@ function showTestPosts(){
     $posts = Post::obtenerListaDePosts();
 
     foreach($posts as $post){
-        $content .= "<div style=" . "\"display: inline-block;\" " . ">";
+        $content .= "<section class= 'estiloPost'>";
         $content .= $post->generatePostHTML();
-        $content .= "</div> <br><br>";
+        $content .= "</section>";
     }
 
     return $content;
@@ -113,9 +114,9 @@ function showTestPostsMod(){
             <button type="submit"> Modificar</button>
         </form>
         EOS;
-        $content .= "<div style=" . "\"display: inline-block;\" " . ">";
+        $content .= "<section class= 'estiloPost'>";
         $content .= $post->generatePostHTML();
-        $content .= "</div> <br><br>";
+        $content .= "</section>";
     }
 
     return $content;
@@ -152,9 +153,9 @@ function showTestPostsElim(){
             <button type="submit"> Eliminar</button>
         </form>
         EOS;
-        $content .= "<div style=" . "\"display: inline-block;\" " . ">";
+        $content .= "<section class= 'estiloPost'>";
         $content .= $post->generatePostHTML();
-        $content .= "</div> <br><br>";
+        $content .= "</section>";
     }
 
     return $content;

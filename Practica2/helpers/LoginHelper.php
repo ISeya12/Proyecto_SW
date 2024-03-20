@@ -17,9 +17,8 @@ function generateFormulary(){
     $registerPath = RUTA_VISTAS_PATH.'/log/SignUpUser.php';
 
     $html =<<<EOS
-    <fieldset style="width: fit-content; ">
-        <legend style="text-align: center;"> Login </legend>
-        <div style="width: fit-content; text-align: center;">
+    <fieldset class= "formLogin"">
+        <legend> Login </legend>
             <div>
                 <form action="$procesarLoginPath" method="post">
                     <div>

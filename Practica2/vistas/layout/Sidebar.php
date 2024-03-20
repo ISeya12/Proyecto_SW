@@ -1,4 +1,4 @@
-<nav>
+<nav class= "sidebar">
     <dl>
         <dt class="perfil_shortcut">
             <a href="<?=RUTA_VISTAS_PATH?>/perfil/Perfil.php">
