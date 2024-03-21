@@ -1,5 +1,11 @@
 <?php 
 
+require_once "../Config.php";
+require_once RUTA_CLASSES.'/Post.php';
+require_once RUTA_CLASSES.'/Usuario.php';
+
+
+
 $id = $_POST['likeId'];
 $user = null;
 if(isset($_SESSION['username']))
@@ -28,7 +34,7 @@ if($isValid && $user){
     Post::actualiza($post);
 }
 
-header('Location: Foro.php');
+header('Location: ' .RUTA_VISTAS_PATH. '/foro/Foro.php');
 exit();
 
 

@@ -135,12 +135,6 @@ class Post{
         return $result;
     }
 
-    public function generatePostHTML(){
-
-        //  Imagen de usuario junto a su username
-        return creacionPostHTML($this->autor, $this->imagen, $this->num_likes, $this->texto, $this->id);
-    }
-
     public static function insertaFav($post, $user){
 
         $result = false;

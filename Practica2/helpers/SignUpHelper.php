@@ -20,7 +20,7 @@ function generateFormularyUser(){
     $form =<<<EOS
         <fieldset class= "formRegistro">
         <legend> Registra tu nueva cuenta de usuario </legend> 
-        <form action= $enlace method="post">
+            <form action= $enlace method="post">
             
                 <input hidden name="isArtist" value="0"> 
                 <label> Nickname </label>
@@ -52,7 +52,7 @@ function generateFormularyUser(){
                 <input required type="date" name="new_birthdate">
                 <p> </p> 
                 <button type="submit" name="register_button" > Sign In </button>
-        </form>
+            </form>
         </fieldset>
     EOS;
 
@@ -65,7 +65,7 @@ function generateFormularyArtist(){
     $form =<<<EOS
         <fieldset class= "formRegistro">
         <legend> Registra tu nueva cuenta de artista </legend> 
-        <form action= $enlace method="post">
+            <form action= $enlace method="post">
             
                 <input hidden name="isArtist" value="1"> 
                 <label> Nickname </label>
@@ -120,10 +120,9 @@ function generateFormularyArtist(){
 
                 <p> </p> 
                 <button type="submit" name="register_button" > Sign In </button>
-        </form>
+            </form>
         </fieldset>
     EOS;
-
 
     return $form; 
 }
