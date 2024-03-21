@@ -7,3 +7,21 @@
 -Quitar las etiquetas style de la pagina (Alonso)
 ----------------------------------------------------------- Ideas -----------------------------------------------------------
 -ScrollBar en el desplegable de géneros musicales (SignUpHelper.php)
+-Que las respuestas sean desplegables
+
+
+
+--------------------------------------------------------CSS--------------------------------
+
+-Usar etiquetas en lugar de clases
+
+-Logotipo a la izquierda del todo y el login/logout arriba
+-El sidebar que ocupe toda la columna
+-Mantener la posición del sidebar independientemente del lugar
+-Quitar las opciones, y cuando pases el cursor por los módulos te carguen las opciones 
+-Usar los porcentajes para el ajuste de los componentes de la pagina
+-Tamaños mínimos para los elementos
+-La sidebar debe contraerse y expandirse sin cambiar el fondo
+-Las opciones del perfil, que sean desplegables
+-Las publicaciones guardadas, es una pestaña a parte
+- 
