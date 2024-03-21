@@ -2,8 +2,22 @@
 	height: 70px;
 	text-align: right;
     background-color: lightblue;
-	justify-content: center;
+	justify-content: space-between;
+	display: flex;
 }
+
+.header>div {
+	width: 50px;
+	font-size: 20px;
+	margin: 2px;
+}
+
+#cont01{
+	flex-direction: row;
+
+}
+
+
 
 .sidebar {
 	background-color: lightcoral;
@@ -14,7 +28,7 @@
 	padding: 10px;
 	float: left;
 	min-height: 600px;
-	width: 80%;
+	width: 60%;
 	background-color: lightgrey;
 }
 

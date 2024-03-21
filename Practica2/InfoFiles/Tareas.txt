@@ -15,7 +15,7 @@
 
 -Usar etiquetas en lugar de clases
 
--Logotipo a la izquierda del todo y el login/logout arriba
+-Logotipo a la izquierda del todo y el login/logout arriba // Ignacio
 -El sidebar que ocupe toda la columna
 -Mantener la posición del sidebar independientemente del lugar
 -Quitar las opciones, y cuando pases el cursor por los módulos te carguen las opciones 
