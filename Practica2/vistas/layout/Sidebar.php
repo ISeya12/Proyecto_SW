@@ -4,6 +4,13 @@
             <a href="<?=RUTA_VISTAS_PATH?>/perfil/Perfil.php">
                 <img src="<?=RUTA_IMG_PATH?>/FotoPerfil.png" height="50" width="50" alt="Foto perfil">
             </a>
+            <details>
+                <summary>
+                    Opciones:
+                </summary>
+                <dd><a href="<?=RUTA_VISTAS_PATH?>/perfil/Perfil.php?gustados=1">Posts Favoritos</a></dd>
+
+            </details>
         </dt>
         <dt class="foro_shorcut">
             <a href="<?=RUTA_VISTAS_PATH?>/foro/Foro.php">

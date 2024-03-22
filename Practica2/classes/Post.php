@@ -47,6 +47,21 @@ class Post{
 
         return $result;
     }
+    public static function optenerPostsFavPorUser($username){
+
+        $result = [];
+        $conection = BD::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM post P JOIN postfav F ON P.id_post = F.id_post WHERE F.id_user = '%s' ORDER BY P.fecha DESC;",
+                         $username);
+        $rs = $conection->query($query);
+
+        while($fila = $rs->fetch_assoc()){
+            $result[] = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
+        }
+        $rs->free();
+        
+        return $result;
+    }
 
     public static function obtenerListaDePosts($origen_aux = 'NULL'){
 
@@ -111,15 +126,6 @@ class Post{
         return $result;
     }
 
-    public static function buscarPostFavPorUser($id){
-
-        $result = [];
-        $conection = BD::getInstance()->getConexionBd();
-        $query = "SELECT * FROM postfav P WHERE P.id_user = $id";
-        $rs = $conection->query($query);
-
-        return $result;
-    }
 
     public static function buscarPostPorID($id){
 

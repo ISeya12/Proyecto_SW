@@ -19,6 +19,7 @@ if(isset($_POST['images'])){
 
 $user = Usuario::buscaUsuario($username);
 $post = $user->publicarPost($post_text, $post_image, $post_father);
-$content = $post->generatePostHTML();
+$content = creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
+                            $post->getTexto(), $post->getId());
 
 require_once RUTA_LAYOUTS;

@@ -131,7 +131,8 @@ function showTestPostsMod(){
         </form>
         EOS;
         $content .= "<section class= 'estiloPost'>";
-        $content .= $post->generatePostHTML();
+        $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
+                                     $post->getTexto(), $post->getId());
         $content .= "</section>";
     }
 
@@ -173,7 +174,8 @@ function showTestPostsElim(){
         </form>
         EOS;
         $content .= "<section class= 'estiloPost'>";
-        $content .= $post->generatePostHTML();
+        $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
+                                     $post->getTexto(), $post->getId());
         $content .= "</section>";
     }
 
