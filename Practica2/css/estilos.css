@@ -4,6 +4,9 @@
     background-color: lightblue;
 	justify-content: space-between;
 	display: flex;
+	position:fixed;
+	z-index: 99999;
+	width: 100%; 
 }
 
 .header>div {
@@ -18,14 +21,21 @@
 }
 
 
-
-.sidebar {
+nav { /*Estilo para el menu de navegacion*/ 
 	background-color: lightcoral;
+	z-index: 9990;
 	float: left;
+	min-height: 100vh;
+	position: fixed; 
+	top: 80px; 
 }
 
-.content {
-	padding: 10px;
+
+
+content {
+
+	z-index: 0; 
+	padding-left: 100px;
 	float: left;
 	min-height: 600px;
 	width: 60%;
