@@ -36,22 +36,27 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
 
     $rutaLike = RUTA_HELPERS_PATH.'/ProcesarLike.php';
     $rutaRespuestas = RUTA_VISTAS_PATH.'/foro/RespuestasForo.php';
-    $rutaCrear = RUTA_VISTAS_PATH.'/foro/CrearPost.php';
-
+    $rutaAdd = RUTA_VISTAS_PATH.'/foro/AddForo.php';
+    
 
     //Numero de likes
     $boton_like = <<<EOS4
-    <form action= $rutaLike method="post">
+    <form action = $rutaLike method="post">
         <input type="hidden" name="likeId" value="$id">
-        <button type="submit">$likes &#10084</button>
+        <button type="submit">$likes &#10084 ❤️</button>
     </form>
-    <form action= $rutaRespuestas method="post">
+    <form action = $rutaRespuestas method="post">
         <input type="hidden" name="respuestasId" value="$id">
-        <button type="submit">Ver Respuestas</button>
+        <button type="submit">Ver Respuestas 🔍</button>
     </form>
-    <form action= $rutaCrear method="post">
+    <form action = $rutaAdd method="post">
         <input type="hidden" name="id_padre" value="$id">
-        <button type="submit">Responder</button>
+        <details>
+            <summary>Responder &#10149; ↩️</summary>
+            <label>Respuesta: <input type="text"  name="post_text" required></label><br>
+            <label>Imagen:<input type="file" name="image" accept="image/*"></label><br>
+            <button type="submit">Enviar respuesta</button>
+        </details>
     </form>
     EOS4;
 

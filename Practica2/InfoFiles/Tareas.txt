@@ -1,21 +1,24 @@
 ------------------------------------------------ Rutas y correccion de la P2 ------------------------------------------------
--Likes
--Posts
--Respuestas
--Edicion y modificacion de posts
--Quitar gran parte de los div (Alonso)
--Quitar las etiquetas style de la pagina (Alonso)
+-Likes✅
+-Posts✅
+-Respuestas✅
+-Edicion y modificacion de posts✅
+-Quitar gran parte de los div (Alonso)✅
+-Quitar las etiquetas style de la pagina (Alonso)✅
+-Usar etiquetas en lugar de clases
+-IMPORTANTE: EMPEZAR A CORREGIR FORMULARIOS SIN VALIDACION (no comprobamos nunca si está bien)
 ----------------------------------------------------------- Ideas -----------------------------------------------------------
--ScrollBar en el desplegable de géneros musicales (SignUpHelper.php)
--Que las respuestas sean desplegables
-
+-ScrollBar en el desplegable de géneros musicales (SignUpHelper.php)✅
+-Que las respuestas sean desplegables✅
+-Respuestas, eliminaciones y modificaciones en cada mensaje
+-Publicar a lo mejor quedaria mejor en el Titulo de Foro o algo parecido 
+-Opciones exclusivas de Admin y Restricciones para Usuarios normales (si procede tambien las subcripciones)
 
 
 --------------------------------------------------------CSS--------------------------------
 
--Usar etiquetas en lugar de clases
 
--Logotipo a la izquierda del todo y el login/logout arriba // Ignacio
+-Logotipo a la izquierda del todo y el login/logout arriba // Ignacio✅
 -El sidebar que ocupe toda la columna
 -Mantener la posición del sidebar independientemente del lugar
 -Quitar las opciones, y cuando pases el cursor por los módulos te carguen las opciones 

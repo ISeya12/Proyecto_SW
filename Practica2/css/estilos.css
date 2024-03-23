@@ -17,6 +17,15 @@
 
 }
 
+dt > details > summary {
+    list-style: none; /* Elimina la lista de estilos, incluida la flecha */
+    cursor: pointer; /* Mantiene el cursor como puntero para indicar que se puede hacer clic */
+    padding-left: 2rex; /* Espacio para el marcador personalizado */
+  }
+dt >  details > summary::before {
+    content: "\2630"; /* Marcador personalizado */
+  }
+
 
 
 .sidebar {
