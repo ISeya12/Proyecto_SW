@@ -29,7 +29,6 @@ class Post{
     }
 
     public static function crearPost($username, $text, $img, $likes, $tags, $father_post, $date){
-
         return new Post(null, $username, $text, $img, $likes, $tags, $father_post, $date);
     }
 
@@ -118,9 +117,9 @@ class Post{
         $query = sprintf("SELECT * FROM postfav P WHERE P.id_post  = %d AND P.id_user  = '%s'",$id , $user);
         $rs = $conection->query($query);
 
-        if($rs->num_rows == 0){
+        if($rs->num_rows == 0)
             $result = false;
-        }   
+        
         $rs->free();
 
         return $result;
@@ -133,11 +132,11 @@ class Post{
         $query = sprintf("SELECT * FROM post P WHERE P.id_post = %d",  $id);
         $rs = $conection->query($query);
        
-
         while($fila = $rs->fetch_assoc()){
             $result = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
         }
         $rs->free();
+
         return $result;
     }
 
@@ -224,7 +223,7 @@ class Post{
         return $result;
     }
 
-    public static function actualiza($post){
+    public static function actualizaLikes($post){
 
         $result = false;
         $conn = BD::getInstance()->getConexionBd();

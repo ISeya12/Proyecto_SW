@@ -31,7 +31,7 @@ if($isValid && $user){
     Usuario::actualiza($usuario);
     
     $post->aumentaLikes($aux);
-    Post::actualiza($post);
+    Post::actualizaLikes($post);
 }
 
 header('Location: ' .RUTA_VISTAS_PATH. '/foro/Foro.php');

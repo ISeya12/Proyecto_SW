@@ -27,3 +27,5 @@
 -La sidebar debe contraerse y expandirse sin cambiar el fondo
 -Las opciones del perfil, que sean desplegables
 -Las publicaciones guardadas, es una pestaña a parte
+
+-Quitar <br> en PostHelper.php (creacionPostHTML, responder)
