@@ -104,9 +104,12 @@ function showResp($id_post){
 
 function showTestPosts(){
     
-    $content = "<section class= 'listaPost'>";
 
-    $content .= "<h1> Posts </h1>";
+    $content = "<h1 class= 'texto_infor'> Posts </h1>";
+
+    $content .= "<section class= 'listaPost'>";
+
+  
     
     $posts = Post::obtenerListaDePosts();
 

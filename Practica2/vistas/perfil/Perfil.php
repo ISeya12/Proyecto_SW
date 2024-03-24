@@ -18,7 +18,7 @@ function showProfile($usuario,$gustados){
     }
 
     if($usuario) {
-        $html = "<h1> Perfil de @".$usuario. "</h1>"; 
+        $html = "<h1 class= 'texto_infor'> Perfil de @".$usuario. "</h1>"; 
 
         if($gustados){
 
@@ -29,16 +29,18 @@ function showProfile($usuario,$gustados){
             $posts = Post:: obtenerPostsDeUsuario($usuario); 
         
         if(!empty($posts)){
+            $html .= "<section class= 'listaPost'>";
             foreach($posts as $post){
-                $html .= "<section class= 'estiloPost'>";
+                
                 $html .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
                                           $post->getTexto(), $post->getId());
-                $html .= "</section>";
+               
             }
+            $html .= "</section>";
         }else
             $html .= "<div> <h3> No has dado Like (&#10084) a ningun post</h3></div>";
     }else
-        $html = "<h1>  No estas logead@ </h1>";
+        $html = "<h1 class= 'texto_infor'>  No estas logead@ </h1>";
 
     return $html;
 }
