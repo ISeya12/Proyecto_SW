@@ -26,7 +26,7 @@ else $post_father = 'NULL';
 
 $user = Usuario::buscaUsuario($username);
 $post = $user->publicarPost($post_text, $post_image, $post_father);
-$content = creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
-                            $post->getTexto(), $post->getId());
 
-require_once RUTA_LAYOUTS;
+
+header('Location: Foro.php'); 
+exit(); 

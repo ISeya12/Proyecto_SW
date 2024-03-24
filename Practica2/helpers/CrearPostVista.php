@@ -1,6 +1,8 @@
 <?php
 function generatePostPublicationHTML($id_padre= 'NULL'){
 
+    
+
     $images = displayAllLocalImages();
 
     $html =<<<EOS
@@ -16,7 +18,16 @@ function generatePostPublicationHTML($id_padre= 'NULL'){
     </fieldset>
     EOS;
 
-    return $html;
+
+    $publicacion = <<<EOS
+        <section class= 'formulario_style'> 
+            $html
+        </section> 
+
+    EOS; 
+
+
+    return $publicacion;
 }
 
 function displayAllLocalImages(){

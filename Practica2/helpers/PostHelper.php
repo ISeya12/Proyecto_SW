@@ -79,24 +79,26 @@ function showResp($id_post){
     $rutaNoLog = RUTA_VISTAS_PATH.'/log/Login.php';
 
     if (!isset($_SESSION['username']))
-        $html= "<p> No estas logead@,  <a href= $rutaNoLog> <strong>  pulsa aqui para iniciar sesion </strong> </a> </p>";
+        $html= "<p class= 'texto_infor'> No estas logead@,  <a href= $rutaNoLog> <strong>  pulsa aqui para iniciar sesion </strong> </a> </p>";
     else{
         $post_aux= Post::buscarPostPorID($id_post); 
 
-        $html = "<h1> Respuestas a @".$post_aux->getAutor(). "</h1>";
+        $html = "<h1 class= 'texto_infor'> Respuestas a @".$post_aux->getAutor(). "</h1>";
 
-        $html .= "<section class= 'estiloPost'>";
+        $html .= "<section class= 'listaPost'>";
         $html .= creacionPostHTML($post_aux->getAutor(), $post_aux->getImagen(), $post_aux->getLikes(),
                                   $post_aux->getTexto(), $post_aux->getId());
-        $html .= "</section> ";
+      
 
         $posts = Post::obtenerListaDePosts($id_post); 
+
         foreach($posts as $post){
-            $html .="<section class= 'estiloPost'>";
+           
             $html .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
                                       $post->getTexto(), $post->getId());
-            $html .= "</section>";
+            
         }
+        $html .= "</section> ";
     }
 
     return $html;
@@ -131,9 +133,11 @@ function showTestPostsMod(){
 
     $rutaMod = RUTA_VISTAS_PATH.'/foro/ModificarVista.php';
 
-    $content = "<h1> Posts </h1>";
+    $content = "<h1 class= 'texto_infor'> Posts </h1>";
     
     $posts = Post::obtenerPostsDeUsuario($_SESSION['username']);
+
+    $content .= "<section class= 'listaPost'>";
 
     foreach($posts as $post){
         $id = $post->getId();
@@ -143,17 +147,21 @@ function showTestPostsMod(){
             <button type="submit"> Modificar</button>
         </form>
         EOS;
-        $content .= "<section class= 'estiloPost'>";
+       
         $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
                                      $post->getTexto(), $post->getId());
-        $content .= "</section>";
+       
     }
-
+    $content .= "</section>";
     return $content;
 }
 
 function modificatePost($postText, $postId){
     $rutaMod = RUTA_HELPERS_PATH.'/ProcesarModificacion.php';
+
+
+
+
     $images = displayAllLocalImages();
     $html =<<<EOS
     <fieldset>
@@ -169,7 +177,15 @@ function modificatePost($postText, $postId){
     EOS;
     
 
-    return $html;
+    $post_modi= <<<EOS
+        <section class= 'formulario_style'> 
+            $html
+        </section> 
+
+    EOS; 
+
+
+    return $post_modi;
 }
 function displayAllLocalImages(){
 
@@ -207,9 +223,11 @@ function generatePostPublicationHTML($id_padre= 'NULL'){
 
 function showTestPostsElim(){
 
-    $content = "<h1> Posts </h1>";
+    $content = "<h1 class= 'texto_infor'> Posts </h1>";
    
     $posts = Post::obtenerPostsDeUsuario($_SESSION['username']);
+
+    $content .= "<section class= 'listaPost'>";
 
     foreach($posts as $post){
 
@@ -221,11 +239,11 @@ function showTestPostsElim(){
             <button type="submit"> Eliminar</button>
         </form>
         EOS;
-        $content .= "<section class= 'estiloPost'>";
+        
         $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
                                      $post->getTexto(), $post->getId());
-        $content .= "</section>";
+       
     }
-
+    $content .= "</section>";
     return $content;
 }
