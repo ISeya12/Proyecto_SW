@@ -1,5 +1,8 @@
 <?php 
 
+require_once '../Config.php';
+require_once RUTA_CLASSES.'/Post.php';
+
 $id = $_POST['EliminarID'];
 $user = null;
 
@@ -13,5 +16,5 @@ if($isValid && $user){
     Post::borrarPost($post);
 }
 
-header('Location: Foro.php');
+header('Location:'. RUTA_VISTAS_PATH .'/foro/Foro.php');
 exit();

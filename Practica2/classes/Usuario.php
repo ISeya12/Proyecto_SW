@@ -114,8 +114,7 @@ class Usuario{
     }
 
     public function publicarPost($post_text, $post_image, $post_father){
-        
-        $post =  Post::crearPost($this->username, $post_text, $post_image, 0, null, $post_father, Post::generatePostDate());
+        $post = Post::crearPost($this->username, $post_text, $post_image, 0, null, $post_father, Post::generatePostDate());
         return $post->guarda();
     }
 

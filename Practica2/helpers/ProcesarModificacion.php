@@ -1,6 +1,11 @@
 <?php 
 
-$id = $_POST['ModificarID'];
+require_once '../Config.php';
+require_once RUTA_CLASSES.'/Post.php';
+require_once RUTA_CLASSES.'/Usuario.php';
+
+
+$id = $_POST['id'];
 $user = null;
 
 if(isset($_SESSION['username']))
@@ -14,5 +19,5 @@ if($isValid && $user){
     Post::actualizaPost($post);
 }
 
-header('Location: Foro.php');
+header('Location:'. RUTA_VISTAS_PATH .'/foro/Foro.php');
 exit();

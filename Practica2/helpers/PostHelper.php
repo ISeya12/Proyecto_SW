@@ -53,7 +53,7 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
         <input type="hidden" name="id_padre" value="$id">
         <details>
             <summary>Responder &#10149; ↩️</summary>
-            <label>Respuesta: <input type="text"  name="post_text" required></label><br>
+            <label>Respuesta:<input type="text" name="post_text" required></label><br>
             <label>Imagen:<input type="file" name="image" accept="image/*"></label><br>
             <button type="submit">Enviar respuesta</button>
         </details>
@@ -121,7 +121,7 @@ function showTestPosts(){
 
 function showTestPostsMod(){
 
-    $rutaMod = RUTA_HELPERS_PATH.'ProcesarModificar.php';
+    $rutaMod = RUTA_VISTAS_PATH.'/foro/ModificarVista.php';
 
     $content = "<h1> Posts </h1>";
     
@@ -143,6 +143,40 @@ function showTestPostsMod(){
 
     return $content;
 }
+
+function modificatePost($postText, $postId){
+    $rutaMod = RUTA_HELPERS_PATH.'/ProcesarModificacion.php';
+    $images = displayAllLocalImages();
+    $html =<<<EOS
+    <fieldset>
+        <legend><strong> Modificacion </strong></legend>
+        <form name="datos_post" action= $rutaMod method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value = $postId>
+            Mensaje: <textarea name="postText" required style="resize: none;">$postText</textarea><br><br>
+            Imagen: $images
+            <br><br>
+            Publicar <input type="submit">
+        </form>
+    </fieldset>
+    EOS;
+    
+
+    return $html;
+}
+function displayAllLocalImages(){
+
+    $html =<<<EOS
+    <select name="images">
+        <option>  </option>
+        <option> Image1 </option>
+        <option> Image2 </option>
+        <option> Image3 </option>
+    </select>
+    EOS;
+
+    return $html;
+}
+
 
 function generatePostPublicationHTML($id_padre= 'NULL'){
 
@@ -172,9 +206,10 @@ function showTestPostsElim(){
     foreach($posts as $post){
 
         $rutaEliminar = RUTA_HELPERS_PATH.'/ProcesarEliminar.php';
+        $id = $post->getId();
         $content .= <<<EOS
             <form action= $rutaEliminar method="post">
-            <input type="hidden" name="EliminarID" value= '$post->getId()'>
+            <input type="hidden" name="EliminarID" value= '$id'>
             <button type="submit"> Eliminar</button>
         </form>
         EOS;
@@ -185,8 +220,4 @@ function showTestPostsElim(){
     }
 
     return $content;
-}
-
-function mostrar_perfil(){
-    echo("Holaaaaaa"); 
 }

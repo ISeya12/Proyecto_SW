@@ -1,12 +1,13 @@
 <?php
 
 require_once '../../Config.php';
-require_once RUTA_CLASSES.'/Post.php';
+require_once RUTA_HELPERS.'/PostHelper.php';
 
-$content = ModificatePost();
+$content = showTestPostsMod();
 
-require_once 'Layout.php';
+require_once RUTA_LAYOUTS;
 
+/*
 function ModificatePost(){
 
     $content = "<h1> Posts </h1>";
@@ -25,8 +26,8 @@ function ModificatePost(){
         $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
                                      $post->getTexto(), $post->getId());
         $content .= "</section>";
-        //echo $id;
     }
 
     return $content;
 }
+*/
