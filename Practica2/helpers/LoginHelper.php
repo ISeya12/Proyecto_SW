@@ -5,7 +5,7 @@ require_once '../../Config.php';
 function generateHeader(){
 
     $html =<<<EOS
-        <header> 2Music ¡Música sin limites para perder el tiempo! </header>\n
+        <p> 2Music ¡Música sin limites para perder el tiempo! </p>\n
     EOS;
 
     return $html;

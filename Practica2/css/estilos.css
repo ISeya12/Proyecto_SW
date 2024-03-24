@@ -64,8 +64,9 @@ dt >  details > summary::before {
 	width: 100%;
 	background-color: lightgrey;
 	display: grid;
-	grid-template-columns: [first] 150px [line2] auto [line3];
+	grid-auto-columns: minmax(50px,150px); 
 	grid-auto-rows: minmax(50px, auto);
+	grid-row-gap: 15px;
 }
 
 h1.texto_infor{
@@ -96,10 +97,15 @@ div.user_info {
 
 /*Referente al estilo de los formularios*/ 
 
+section.formulario_style{
+	grid-row-start: 2;
+	grid-column-start: 5;
+	grid-row-end: 3;
+}
+
+
 fieldset.formLogin {
 	width: 200px;
-	grid-row-start: 2;
-	grid-column-start: 2;
 }
 
 fieldset legend {
