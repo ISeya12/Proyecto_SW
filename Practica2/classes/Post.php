@@ -223,7 +223,7 @@ class Post{
         return $result;
     }
 
-    public static function actualiza($post){
+    public static function actualizaLikes($post){
 
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
