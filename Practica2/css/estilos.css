@@ -4,9 +4,6 @@
     background-color: lightblue;
 	justify-content: space-between;
 	display: flex;
-	position:fixed;
-	z-index: 99999;
-	width: 100%; 
 }
 
 .header>div {
@@ -20,31 +17,15 @@
 
 }
 
-dt > details > summary {
-    list-style: none; /* Elimina la lista de estilos, incluida la flecha */
-    cursor: pointer; /* Mantiene el cursor como puntero para indicar que se puede hacer clic */
-    padding-left: 2rex; /* Espacio para el marcador personalizado */
-  }
-dt >  details > summary::before {
-    content: "\2630"; /* Marcador personalizado */
-  }
 
 
-nav { /*Estilo para el menu de navegacion*/ 
+.sidebar {
 	background-color: lightcoral;
-	z-index: 9990;
 	float: left;
-	min-height: 100vh;
-	position: fixed; 
-	top: 80px; 
 }
 
-
-
-content {
-
-	z-index: 0; 
-	padding-left: 100px;
+.content {
+	padding: 10px;
 	float: left;
 	min-height: 600px;
 	width: 60%;
