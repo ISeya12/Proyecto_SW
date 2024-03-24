@@ -1,5 +1,5 @@
 <nav class= "sidebar">
-    <dl>
+    <dl class= "opciones">
         <dt class="perfil_shortcut">
             <a href="<?=RUTA_VISTAS_PATH?>/perfil/Perfil.php">
                 <img src="<?=RUTA_IMG_PATH?>/FotoPerfil.png" height="50" width="50" alt="Foto perfil">

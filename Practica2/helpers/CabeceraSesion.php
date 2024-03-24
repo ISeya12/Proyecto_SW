@@ -8,13 +8,13 @@ function generateStaticHeader() {
         $loginImage = RUTA_IMG_PATH.'/FotoLoginUser.png';
         $altText = 'Foto de login';
         $link = RUTA_VISTAS_PATH.'/log/Login.php';
-        $texto = "Inicie sesión para publicar en el foro";
+        $texto = "Iniciar sesión";
     } else {
         $loginImage = RUTA_IMG_PATH.'/FotoLogoutUser.png';
         $altText = 'Foto de logout';
         $link = RUTA_VISTAS_PATH.'/log/Logout.php';
         $username = $_SESSION['username'];
-        $texto = "Bienvenido !!"; 
+        $texto = "Bienvenido " . $username; 
     }
     $html = <<<EOS
     <header class= 'header'>
@@ -23,10 +23,18 @@ function generateStaticHeader() {
  
         </p>
         Barra de búsqueda
-        <p>
-        $texto
-        <a href="$link"><img src="$loginImage" height="30" width="30" alt="$altText"></a>
-        </p>
+
+        <div class= 'info_session'> 
+          <div class= 'contenedor_texto'> 
+            <p>
+            $texto
+            <p> 
+          </div> 
+
+          <div class= 'contenedor_imagen'> 
+            <p> <a href="$link"><img src="$loginImage" height="30" width="30" alt="$altText"></a> <p> 
+          </div> 
+        </div> 
     </header>
     EOS;
 
