@@ -4,20 +4,15 @@ require_once '../Config.php';
 require_once RUTA_CLASSES.'/Post.php';
 require_once RUTA_CLASSES.'/Usuario.php';
 
-
 $id = $_POST['id'];
-$user = null;
+$tx = $_POST['postText'];
+$img = $_POST['images'];
 
-if(isset($_SESSION['username']))
-    $user = $_SESSION['username'];
+$post = Post::buscarPostPorID($id);
+$post->setTexto($tx);
+$post->setImagen($img);
 
-$isValid = true;
-
-if($isValid && $user){
-    $post = Post::buscarPostPorID($id);
-    $usuario = Usuario::buscaUsuario($post->getAutor());
-    Post::actualizaPost($post);
-}
+Post::actualiza($post);
 
 header('Location:'. RUTA_VISTAS_PATH .'/foro/Foro.php');
 exit();
