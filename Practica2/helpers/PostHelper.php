@@ -62,12 +62,12 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
 
     //  Unir todo
     $html =<<<EOS5
-        <section class= "estiloPost">
+        <article class= "estiloPost">
         $user_info
         $post_info
         $post_image
         $boton_like
-        </section>
+        </article>
     EOS5;
 
     return $html;
@@ -103,18 +103,23 @@ function showResp($id_post){
 }
 
 function showTestPosts(){
+    
+    $content = "<section class= 'listaPost'>";
 
-    $content = "<h1> Posts </h1>";
+    $content .= "<h1> Posts </h1>";
     
     $posts = Post::obtenerListaDePosts();
 
+   
+
+
     foreach($posts as $post){
-        $content .= "<section class= 'estiloPost'>";
+       
         $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
-                                     $post->getTexto(), $post->getId());
-    
-        $content .= "</section>";
+                                     $post->getTexto(), $post->getId());   
     }
+
+    $content .= "</section>";
 
     return $content;
 }
