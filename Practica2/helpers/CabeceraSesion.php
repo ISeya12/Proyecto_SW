@@ -22,7 +22,13 @@ function generateStaticHeader() {
             <img src = '$iconImage' alt="Logo app" height="50" width="75">
  
         </p>
-        Barra de búsqueda
+        <p>
+        <form action="busqueda.php" method="get">
+        <input type="text" name="query" placeholder="Ej. usuario: Robert09">
+        <button type="submit">Buscar</button>
+        </form>
+        </p>
+
 
         <div class= 'info_session'> 
           <div class= 'contenedor_texto'> 
