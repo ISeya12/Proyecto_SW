@@ -24,7 +24,7 @@ function generateFormularyUser(){
             
                 <input hidden name="isArtist" value="0"> 
                 <label> Nickname </label>
-                <p> </p> 
+                <p></p> 
                 <input required type="text" name= "new_nickname">
 
                 <p></p> 
@@ -98,9 +98,9 @@ function generateFormularyArtist(){
                 <p></p> 
 
                 <label> Musical genre: </label><br>
-                <select name="musical_genres"  size = "6">
+                <select name="musical_genres" size = "6">
                     <option> ----</option>
-                    <option  value="Pop"> Pop </option>
+                    <option value="Pop"> Pop </option>
                     <option value="Rock"> Rock </option>
                     <option value="Rap"> Rap </option>
                     <option value="Hip Hop"> Hip Hop </option>

@@ -4,8 +4,6 @@ require_once "../Config.php";
 require_once RUTA_CLASSES.'/Post.php';
 require_once RUTA_CLASSES.'/Usuario.php';
 
-
-
 $id = $_POST['likeId'];
 $user = null;
 if(isset($_SESSION['username']))
@@ -31,7 +29,7 @@ if($isValid && $user){
     Usuario::actualiza($usuario);
     
     $post->aumentaLikes($aux);
-    Post::actualizaLikes($post);
+    Post::actualizar($post);
 }
 
 header('Location: ' .RUTA_VISTAS_PATH. '/foro/Foro.php');

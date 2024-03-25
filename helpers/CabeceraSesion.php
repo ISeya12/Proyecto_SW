@@ -2,6 +2,7 @@
 
 function generateStaticHeader() {
     $iconImage = RUTA_IMG_PATH.'/2MelodyLogo.png';
+
     if (!islogged()) {
         $loginImage = RUTA_IMG_PATH.'/FotoLoginUser.png';
         $altText = 'Foto de login';
@@ -14,6 +15,7 @@ function generateStaticHeader() {
         $username = $_SESSION['username'];
         $texto = "Bienvenido " . $username; 
     }
+
     $html = <<<EOS
     <header class= 'header'>
         <p>
@@ -44,7 +46,6 @@ function generateStaticHeader() {
 
     return $html;
 }
-
 
 function islogged(){
     return isset($_SESSION['username']);

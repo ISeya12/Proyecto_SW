@@ -8,7 +8,7 @@
                 <summary>
                     Opciones:
                 </summary>
-                <dd><a href="<?=RUTA_VISTAS_PATH?>/perfil/Perfil.php?gustados=1">Posts Favoritos</a></dd>
+                <dd><a href="<?=RUTA_VISTAS_PATH?>/perfil/Perfil.php?favs=1">Posts Favoritos</a></dd>
 
             </details>
         </dt>
@@ -21,8 +21,6 @@
                     Opciones:
                 </summary>
                 <dd><a href="<?=RUTA_VISTAS_PATH?>/foro/CrearPost.php">Publicar post</a></dd>
-                <dd><a href="<?=RUTA_VISTAS_PATH?>/foro/Modificar.php">Modificar post</a></dd>
-                <dd><a href="<?=RUTA_VISTAS_PATH?>/foro/Eliminar.php">Borrar post</a></dd>
             </details>
         </dt>
 

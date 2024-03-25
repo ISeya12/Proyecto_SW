@@ -31,6 +31,7 @@ class Post{
     public static function crearPost($username, $text, $img, $likes, $tags, $father_post, $date){
         return new Post(null, $username, $text, $img, $likes, $tags, $father_post, $date);
     }
+    
 
     public static function obtenerPostsDeUsuario($username){
 
@@ -46,6 +47,7 @@ class Post{
 
         return $result;
     }
+
     public static function optenerPostsFavPorUser($username){
 
         $result = [];
@@ -67,12 +69,10 @@ class Post{
         $post = [];
         $conection = BD::getInstance()->getConexionBd();
 
-        if($origen_aux == 'NULL'){
+        if($origen_aux == 'NULL')
             $operation = 'IS';
-        }
-        else {
+        else 
             $operation = '=';
-        }
 
         $query = "SELECT * FROM post P WHERE P.origen $operation $origen_aux ORDER BY P.fecha DESC";
         $rs = $conection->query($query);
@@ -152,9 +152,8 @@ class Post{
 
         $result = $conn->query($query);
 
-        if (!$result) {
+        if (!$result) 
             error_log($conn->error);
-        }
 
         return $result;
     }
@@ -171,9 +170,8 @@ class Post{
 
         $result = $conn->query($query);
 
-        if (!$result)  {
+        if (!$result)  
             error_log($conn->error);
-        }
 
         return $result;
     }
@@ -186,11 +184,11 @@ class Post{
             $post->id,
         );
         echo $query;
+
         $result = $conn->query($query);
 
-        if (!$result)  {
+        if (!$result)  
             error_log($conn->error);
-        }
 
         return $result;
     }
@@ -216,73 +214,47 @@ class Post{
             $post->id = $conn->insert_id;
             $result = $post;
         }
-        else {
+        else 
             error_log($conn->error);
-        }
 
         return $result;
     }
 
-    public static function actualizaLikes($post){
-
+    public static function actualizar($post){
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
+    
         $query = sprintf(
-            "UPDATE post M SET M.likes = %d WHERE M.id_post = %d",
+            "UPDATE post SET texto = '%s', imagen = '%s', likes = %d, tags = '%s', fecha = '%s' WHERE id_post = %d",
+            $conn->real_escape_string($post->texto),
+            $conn->real_escape_string($post->imagen),
             $post->num_likes,
+            $conn->real_escape_string($post->tags), 
+            Post::generatePostDate(),
             $post->id
         );
-
+    
         $result = $conn->query($query);
-
-        if (!$result) {
+    
+        if (!$result) 
             error_log($conn->error);
-        }
-        else if ($conn->affected_rows != 1) {
-            error_log("Se han actualizado '$conn->affected_rows' !");
-        }
-
+        else if ($conn->affected_rows != 1) 
+            error_log("Se han actualizado '$conn->affected_rows' registros!");
+    
         return $result;
     }
-
-    public static function actualizaPost($post){
-
-        $result = false;
-        $conn = BD::getInstance()->getConexionBd();
-        $query = sprintf(
-            "UPDATE post M SET M.texto = %d AND M.imagen WHERE M.id_post = %d",
-            $post->texto,
-            $post->imagen,
-            $post->id
-        );
-
-        $result = $conn->query($query);
-
-        if (!$result) {
-            error_log($conn->error);
-        }
-        else if ($conn->affected_rows != 1) {
-            error_log("Se han actualizado '$conn->affected_rows' !");
-        }
-
-        return $result;
-    }
-
 
     public function guarda(){
 
-        if (!$this->id) {
+        if (!$this->id) 
             self::inserta($this);
-        }
-        else {
+        else 
             self::actualiza($this);
-        }
 
         return $this;
     }
 
     public function guardaFav(){
-
         !$this->id ? self::insertaFav($this, $this->id) : self::actualiza($this);
         return $this;
     }
@@ -307,9 +279,11 @@ class Post{
     public function setLikes($num) {
         $this->num_likes = $num;
     }
+
     public function getId(){
         return $this->id;
     }
+
     public function getAutor(){
         return $this->autor;
     }
@@ -337,5 +311,4 @@ class Post{
     public function getPadre(){
         return $this->post_origen;
     }
-    
 }

@@ -2,7 +2,7 @@
 
 require_once RUTA_CLASSES.'/Post.php';
 
-function creacionPostHTML($autor, $image, $likes, $texto, $id){
+function creacionPostHTML($autor, $image, $likes, $texto, $id, $yoYYoMismo){
 
     $rutaPFP = RUTA_IMG_PATH.'/FotoPerfil.png';
     $rutaPerfil = RUTA_VISTAS_PATH.'/perfil/Perfil.php';
@@ -11,25 +11,25 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
     $user_info =<<<EOS
     <div class="user_info">
         <img alt = "user_info" src= $rutaPFP width="50px" height="50px">
-        <div> <a href= "$rutaPerfil?user=$autor" name= "user">
-            @$autor</a> </div>
+        <div><a href= "$rutaPerfil?user=$autor" name= "user">@$autor</a> </div>
     </div>
     EOS;
 
     //Texto del post
     $post_info =<<<EOS2
     <div class="post_info">
-        <p>$texto </p> 
+        <p>$texto</p> 
     </div>
     EOS2;
 
     //Imagen del post
     $rutaImagen = RUTA_IMG_PATH.'/postImages/'.$image;
     $post_image = "";
+
     if(!empty($image)){
         $post_image =<<<EOS3
         <div class="post_image">
-            <img alt ="post_image"src= $rutaImagen width="70" heigth="70">
+            <img alt = "post_image" src = $rutaImagen width = "70" heigth = "70">
         </div>
         EOS3;
     }
@@ -38,67 +38,85 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
     $rutaRespuestas = RUTA_VISTAS_PATH.'/foro/RespuestasForo.php';
     $rutaAdd = RUTA_VISTAS_PATH.'/foro/AddForo.php';
     
+    //Likes, respuestas y responder
+    /*
+    if (soy admin){
 
-    //Numero de likes
-    $boton_like = <<<EOS4
-    <form action = $rutaLike method="post">
-        <input type="hidden" name="likeId" value="$id">
+    }
+    */
+    $botones = '';
+    if ($yoYYoMismo == $autor){
+        $rutaMod = RUTA_VISTAS_PATH.'/foro/ModificarVista.php';
+        $rutaEliminar = RUTA_HELPERS_PATH.'/ProcesarEliminar.php';
+
+        $botones .= <<<EOS4
+        <form action = $rutaMod method="post">
+            <input type = "hidden" name = "ModificarID" value = "$id">
+            <button type = "submit"> Modificar</button>
+        </form>
+
+        <form action= $rutaEliminar method="post">
+            <input type="hidden" name="EliminarID" value= '$id'>
+            <button type="submit"> Eliminar</button>
+        </form>
+        EOS4;
+    }
+
+    $botones .= <<<EOS5
+    <form action = $rutaLike method = "post">
+        <input type = "hidden" name = "likeId" value = "$id">
         <button type="submit">$likes &#9834 </button>
     </form>
-    <form action = $rutaRespuestas method="post">
-        <input type="hidden" name="respuestasId" value="$id">
-        <button type="submit">Ver Respuestas &#128269</button>
+
+    <form action = $rutaRespuestas method = "post">
+        <input type = "hidden" name = "respuestasId" value = "$id">
+        <button type = "submit">Ver Respuestas &#128269</button>
     </form>
-    <form action = $rutaAdd method="post">
-        <input type="hidden" name="id_padre" value="$id">
+
+    <form action = $rutaAdd method = "post">
+        <input type = "hidden" name = "id_padre" value = "$id">
         <details>
             <summary>Responder &#10149; </summary>
-            <label>Respuesta:<input type="text" name="post_text" required></label><br>
-            <label>Imagen:<input type="file" name="image" accept="image/*"></label><br>
-            <button type="submit">Enviar respuesta</button>
+            <label>Respuesta:<input type = "text" name = "post_text" required></label><br>
+            <label>Imagen:<input type = "file" name = "image" accept = "image/*"></label><br>
+            <button type = "submit">Enviar respuesta</button>
         </details>
     </form>
-    EOS4;
+    EOS5;
 
-    //  Unir todo
-    $html =<<<EOS5
-        <article class= "estiloPost">
+    $html =<<<EOS6
+        <article class = "estiloPost">
         $user_info
         $post_info
         $post_image
-        $boton_like
+        $botones
         </article>
-    EOS5;
+    EOS6;
 
     return $html;
 }
 
-
-function showResp($id_post){
+function showResp($id_post, $yoYYoMismo){
 
     $rutaNoLog = RUTA_VISTAS_PATH.'/log/Login.php';
 
     if (!isset($_SESSION['username']))
-        $html= "<p class= 'texto_infor'> No estas logead@,  <a href= $rutaNoLog> <strong>  pulsa aqui para iniciar sesion </strong> </a> </p>";
+        $html= "<p class = 'texto_infor'> No estas logead@,  <a href = $rutaNoLog> <strong>  pulsa aqui para iniciar sesion </strong> </a> </p>";
     else{
         $post_aux= Post::buscarPostPorID($id_post); 
 
-        $html = "<h1 class= 'texto_infor'> Respuestas a @".$post_aux->getAutor(). "</h1>";
-
+        $html = "<h1 class = 'texto_infor'> Respuestas a @".$post_aux->getAutor(). "</h1>";
         $html .= "<section class = 'listaPost'>";
         $html .= "<div id = 'headPost'>";
         $html .= creacionPostHTML($post_aux->getAutor(), $post_aux->getImagen(), $post_aux->getLikes(),
-                                  $post_aux->getTexto(), $post_aux->getId());
+                                  $post_aux->getTexto(), $post_aux->getId(), $yoYYoMismo);
         $html .= "</div>";
-      
 
         $posts = Post::obtenerListaDePosts($id_post); 
 
         foreach($posts as $post){
-           
             $html .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
-                                      $post->getTexto(), $post->getId());
-            
+                                      $post->getTexto(), $post->getId(), $yoYYoMismo);
         }
         $html .= "</section> ";
     }
@@ -106,103 +124,46 @@ function showResp($id_post){
     return $html;
 }
 
-function showTestPosts(){
+function showTestPosts($yoYYoMismo){
     
-
-    $content = "<h1 class= 'texto_infor'> Posts </h1>";
-
-    $content .= "<section class= 'listaPost'>";
-
-  
-    
+    $content = "<h1 class = 'texto_infor'> Posts </h1>";
+    $content .= "<section class = 'listaPost'>";
     $posts = Post::obtenerListaDePosts();
 
-   
-
-
     foreach($posts as $post){
-       
         $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
-                                     $post->getTexto(), $post->getId());   
-    }
-
-    $content .= "</section>";
-
-    return $content;
-}
-
-function showTestPostsMod(){
-
-    $rutaMod = RUTA_VISTAS_PATH.'/foro/ModificarVista.php';
-
-    $content = "<h1 class= 'texto_infor'> Posts </h1>";
-    
-    $posts = Post::obtenerPostsDeUsuario($_SESSION['username']);
-
-    $content .= "<section class= 'listaPost'>";
-
-    foreach($posts as $post){
-        $id = $post->getId();
-        $content .= <<<EOS
-            <form action= $rutaMod method="post">
-            <input type="hidden" name="ModificarID" value="$id">
-            <button type="submit"> Modificar</button>
-        </form>
-        EOS;
-       
-        $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
-                                     $post->getTexto(), $post->getId());
-       
+                                     $post->getTexto(), $post->getId(), $yoYYoMismo);   
     }
     $content .= "</section>";
+
     return $content;
 }
 
 function modificatePost($postText, $postId){
+
     $rutaMod = RUTA_HELPERS_PATH.'/ProcesarModificacion.php';
-
-
-
-
-    $images = displayAllLocalImages();
     $html =<<<EOS
     <fieldset>
         <legend><strong> Modificacion </strong></legend>
-        <form name="datos_post" action= $rutaMod method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value = $postId>
-            Mensaje: <textarea name="postText" required style="resize: none;">$postText</textarea><br><br>
-            Imagen: $images
-            <br><br>
-            Publicar <input type="submit">
+        <form name = "datos_post" action = $rutaMod method = "post" enctype = "multipart/form-data">
+            <input type = "hidden" name = "id" value = $postId>
+            Mensaje: <textarea name = "postText" required style = "resize: none;">$postText</textarea><br><br>
+            <label>Imagen:<input type = "file" name = "image" accept = "image/*"></label><br>
+            <br>
+            Publicar <input type = "submit">
         </form>
     </fieldset>
     EOS;
     
-
     $post_modi= <<<EOS
-        <section class= 'formulario_style'> 
+        <section class = 'formulario_style'> 
             $html
         </section> 
 
     EOS; 
 
-
     return $post_modi;
 }
-function displayAllLocalImages(){
-
-    $html =<<<EOS
-    <select name="images">
-        <option>  </option>
-        <option> Image1 </option>
-        <option> Image2 </option>
-        <option> Image3 </option>
-    </select>
-    EOS;
-
-    return $html;
-}
-
 
 function generatePostPublicationHTML($id_padre= 'NULL'){
 
@@ -221,31 +182,4 @@ function generatePostPublicationHTML($id_padre= 'NULL'){
     EOS;
 
     return $html;
-}
-
-function showTestPostsElim(){
-
-    $content = "<h1 class= 'texto_infor'> Posts </h1>";
-   
-    $posts = Post::obtenerPostsDeUsuario($_SESSION['username']);
-
-    $content .= "<section class= 'listaPost'>";
-
-    foreach($posts as $post){
-
-        $rutaEliminar = RUTA_HELPERS_PATH.'/ProcesarEliminar.php';
-        $id = $post->getId();
-        $content .= <<<EOS
-            <form action= $rutaEliminar method="post">
-            <input type="hidden" name="EliminarID" value= '$id'>
-            <button type="submit"> Eliminar</button>
-        </form>
-        EOS;
-        
-        $content .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
-                                     $post->getTexto(), $post->getId());
-       
-    }
-    $content .= "</section>";
-    return $content;
 }

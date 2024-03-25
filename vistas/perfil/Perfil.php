@@ -4,43 +4,38 @@ require_once '../../Config.php';
 require_once RUTA_CLASSES.'/Post.php';
 
 $usuario = $_GET["user"] ?? NULL;
-$gustados = $_GET["gustados"] ?? NULL;
-$content = showProfile($usuario,$gustados);
+$favs = $_GET["favs"] ?? NULL;
+$content = showProfile($usuario,$favs);
 
 require_once RUTA_LAYOUTS;
 
-function showProfile($usuario,$gustados){
+function showProfile($usuario,$favs){
     
     if(!$usuario){
-        if (isset($_SESSION['username'])){
+        if (isset($_SESSION['username']))
             $usuario = $_SESSION['username'];
-        }
     }
 
     if($usuario) {
-        $html = "<h1 class= 'texto_infor'> Perfil de @".$usuario. "</h1>"; 
+        $html = "<h1 class = 'texto_infor'> Perfil de @".$usuario."</h1>"; 
 
-        if($gustados){
-
-            $html = "<h1 class= 'texto_infor'> Posts Favoritos de @".$usuario. "</h1>"; 
-            $posts = Post:: optenerPostsFavPorUser($usuario); 
-
+        if($favs){
+            $html = "<h1 class = 'texto_infor'> Posts Favoritos de @".$usuario."</h1>"; 
+            $posts = Post::optenerPostsFavPorUser($usuario); 
         }else
-            $posts = Post:: obtenerPostsDeUsuario($usuario); 
+            $posts = Post::obtenerPostsDeUsuario($usuario); 
         
         if(!empty($posts)){
-            $html .= "<section class= 'listaPost'>";
+            $html .= "<section class = 'listaPost'>";
             foreach($posts as $post){
-                
                 $html .= creacionPostHTML($post->getAutor(), $post->getImagen(), $post->getLikes(),
-                                          $post->getTexto(), $post->getId());
-               
+                                          $post->getTexto(), $post->getId(), $usuario);
             }
             $html .= "</section>";
         }else
-            $html .= "<section class= 'listaPost'> <h3> No has dado Like (&#10084) a ningun post</h3></section>";
+            $html .= "<section class = 'listaPost'> <h3> No has dado Like (&#10084) a ningún post</h3></section>";
     }else
-        $html = "<h1 class= 'texto_infor'>  No estas logead@ </h1>";
+        $html = "<h1 class = 'texto_infor'>  No estas logead@ </h1>";
 
     return $html;
 }

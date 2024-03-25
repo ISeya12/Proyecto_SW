@@ -15,5 +15,4 @@ $content= <<<EOS
     </section> 
 EOS; 
 
-
 require_once RUTA_LAYOUTS; 

@@ -1,10 +1,10 @@
 ------------------------------------------------ COSAS PARA SEMANA SANTA----------------------------------------------------
 -IMPORTANTE: EMPEZAR A CORREGIR FORMULARIOS SIN VALIDACION (no comprobamos nunca si está bien) (David)
--Imagenes ($_FILES, subir archivos etc...) (David)
+-Imagenes ($_FILES, subir archivos etc...) (David)✅
 -UTILIZAR GRID EN CSS (Alonso y Ignacio)
 -Interfaz de Pefil (Ignacio y Alonso), Ajustes (Ignacio y Alonso) y Tienda (David y Hugo)
--Base de datos cambiarla (Hugo)
--Respuestas, eliminaciones y modificaciones en cada mensaje 
+-Base de datos cambiarla !!! CASCADE !!! (Hugo)
+-Respuestas, eliminaciones y modificaciones en cada mensaje✅
 
 ------------------------------------------------ Rutas y correccion de la P2 ------------------------------------------------
 -Likes✅
@@ -20,14 +20,12 @@
 ----------------------------------------------------------- Ideas -----------------------------------------------------------
 -ScrollBar en el desplegable de géneros musicales (SignUpHelper.php)✅
 -Que las respuestas sean desplegables✅
--Respuestas, eliminaciones y modificaciones en cada mensaje
+-Respuestas, eliminaciones y modificaciones en cada mensaje✅
 -Publicar a lo mejor quedaria mejor en el Titulo de Foro o algo parecido 
 -Opciones exclusivas de Admin y Restricciones para Usuarios normales (si procede tambien las subcripciones)
 
 
 --------------------------------------------------------CSS--------------------------------
-
-
 -Logotipo a la izquierda del todo y el login/logout arriba // Ignacio✅
 -El sidebar que ocupe toda la columna ✅
 -Mantener la posición del sidebar independientemente del lugar ✅

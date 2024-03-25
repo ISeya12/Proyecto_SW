@@ -6,13 +6,30 @@ require_once RUTA_CLASSES.'/Usuario.php';
 
 $id = $_POST['id'];
 $tx = $_POST['postText'];
-$img = $_POST['images'];
 
 $post = Post::buscarPostPorID($id);
 $post->setTexto($tx);
-$post->setImagen($img);
+if ($_FILES['image']['name'] != ''){
 
-Post::actualiza($post);
+    $archivo_nombre = $_FILES['image']['name'];
+    $archivo_tipo = $_FILES['image']['type'];
+    $archivo_tamaño = $_FILES['image']['size'];
+    $archivo_temporal = $_FILES['image']['tmp_name'];
+
+    $directorio_destino = RUTA_IMG.'/postImages/';
+
+    //Nombre con extension
+    $ultimo_punto = strrpos($archivo_nombre, '.');
+    $extension = substr($archivo_nombre, $ultimo_punto + 1);
+    $post_image = uniqid() . '.' . $extension;
+
+    //Ruta de guardado
+    $ruta_destino = $directorio_destino . $post_image;
+    move_uploaded_file($archivo_temporal, $ruta_destino);
+    $post->setImagen($post_image);
+}
+
+Post::actualizar($post);
 
 header('Location:'. RUTA_VISTAS_PATH .'/foro/Foro.php');
 exit();

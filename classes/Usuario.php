@@ -43,7 +43,6 @@ class Usuario{
             */
             return NULL; 
         }
-
         else {
             $conection = BD::getInstance()->getConexionBd();
             $nullv = null;
@@ -63,21 +62,16 @@ class Usuario{
     
                     $conection->query($query); 
     
-                   if($conection) {
-                    }
-    
-                    else {
+                    if(!$conection) 
                         error_log("Error BD ({$conection->errno}): {$conection->error}");
-                    }
-
                 }   
                return new Usuario($username, $nickname, $password, $nullv, $nullv, $karma, $artist, $birth, $email,); 
             }
-            else {
+            else 
                 error_log("Error BD ({$conection->errno}): {$conection->error}");
-            }
         }
     }
+
     public static function actualiza($user){
         
         $result = false;
@@ -103,7 +97,6 @@ class Usuario{
                 $user->username
         );
         $result = $conn->query($query);
-
 
         if (!$result)
             error_log($conn->error);
@@ -132,7 +125,6 @@ class Usuario{
     public function comprueba_password($password){
         return password_verify($password, $this->password); 
     }
-
 
     //Comprueba si el usuario se trata de un artista 
     public static function esArtista($id_u) {
@@ -163,7 +155,6 @@ class Usuario{
         $result= false; 
 
         if($rs){
-
             $fila= $rs->fetch_assoc(); 
 
             if($fila) {

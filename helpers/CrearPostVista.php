@@ -1,43 +1,29 @@
 <?php
+
+require_once '../../Config.php';
+
 function generatePostPublicationHTML($id_padre= 'NULL'){
 
-    $images = displayAllLocalImages();
+    $ruta = RUTA_VISTAS_PATH.'/foro/Addforo.php';
 
     $html =<<<EOS
     <fieldset>
         <legend ><strong> Nueva Publicación </strong></legend>
-        <form name="datos_post" action="Addforo.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id_padre" value="$id_padre">
-            Mensaje: <textarea name="post_text" required style="resize: none; "></textarea><br><br>
-            Imagen: $images
+        <form name = "datos_post" action = $ruta method = "post" enctype = "multipart/form-data">
+            <input type = "hidden" name = "id_padre" value = "$id_padre">
+            Mensaje: <textarea name = "post_text" required style = "resize: none; "></textarea><br><br>
+            <label>Imagen:<input type = "file" name = "image" accept = "image/*"></label><br>
             <br><br>
-            Publicar <input type="submit">
+            Publicar <input type = "submit">
         </form>
     </fieldset>
     EOS;
 
-
     $publicacion = <<<EOS
-        <section class= 'formulario_style'> 
+        <section class = 'formulario_style'> 
             $html
         </section> 
-
     EOS; 
 
-
     return $publicacion;
-}
-
-function displayAllLocalImages(){
-
-    $html =<<<EOS
-    <select name="images">
-        <option>  </option>
-        <option> Image1 </option>
-        <option> Image2 </option>
-        <option> Image3 </option>
-    </select>
-    EOS;
-
-    return $html;
 }
