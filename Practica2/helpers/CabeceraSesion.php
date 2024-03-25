@@ -1,7 +1,5 @@
 <?php
 
-require_once '../../Config.php';
-
 function generateStaticHeader() {
     $iconImage = RUTA_IMG_PATH.'/2MelodyLogo.png';
     if (!islogged()) {
@@ -20,9 +18,9 @@ function generateStaticHeader() {
     <header class= 'header'>
         <p>
             <img src = '$iconImage' alt="Logo app" height="50" width="75">
- 
         </p>
         <p>
+
         <form action="busqueda.php" method="get">
         <input type="text" name="query" placeholder="Ej. usuario: Robert09">
         <button type="submit">Buscar</button>

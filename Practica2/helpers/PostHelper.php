@@ -43,16 +43,16 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
     $boton_like = <<<EOS4
     <form action = $rutaLike method="post">
         <input type="hidden" name="likeId" value="$id">
-        <button type="submit">$likes &#10084 ❤️</button>
+        <button type="submit">$likes &#9834 </button>
     </form>
     <form action = $rutaRespuestas method="post">
         <input type="hidden" name="respuestasId" value="$id">
-        <button type="submit">Ver Respuestas 🔍</button>
+        <button type="submit">Ver Respuestas &#128269</button>
     </form>
     <form action = $rutaAdd method="post">
         <input type="hidden" name="id_padre" value="$id">
         <details>
-            <summary>Responder &#10149; ↩️</summary>
+            <summary>Responder &#10149; </summary>
             <label>Respuesta:<input type="text" name="post_text" required></label><br>
             <label>Imagen:<input type="file" name="image" accept="image/*"></label><br>
             <button type="submit">Enviar respuesta</button>

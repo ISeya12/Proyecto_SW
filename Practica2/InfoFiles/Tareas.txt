@@ -1,3 +1,11 @@
+------------------------------------------------ COSAS PARA SEMANA SANTA----------------------------------------------------
+-IMPORTANTE: EMPEZAR A CORREGIR FORMULARIOS SIN VALIDACION (no comprobamos nunca si está bien) (David)
+-Imagenes ($_FILES, subir archivos etc...) (David)
+-UTILIZAR GRID EN CSS (Alonso y Ignacio)
+-Interfaz de Pefil (Ignacio y Alonso), Ajustes (Ignacio y Alonso) y Tienda (David y Hugo)
+-Base de datos cambiarla (Hugo)
+-Respuestas, eliminaciones y modificaciones en cada mensaje 
+
 ------------------------------------------------ Rutas y correccion de la P2 ------------------------------------------------
 -Likes✅
 -Posts✅
@@ -5,8 +13,10 @@
 -Edicion y modificacion de posts✅
 -Quitar gran parte de los div (Alonso)✅
 -Quitar las etiquetas style de la pagina (Alonso)✅
--Usar etiquetas en lugar de clases
--IMPORTANTE: EMPEZAR A CORREGIR FORMULARIOS SIN VALIDACION (no comprobamos nunca si está bien)
+-Usar etiquetas en lugar de clases ✅
+
+
+
 ----------------------------------------------------------- Ideas -----------------------------------------------------------
 -ScrollBar en el desplegable de géneros musicales (SignUpHelper.php)✅
 -Que las respuestas sean desplegables✅
@@ -19,12 +29,12 @@
 
 
 -Logotipo a la izquierda del todo y el login/logout arriba // Ignacio✅
--El sidebar que ocupe toda la columna
--Mantener la posición del sidebar independientemente del lugar
+-El sidebar que ocupe toda la columna ✅
+-Mantener la posición del sidebar independientemente del lugar ✅
 -Quitar las opciones, y cuando pases el cursor por los módulos te carguen las opciones 
 -Usar los porcentajes para el ajuste de los componentes de la pagina
--Tamaños mínimos para los elementos
--La sidebar debe contraerse y expandirse sin cambiar el fondo
+-Tamaños mínimos para los elementos ✅
+-La sidebar debe contraerse y expandirse sin cambiar el fondo ✅
 -Las opciones del perfil, que sean desplegables
 -Las publicaciones guardadas, es una pestaña a parte
 

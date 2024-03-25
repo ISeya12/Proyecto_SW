@@ -11,6 +11,7 @@ body {
 	height: 70px;
 	text-align: right;
     background-color: lightblue;
+	align-items: center;
 	justify-content: space-between;
 	display: flex;
 	position: fixed; 
@@ -50,7 +51,7 @@ header div.contenedor_texto {
 dl.opciones {
 
 	position: relative; 
-	top: 150px; 
+	top: 100px; 
 }
 
 dt  details  summary {
@@ -69,11 +70,11 @@ dt   details  summary::before {
 /*Contenido principal de la pagina*/
 .content {
 	min-height: 100vh;
-	width: calc(100% - 14%);
-	margin-left: 14%; 
+	width: 86%; 
+	margin-left: 16.5%; 
 	background-color: lightgrey;
 	display: grid;
-	grid-auto-columns: minmax(50px,150px); 
+	grid-auto-columns: minmax(50px,auto); 
 	grid-auto-rows: minmax(50px, auto);
 	grid-row-gap: 15px;
 }
