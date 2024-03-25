@@ -10,7 +10,7 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
     //Imagen de usuario junto a su username
     $user_info =<<<EOS
     <div class="user_info">
-        <img src= $rutaPFP width="50px" height="50px">
+        <img alt = "user_info" src= $rutaPFP width="50px" height="50px">
         <div> <a href= "$rutaPerfil?user=$autor" name= "user">
             @$autor</a> </div>
     </div>
@@ -29,7 +29,7 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id){
     if(!empty($image)){
         $post_image =<<<EOS3
         <div class="post_image">
-            <img src= $rutaImagen width="70" heigth="70">
+            <img alt ="post_image"src= $rutaImagen width="70" heigth="70">
         </div>
         EOS3;
     }
@@ -85,9 +85,11 @@ function showResp($id_post){
 
         $html = "<h1 class= 'texto_infor'> Respuestas a @".$post_aux->getAutor(). "</h1>";
 
-        $html .= "<section class= 'listaPost'>";
+        $html .= "<section class = 'listaPost'>";
+        $html .= "<div id = 'headPost'>";
         $html .= creacionPostHTML($post_aux->getAutor(), $post_aux->getImagen(), $post_aux->getLikes(),
                                   $post_aux->getTexto(), $post_aux->getId());
+        $html .= "</div>";
       
 
         $posts = Post::obtenerListaDePosts($id_post); 

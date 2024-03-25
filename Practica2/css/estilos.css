@@ -1,7 +1,12 @@
 
 /*Estilos de la cabecera*/
 
-
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+  }
 .header {
 	height: 70px;
 	text-align: right;
@@ -46,12 +51,12 @@ dl.opciones {
 	top: 150px; 
 }
 
-dt > details > summary {
+dt  details  summary {
     list-style: none; /* Elimina la lista de estilos, incluida la flecha */
     cursor: pointer; /* Mantiene el cursor como puntero para indicar que se puede hacer clic */
     padding-left: 2rex; /* Espacio para el marcador personalizado */
   }
-dt >  details > summary::before {
+dt   details  summary::before {
     content: "\2630"; /* Marcador personalizado */
   }
 
@@ -84,6 +89,16 @@ section.listaPost{
 	flex-direction: column;
 }
 
+/*
+	background-color: lightgray; 
+	width: 500px; 
+	height: 100%;
+	margin-bottom: 3em;
+	background-color: #fff;
+	border: 1px solid #e1e8ed;
+	padding: 20px;
+	border-radius: 10px;	
+*/
 article.estiloPost {
 	background-color: lightgray; 
 	width: 100%; 

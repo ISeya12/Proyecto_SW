@@ -22,7 +22,7 @@ function showProfile($usuario,$gustados){
 
         if($gustados){
 
-            $html = "<h1> Posts Favoritos de @".$usuario. "</h1>"; 
+            $html = "<h1 class= 'texto_infor'> Posts Favoritos de @".$usuario. "</h1>"; 
             $posts = Post:: optenerPostsFavPorUser($usuario); 
 
         }else
@@ -38,7 +38,7 @@ function showProfile($usuario,$gustados){
             }
             $html .= "</section>";
         }else
-            $html .= "<div> <h3> No has dado Like (&#10084) a ningun post</h3></div>";
+            $html .= "<section class= 'listaPost'> <h3> No has dado Like (&#10084) a ningun post</h3></section>";
     }else
         $html = "<h1 class= 'texto_infor'>  No estas logead@ </h1>";
 
