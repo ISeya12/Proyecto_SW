@@ -1,8 +1,6 @@
 <?php
 function generatePostPublicationHTML($id_padre= 'NULL'){
 
-    
-
     $images = displayAllLocalImages();
 
     $html =<<<EOS

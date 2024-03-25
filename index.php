@@ -8,4 +8,4 @@ $content= <<<EOS
     </div> 
 EOS; 
 
-require_once  RUTA_LAYOUTS;
+require_once RUTA_LAYOUTS;
