@@ -97,6 +97,10 @@ main {
 	grid-row-start: 1;
 }
 
+div#mensaje_bienvenida{
+	grid-column-start: 2;
+	grid-row-start: 2;
+}
 
 /*Estilo de los post*/ 
 
