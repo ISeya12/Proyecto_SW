@@ -87,8 +87,6 @@ class Producto{
         $result = false;
         $conn = BD::getInstance()->getConexionBd();
 
-        $id, $nombre, $descripcion, $imagen, $autor, $stock, $precio
-
         $query = sprintf(
             "INSERT INTO producto (id, nombre, descripcion, imagen, autor, stock, precio)
                        VALUES ('%d','%s','%s', %s, %s, '%d', '%d')",
