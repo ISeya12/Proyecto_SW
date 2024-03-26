@@ -3,11 +3,7 @@
 require_once '../../Config.php';
 
 function generateHeader(){
-
-    $html =<<<EOS
-        <p> 2Music ¡Música sin limites para perder el tiempo! </p>\n
-    EOS;
-
+    $html = '<p> 2Music ¡Música sin limites para perder el tiempo! </p>';
     return $html;
 }
 

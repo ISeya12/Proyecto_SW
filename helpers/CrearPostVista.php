@@ -19,11 +19,7 @@ function generatePostPublicationHTML($id_padre= 'NULL'){
     </fieldset>
     EOS;
 
-    $publicacion = <<<EOS
-        <section class = 'formulario_style'> 
-            $html
-        </section> 
-    EOS; 
+    $publicacion = '<section class="formulario_style">' . $html . '</section>';
 
     return $publicacion;
 }

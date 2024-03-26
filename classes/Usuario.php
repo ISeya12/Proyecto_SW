@@ -34,7 +34,7 @@ class Usuario{
     public static function createUser($username, $nickname, $password, $email, $birth, $artist){
 
         /*Primero compruebo si ya existe un usuario con el mismo username*/ 
-        $user_buscado= self:: buscaUsuario($username);
+        $user_buscado= self::buscaUsuario($username);
 
         if($user_buscado){ //Ya existia un usuario con ese nombre 
             /* TODO
@@ -150,7 +150,7 @@ class Usuario{
     public static function buscaUsuario($username){
 
         $conn= BD::getInstance()->getConexionBd();
-        $query= sprintf("SELECT * FROM usuario U WHERE U.id_user= '%s'", $conn->real_escape_string($username)); 
+        $query= sprintf("SELECT * FROM usuario U WHERE U.id_user= '%s'", $username); 
         $rs= $conn->query($query); 
         $result= false; 
 
@@ -166,8 +166,6 @@ class Usuario{
 
             $rs->free(); 
         }
-        else
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
 
         return $result; 
     }

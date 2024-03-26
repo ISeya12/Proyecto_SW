@@ -18,29 +18,29 @@ function generateStaticHeader() {
 
     $html = <<<EOS
     <header class= 'header'>
-        <p>
-            <img src = '$iconImage' alt="Logo app" height="50" width="75">
-        </p>
-        <p>
+      <p>
+        <img src = '$iconImage' alt="Logo app" height="50" width="75">
+      </p>
 
+      <p>
         <form action="busqueda.php" method="get">
-        <input type="text" name="query" placeholder="Ej. usuario: Robert09">
-        <button type="submit">Buscar</button>
+          <input type="text" name="query" placeholder="Ej. usuario: Robert09">
+          <button type="submit">Buscar</button>
         </form>
-        </p>
+      </p>
 
 
-        <div class= 'info_session'> 
-          <div class= 'contenedor_texto'> 
-            <p>
+      <div class= 'info_session'> 
+        <div class= 'contenedor_texto'> 
+          <p>
             $texto
-            <p> 
-          </div> 
-
-          <div class= 'contenedor_imagen'> 
-            <p> <a href="$link"><img src="$loginImage" height="30" width="30" alt="$altText"></a> <p> 
-          </div> 
+          <p> 
         </div> 
+
+        <div class= 'contenedor_imagen'> 
+          <p> <a href="$link"><img src="$loginImage" height="30" width="30" alt="$altText"></a> <p> 
+        </div> 
+      </div> 
     </header>
     EOS;
 

@@ -5,7 +5,7 @@ require_once RUTA_CLASSES.'/Post.php';
 require_once RUTA_CLASSES.'/Usuario.php';
 
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : false;
-$post_text = isset($_POST['post_text']) ? $_POST['post_text'] : false;  
+$post_text = isset($_POST['post_text']) ? htmlspecialchars($_POST['post_text']) : false;  
 
 if ($_FILES['image']['name'] != ''){
     $archivo_nombre = $_FILES['image']['name'];

@@ -4,17 +4,12 @@ require_once '../Config.php';
 require_once RUTA_CLASSES.'/Usuario.php'; 
 
 //Opciones comunes
-$username = filter_input(INPUT_POST, 'new_username', FILTER_SANITIZE_SPECIAL_CHARS);
-$nickname = filter_input(INPUT_POST, 'new_nickname', FILTER_SANITIZE_SPECIAL_CHARS); 
-$email = filter_input(INPUT_POST, 'new_email', FILTER_SANITIZE_SPECIAL_CHARS);
+$username =  htmlspecialchars($_POST['new_username']);
+$nickname = htmlspecialchars($_POST['new_nickname']);
+$email = htmlspecialchars($_POST['new_email']);
 $password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
 $birthdate = $_POST['new_birthdate'];
 $isArtist = boolval($_POST['isArtist']);
-
-
-//Opciones de artista
-$musical_genres;
-
 
 if(!$isArtist)
     $artist_members = null;

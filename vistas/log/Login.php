@@ -5,7 +5,6 @@ require_once RUTA_HELPERS.'/LoginHelper.php';
 
 global $isArtist;
 
-
 $message = generateHeader();
 $formulario = generateFormulary();
 
