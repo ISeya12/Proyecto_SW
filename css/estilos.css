@@ -7,6 +7,20 @@ body {
 	padding: 0;
 	background-color: #f4f4f4;
   }
+
+  div.container{
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 16% 84%;
+	grid-template-rows: 70px auto;
+	grid-template-areas: 
+	"cabecera cabecera"
+	"navegacion contenido"
+	"navegacion contenido";
+}
+
+
 .header {
 	height: 70px;
 	text-align: right;
@@ -17,7 +31,7 @@ body {
 	position: fixed; 
 	width: 100%; 
 	z-index: 100;
-	
+	grid-area: cabecera;
 }
 
 
@@ -46,6 +60,7 @@ header div.contenedor_texto {
 	width: 14%; 
 	min-height: 100vh;
 	position: fixed;
+	grid-area: navegacion;
 }
 
 dl.opciones {
@@ -67,29 +82,32 @@ dt   details  summary::before {
 /*Contenido principal de la pagina*/
 
 
-/*Contenido principal de la pagina*/
-.content {
-	min-height: 100vh;
-	width: 86%; 
-	margin-left: 16.5%; 
-	background-color: lightgrey;
+main {
+	width: 100%;
+	background-color: lightgray;
+	grid-area: contenido;
 	display: grid;
-	grid-auto-columns: minmax(50px,auto); 
-	grid-auto-rows: minmax(50px, auto);
-	grid-row-gap: 15px;
+	grid-auto-columns: 30% 25% 25% 20% ; 
+	grid-auto-rows: minmax(25px, auto);
 }
+
 
 .texto_infor{
 	grid-column-start: 2 ;
-	grid-row-start: 2;
+	grid-row-start: 1;
 }
 
+div#mensaje_bienvenida{
+	grid-column-start: 2;
+	grid-row-start: 2;
+}
 
 /*Estilo de los post*/ 
 
 section.listaPost{
+	
 	grid-column-start: 2;
-	grid-row-start: 3;
+	grid-row-start: 4;
 	display: flex;
 	flex-direction: column;
 }
@@ -119,8 +137,9 @@ div.user_info {
 
 section.formulario_style{
 	grid-row-start: 2;
-	grid-column-start: 5;
 	grid-row-end: 3;
+	grid-column-start: 2;
+	
 }
 
 
@@ -138,7 +157,7 @@ fieldset.formRegistro {
 	background-color: lightgray;
 }
 
-fieldset button  {
+button  {
 	background-color: lightgreen;
 }
 

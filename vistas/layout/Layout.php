@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="<?=RUTA_CSS_PATH?>/estilos.css">
     <title> 2Music </title>
 </head>
+
 <body>
+
+
+    <div class = "container">
 
     <?php require_once 'Cabecera.php'; ?>
     
@@ -15,6 +19,8 @@
     <main class= "content">
         <?= $content ?>
     </main>
+
+    </div> 
 
     <!-- Incluir footer proximamente = reproductor de música -->
 </body>
