@@ -139,21 +139,17 @@ section.formulario_style{
 	grid-row-start: 2;
 	grid-row-end: 3;
 	grid-column-start: 2;
-	
+	display: flex; 
+	flex-direction: column;
+	width: 300px;
 }
 
-
-fieldset.formLogin {
-	width: 200px;
-}
 
 fieldset legend {
 	text-align: center;
 }
 
 fieldset.formRegistro {
-	width: 300px; 
-	display: flex;
 	background-color: lightgray;
 }
 

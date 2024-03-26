@@ -1,7 +1,7 @@
 <nav class= "sidebar">
     <dl class= "opciones">
         <dt class="perfil_shortcut">
-            <a href="<?=RUTA_VISTAS_PATH?>/perfil/Perfil.php">
+            <a href="<?=RUTA_VISTAS_PATH?>/perfil/AjustePerfil.php">
                 <img src="<?=RUTA_IMG_PATH?>/FotoPerfil.png" height="50" width="50" alt="Foto perfil">
             </a>
             <details>
