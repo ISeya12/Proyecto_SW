@@ -50,24 +50,7 @@ class Producto{
 
     }
 
-    /*
-    public static function buscarPostPorUsuario($user){
-
-        $result = [];
-        $conection = BD::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM post P JOIN usuario U ON P.id_user = U.id_user WHERE U.id_user = '%s';", $user); 
-        $rs = $conection->query($query);
-
-        while($fila = $rs->fetch_assoc()){
-            $result[] = new Post($fila['id_post'],$fila['id_user'], $fila['texto'], $fila['imagen'], $fila['likes'], $fila['origen'],$fila['tags'],  $fila['fecha']);
-        }
-        $rs->free();
-
-        return $result;
-    }
-    */
-
-    public static function buscarPostPorID($id){
+    public static function buscarProductoPorID($id){
 
         $conection = BD::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM producto P WHERE P.id = %d",  $id);
@@ -135,13 +118,13 @@ class Producto{
         $conn = BD::getInstance()->getConexionBd();
     
         $query = sprintf(
-            "UPDATE producto SET nombre = '%s', imagen = '%s', likes = %d, tags = '%s', fecha = '%s' WHERE id = %d",
-            $conn->real_escape_string($producto->texto),
+            "UPDATE producto SET nombre = '%s', descripcion = '%s', imagen = '%s', stock = '%d', precio = '%d' WHERE id = %d",
+            $conn->real_escape_string($producto->nombre),
+            $conn->real_escape_string($producto->descripcion),
             $conn->real_escape_string($producto->imagen),
-            $post->num_likes,
-            $conn->real_escape_string($post->tags), 
-            Post::generatePostDate(),
-            $post->id
+            $producto->stock,
+            $producto->$precio,
+            $producto->id
         );
     
         $result = $conn->query($query);
@@ -163,62 +146,33 @@ class Producto{
 
         return $this;
     }
-
-    public function guardaFav(){
-        !$this->id ? self::insertaFav($this, $this->id) : self::actualiza($this);
-        return $this;
-    }
-
-    public function aumentaLikes($num){
-        $this->num_likes +=  $num;
-    }
-
-
-    public function setTexto($texto) {
-        $this->texto = $texto;
-    }
-
-    public function setImagen($imagen) {
-        $this->imagen = $imagen;
-    }
-
-    public function setTags($tags) {
-        $this->tags = $tags;
-    }
-
-    public function setLikes($num) {
-        $this->num_likes = $num;
-    }
+    
 
     public function getId(){
         return $this->id;
     }
 
-    public function getAutor(){
-        return $this->autor;
+    public function getNombre(){
+        return $this->texto;
     }
 
-    public function getTexto(){
+    public function getDescripcion(){
         return $this->texto;
     }
 
     public function getImagen(){
         return $this->imagen;
     }
+
+    public function getAutor(){
+        return $this->autor;
+    }
     
-    public function getLikes(){
+    public function getStock(){
         return $this->num_likes;
     }
 
-    public function getTags(){
+    public function getPrecio(){
         return $this->tags;
-    }
-
-    public function getFecha(){
-        return $this->fecha_publicacion;
-    }
-
-    public function getPadre(){
-        return $this->post_origen;
     }
 }

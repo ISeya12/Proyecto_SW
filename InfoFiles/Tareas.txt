@@ -2,7 +2,7 @@
 -IMPORTANTE: EMPEZAR A CORREGIR FORMULARIOS SIN VALIDACION (no comprobamos nunca si está bien) (David)
 -Imagenes ($_FILES, subir archivos etc...) (David)✅
 -UTILIZAR GRID EN CSS (Alonso y Ignacio) ✅
--Interfaz de Pefil (Ignacio), Ajustes (Alonso) y Tienda (David y Hugo)
+-Interfaz de Pefil. Incluye seguidores y sus respectivas funciones (Ignacio), Ajustes (Alonso) y Tienda (David y Hugo)
 
 -Base de datos cambiarla (Hugo) !!!!!!!!!!!!!!!!!!!!!!!! MIRAR Producto.php (en classes) PARA LA TABLA PRODUCTOS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
