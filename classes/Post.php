@@ -48,7 +48,7 @@ class Post{
         return $result;
     }
 
-    public static function optenerPostsFavPorUser($username){
+    public static function obtenerPostsFavPorUser($username){
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();

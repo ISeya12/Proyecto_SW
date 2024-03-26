@@ -37,7 +37,7 @@
             </details>
         </dt>
         <dt class="tienda_shorcut">
-            <a href="<?=RUTA_VISTAS_PATH?>/tienda/Tienda.php">
+            <a href="<?=RUTA_VISTAS_PATH?>/tienda/Merch.php">
                 <img src="<?=RUTA_IMG_PATH?>/FotoTienda.png" height="50" width="50" alt="Foto de tienda">
             </a>
         <details>

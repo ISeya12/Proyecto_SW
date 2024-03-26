@@ -5,7 +5,7 @@ require_once RUTA_CLASSES.'/Post.php';
 require_once RUTA_CLASSES.'/Usuario.php';
 
 $id = $_POST['id'];
-$tx = $_POST['postText'];
+$tx = htmlspecialchars($_POST['postText']);
 
 $post = Post::buscarPostPorID($id);
 $post->setTexto($tx);
