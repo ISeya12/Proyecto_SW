@@ -86,10 +86,10 @@ function creacionPostHTML($autor, $image, $likes, $texto, $id, $yoYYoMismo){
 
     $html =<<<EOS6
         <article class = "estiloPost">
-        $user_info
-        $post_info
-        $post_image
-        $botones
+            $user_info
+            $post_info
+            $post_image
+            $botones
         </article>
     EOS6;
 
@@ -163,23 +163,4 @@ function modificatePost($postText, $postId){
     EOS; 
 
     return $post_modi;
-}
-
-function generatePostPublicationHTML($id_padre= 'NULL'){
-
-    $rutaCrear = RUTA_VISTAS_PATH.'/foro/Addforo.php';
-    $html =<<<EOS
-    <fieldset>
-        <legend style="text-align: center; "><strong> Nueva Publicación </strong></legend>
-        <form name="datos_post" action= $rutaCrear method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id_padre" value="$id_padre">
-            Mensaje: <textarea name="post_text" required style="resize: none; "></textarea><br><br>
-            Imagen: $images
-            <br><br>
-            Publicar <input type="submit">
-        </form>
-    </fieldset>
-    EOS;
-
-    return $html;
 }

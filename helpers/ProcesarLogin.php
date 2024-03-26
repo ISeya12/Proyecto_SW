@@ -4,7 +4,8 @@ require_once '../Config.php';
 require_once RUTA_CLASSES.'/Usuario.php';
 
 //Obtener el input
-$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+$username = htmlspecialchars($_POST['username']);
+//$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
 $password = $_POST['password'] ?? null;
 
 //Comprobar credenciales
