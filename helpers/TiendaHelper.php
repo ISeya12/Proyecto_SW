@@ -68,7 +68,8 @@ function showProducts($yoYYoMismo){
     
     $content = "<h1 class = 'texto_infor'> Artículos </h1>";
     $content .= "<section class = 'listaArticulos'>";
-    $productos = Producto::obtenerListaDeProductos();
+    $productos = Producto::obtenerProductosDeArtista('user2');
+    //$productos = Producto::obtenerListaDeProductos();
 
     foreach($productos as $prod){
         $content .= creacionProductoHTML($prod->getId(), $prod->getNombre(), $prod->getDescripcion(), $prod->getAutor(),

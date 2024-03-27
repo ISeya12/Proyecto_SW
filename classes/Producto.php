@@ -34,12 +34,12 @@ class Producto{
 
         $result = [];
         $conection = BD::getInstance()->getConexionBd();
-        $query = sprintf( "SELECT * FROM producto P WHERE P.autor = '%s'", $username);
+        $query = sprintf( "SELECT * FROM producto P WHERE P.id_artista = '%s'", $username);
         $rs = $conection->query($query);
         
         while($fila = $rs->fetch_assoc()){
-            $result[] = self::crearProducto($fila['id'],$fila['nombre'], $fila['descripcion'], 
-                                            $fila['imagen'], $fila['autor'], $fila['stock'], $fila['precio']);
+            $result[] = self::crearProducto($fila['id_prod'],$fila['nombre'], $fila['descripcion'], 
+                                            $fila['imagen'], $fila['id_artista'], $fila['stock'], $fila['precio']);
         }
         $rs->free();
 
@@ -151,11 +151,11 @@ class Producto{
     }
 
     public function getNombre(){
-        return $this->texto;
+        return $this->nombre;
     }
 
     public function getDescripcion(){
-        return $this->texto;
+        return $this->descripcion;
     }
 
     public function getImagen(){
@@ -167,10 +167,10 @@ class Producto{
     }
     
     public function getStock(){
-        return $this->num_likes;
+        return $this->stock;
     }
 
     public function getPrecio(){
-        return $this->tags;
+        return $this->precio;
     }
 }
