@@ -21,7 +21,7 @@ function showProfile($usuario,$favs){
 
         if($favs){
             $html = "<h1 class = 'texto_infor'> Posts Favoritos de @".$usuario."</h1>"; 
-            $posts = Post::optenerPostsFavPorUser($usuario); 
+            $posts = Post::obtenerPostsFavPorUser($usuario); 
         }else
             $posts = Post::obtenerPostsDeUsuario($usuario); 
         
